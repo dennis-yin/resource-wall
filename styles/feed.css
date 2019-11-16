@@ -1,0 +1,13 @@
+main.feed {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  background-color: aqua;
+}
+main.feed .pin {
+  background-image: url("https://static.scientificamerican.com/sciam/cache/file/03E7136B-00FB-4458-ADD5476908D81644_source.jpg?w=590&h=800&371AD03D-5682-420F-A738640CAD3B6F85");
+  width: 160px;
+  height: 300px;
+}
+
+/*# sourceMappingURL=feed.css.map */
