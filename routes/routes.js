@@ -12,8 +12,7 @@ module.exports = (db) => {
   router.get("/", (req, res) => {
     db.query(`SELECT * FROM users;`)
       .then(data => {
-        const users = data.rows;
-        res.json({ users });
+        res.json(data.rows);
       })
       .catch(err => {
         res
@@ -21,5 +20,32 @@ module.exports = (db) => {
           .json({ error: err.message });
       });
   });
+
+  router.get("/:id", (req, res) => {
+    let query = `
+    SELECT u.name, u.profile_picture, b.*
+    FROM users u
+    JOIN boards b on b.owner_id = u.id
+    WHERE u.id = $1;
+    `
+    db.query(query, [req.params.id])
+      .then(data => {
+        res.json(data.rows);
+      });
+  });
+
+  router.get("/:id/pins", (req, res) => {
+    let query = `
+    SELECT u.name, u.profile_picture, p.*
+    FROM users u
+    JOIN pins p ON u.id = p.owner_id
+    WHERE u.id = $1;
+    `
+    db.query(query, [req.params.id])
+      .then(data => {
+        res.json(data.rows);
+      })
+  })
+
   return router;
 };

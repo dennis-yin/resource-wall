@@ -38,7 +38,8 @@ CREATE TABLE categories_pins (
 CREATE TABLE boards (
   id SERIAL PRIMARY KEY NOT NULL,
   name VARCHAR(255),
-  owner_id INTEGER REFERENCES users(id) ON DELETE CASCADE
+  owner_id INTEGER REFERENCES users(id) ON DELETE CASCADE,
+  image VARCHAR(500)
 );
 
 CREATE TABLE boards_pins (

@@ -33,20 +33,20 @@ app.use(express.static("public"));
 
 // Separated Routes for each Resource
 // Note: Feel free to replace the example routes below with your own
-const routes = require("./routes/routes.js");
+const routes = require("./routes/routes");
 
 // Mount all resource routes
 // Note: Feel free to replace the example routes below with your own
-app.use("/api/routes", routes(db));
+app.use("/", routes(db));
 // Note: mount other resources here, using the same pattern above
 
 
 // Home page
 // Warning: avoid creating more routes in this file!
 // Separate them into separate routes files (see above).
-app.get("/", (req, res) => {
-  res.render("index");
-});
+// app.get("/", (req, res) => {
+//   res.render("index");
+// });
 
 app.listen(PORT, () => {
   console.log(`Example app listening on port ${PORT}`);
