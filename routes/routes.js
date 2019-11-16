@@ -9,15 +9,13 @@ const express = require('express');
 const router  = express.Router();
 
 module.exports = (db) => {
-  router.get("/", (req, res) => {
-    db.query(`SELECT * FROM users;`)
+  router.get("", (req, res) => {
+    let query = `
+    SELECT * FROM pins;
+    `
+    db.query(query)
       .then(data => {
         res.json(data.rows);
-      })
-      .catch(err => {
-        res
-          .status(500)
-          .json({ error: err.message });
       });
   });
 
@@ -46,6 +44,18 @@ module.exports = (db) => {
         res.json(data.rows);
       })
   })
+
+  router.get("/pins/:pin_id", (req, res) => {
+    let query = `
+    SELECT * FROM pins WHERE id = $1;
+    `
+    db.query(query, [req.params.pin_id])
+      .then(data => {
+        res.json(data.rows);
+      })
+  })
+
+
 
   return router;
 };
