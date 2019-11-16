@@ -1,4 +1,4 @@
-const createTweetElement = (tweetData) => {
+const createPin = (tweetData) => {
   const $tweet = $("<article>").addClass("tweet");
   const safeHtml = escape(tweetData.content.text);
   const timeStamp = moment(tweetData.created_at).fromNow();

@@ -1,15 +1,14 @@
 .feed{
   width: auto;
   display: flex;
-  flex-direction: row;
   background-color: rgb(63, 60, 60);
   flex-flow: row wrap;
-  flex-wrap: wrap;
   align-items: flex-start;
   justify-content: space-evenly;
-  align-content: space-around;
 }
-
+.pin{
+  height: 400px;
+}
 .img1{
   content: url('https://images.unsplash.com/photo-1503023345310-bd7c1de61c7d?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&w=1000&q=80');
   width: 300px;
