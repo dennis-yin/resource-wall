@@ -2,15 +2,39 @@
   width: auto;
   display: flex;
   flex-direction: row;
-  background-color: aqua;
+  background-color: rgb(63, 60, 60);
+  flex-flow: row wrap;
   flex-wrap: wrap;
+  align-items: flex-start;
+  justify-content: space-evenly;
+  align-content: space-around;
 }
 
-.pin{
-  background-image: url('https://images.unsplash.com/photo-1503023345310-bd7c1de61c7d?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&w=1000&q=80');
-  width: 160px;
-  height: 300px;
+.img1{
+  content: url('https://images.unsplash.com/photo-1503023345310-bd7c1de61c7d?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&w=1000&q=80');
+  width: 300px;
+  max-height: 600px;
+  margin-bottom: 10px;
+
 }
+
+.img2{
+  content: url('https://i.all3dp.com/cdn-cgi/image/fit=cover,w=1284,h=722,gravity=0.5x0.5,format=auto/wp-content/uploads/2018/12/28144052/background-images-can-come-in-handy-when-modeling-tian-ooi-all3dp-181228.jpg');
+  width: 300px;
+  max-height: 600px;
+  margin-bottom: 10px;
+
+
+}
+
+.img3{
+  content: url('https://cdn.pixabay.com/photo/2015/04/23/22/00/tree-736885__340.jpg');
+  width: 300px;
+  max-height: 600px;
+  margin-bottom: 10px;
+}
+
+
 
 
 
