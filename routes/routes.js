@@ -19,7 +19,7 @@ module.exports = (db) => {
       });
   });
 
-  router.get("/:id", (req, res) => {
+  router.get("/users/:id", (req, res) => {
     let query = `
     SELECT u.name, u.profile_picture, b.*
     FROM users u
@@ -32,7 +32,7 @@ module.exports = (db) => {
       });
   });
 
-  router.get("/:id/pins", (req, res) => {
+  router.get("/users/:id/pins", (req, res) => {
     let query = `
     SELECT u.name, u.profile_picture, p.*
     FROM users u
@@ -45,6 +45,10 @@ module.exports = (db) => {
       })
   })
 
+  router.get("/pins/new", (req, res) => {
+    res.json('Add pin here')
+  })
+
   router.get("/pins/:pin_id", (req, res) => {
     let query = `
     SELECT * FROM pins WHERE id = $1;
@@ -55,6 +59,28 @@ module.exports = (db) => {
       })
   })
 
+  router.get("/boards/:board_id", (req, res) => {
+    let query = `
+    SELECT * FROM boards
+    JOIN boards_pins ON board_id = boards.id
+    JOIN pins ON pin_id = pins.id
+    WHERE boards.id = $1;
+    `
+    db.query(query, [req.params.board_id])
+      .then(data => {
+        res.json(data.rows);
+      })
+  })
+
+
+
+  // router.post("/pin/new", (req, res) => {
+  //   let query = `
+  //   INSERT INTO pins
+  //   (owner_id,image,title,description,url)
+  //   VALUES ()
+  //   `
+  // })
 
 
   return router;
