@@ -124,11 +124,6 @@ module.exports = (db) => {
     if (req.body.password !== req.body['password-confirm']) {
       // ERROR MESSAGE
     }
-    // db.users.findOne({
-    //   where: {
-    //     email: req.body.email
-    //   }
-    // })
     let query = `
     SELECT *
     FROM users
@@ -138,20 +133,19 @@ module.exports = (db) => {
       .then((user) => {
         if (user.rows.length) {
           // ERROR: USER ALREADY EXISTS
+          console.log('User already exists')
         } else {
-          // let hashedPassword;
-          // bcrypt.hash(req.body.password, SALT_ROUNDS, (err, hash) => {
-          //   hashedPassword = hash;
-          // })
-          let query = `
-          INSERT INTO users (name, email, password)
-          VALUES ($1, $2, $3);
-          `
-          db.query(query, [req.body.name, req.body.email, req.body.password])
-            .then(() => {
-              console.log("USER ADDED TO DATABASE");
-              res.redirect("/");
+          bcrypt.hash(req.body.password, SALT_ROUNDS, (err, hash) => {
+            let query = `
+            INSERT INTO users (name, email, password)
+            VALUES ($1, $2, $3);
+            `
+            db.query(query, [req.body.name, req.body.email, hash])
+              .then(() => {
+                console.log("USER ADDED TO DATABASE");
+                res.redirect("/");
             })
+          });
         }
       })
   });
@@ -160,14 +154,18 @@ module.exports = (db) => {
     let query = `
     SELECT *
     FROM users
-    WHERE email = $1 AND password = $2;
+    WHERE email = $1;
     `
-    // Figure out how to do this with bcrypt.compare
-    db.query(query, [req.body.email, req.body.password])
-      .then(() => {
-        if (users.rows.length) {
-          // Set a cookie
-          res.redirect("/");
+    db.query(query, [req.body.email])
+      .then((user) => {
+        console.log(user.rows[0].password)
+        if (user.rows.length) {
+          bcrypt.compare(req.body.password, user.rows[0].password, (err, success) => {
+            if (success) {
+              // Set a cookie
+              res.redirect("/");
+            }
+          });
         } else {
           // ERROR: Invalid username/password
         }
