@@ -106,8 +106,6 @@ module.exports = (db) => {
     });
   })
 
-
-
   // router.post("/pin/new", (req, res) => {
   //   let query = `
   //   INSERT INTO pins
