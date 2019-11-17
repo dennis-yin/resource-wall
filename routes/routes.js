@@ -40,18 +40,50 @@ module.exports = (db) => {
     });
   });
 
-  router.get("/users/:id", (req, res) => {
+  router.get("/data/users/:id", (req, res) => {
     let query = `
-    SELECT u.name, u.profile_picture, b.*
+    SELECT u.id,u.name,u.name,u.profile_picture
     FROM users u
-    JOIN boards b on b.owner_id = u.id
     WHERE u.id = $1;
     `
-    db.query(query, [req.params.id])
-      .then(data => {
-        res.json(data.rows);
-      });
+    const arg = [req.params.id]
+    db.query(query, arg)
+    .then(data => {
+      let pins = data.rows
+      let obj = {}
+      for(let pin of pins){
+        obj[pin.id] = pin
+      }
+      res.json(obj);
+    });
   });
+
+  router.get("/data/users/boards/:user_id", (req, res) => {
+    let query = `
+    SELECT b.*
+    FROM users u
+    JOIN boards b ON b.owner_id = u.id
+    WHERE u.id = $1;
+    `
+    const arg = [req.params.user_id]
+    db.query(query, arg)
+    .then(data => {
+      let pins = data.rows
+      let obj = {}
+      for(let pin of pins){
+        obj[pin.id] = pin
+      }
+      res.json(obj);
+    });
+  });
+
+  router.get("/users/:id", (req, res) => {
+    res.sendFile("userProfile.html", {
+      root: path.join(__dirname, "../public")
+    });
+  });
+
+
 
   router.get("/users/:id/pins", (req, res) => {
     let query = `
@@ -60,11 +92,17 @@ module.exports = (db) => {
     JOIN pins p ON u.id = p.owner_id
     WHERE u.id = $1;
     `
-    db.query(query, [req.params.id])
-      .then(data => {
-        res.json(data.rows);
-      })
-  });
+    const arg = [req.params.id]
+    db.query(query, arg)
+    .then(data => {
+      let pins = data.rows
+      let obj = {}
+      for(let pin of pins){
+        obj[pin.id] = pin
+      }
+      res.json(obj);
+    });
+  })
 
   router.get("/pins/new", (req, res) => {
     res.json('Add pin here')
@@ -74,11 +112,17 @@ module.exports = (db) => {
     let query = `
     SELECT * FROM pins WHERE id = $1;
     `
-    db.query(query, [req.params.pin_id])
-      .then(data => {
-        res.json(data.rows);
-      })
-  });
+    const arg = [req.params.pin_id]
+    db.query(query, arg)
+    .then(data => {
+      let pins = data.rows
+      let obj = {}
+      for(let pin of pins){
+        obj[pin.id] = pin
+      }
+      res.json(obj);
+    });
+  })
 
   router.get("/boards/:board_id", (req, res) => {
     let query = `
@@ -88,11 +132,17 @@ module.exports = (db) => {
     JOIN pins ON pin_id = pins.id
     WHERE boards.id = $1;
     `
-    db.query(query, [req.params.board_id])
-      .then(data => {
-        res.json(data.rows);
-      })
-  });
+    const arg = [req.params.board_id]
+    db.query(query, arg)
+    .then(data => {
+      let pins = data.rows
+      let obj = {}
+      for(let pin of pins){
+        obj[pin.id] = pin
+      }
+      res.json(obj);
+    });
+  })
 
   router.post("/register", (req, res) => {
     if (req.body.password !== req.body['password-confirm']) {

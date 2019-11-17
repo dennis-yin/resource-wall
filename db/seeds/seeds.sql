@@ -1,5 +1,5 @@
 -- Users table seeds here (Example)
-INSERT INTO users (name,email,password,profile_picture) VALUES ('Sanjeet','kang.sanjeet1401@gmail.com','password','businessman-profile-cartoon_18591-58479.jpg');
+INSERT INTO users (name,email,password,profile_picture) VALUES ('Sanjeet','kang.sanjeet1401@gmail.com','password','https://cdn3.f-cdn.com/contestentries/1376995/30494909/5b566bc71d308_thumb900.jpg');
 INSERT INTO users (name,email,password,profile_picture) VALUES ('Dennis','dennis.y95@gmail.com','password','https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRJcdbk1Fs7EWlDHH4qsWbyTJJcNIdhRRH_-RV41tAyTpMyL0YE&s');
 
 INSERT INTO categories (name) VALUES ('Science');
@@ -39,9 +39,28 @@ INSERT INTO categories_pins (category_id,pin_id) VALUES (1,2);
 
 INSERT INTO boards (owner_id,name,image) VALUES (1,'STUFF','https://ddppl.in/wp-content/uploads/2018/01/sanjeet.jpg');
 INSERT INTO boards (owner_id,name,image) VALUES (2,'MORE STUFF', 'https://content3.jdmagicbox.com/comp/siliguri/j5/9999px353.x353.180501161015.c3j5/catalogue/dr-sanjeet-kumar-tiwari-college-para-siliguri-paediatricians-DHgY7fdOkS0p5Le.jpg');
+INSERT INTO boards (owner_id,name,image) VALUES (1,'MORE STUFF', 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTkjrQLgEVx2ub8jykrK6Puad9d6liNaH-xCZmADqHOEbBnBpcJIw&s');
+INSERT INTO boards (owner_id,name,image) VALUES (1,'MORE STUFF', 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTkjrQLgEVx2ub8jykrK6Puad9d6liNaH-xCZmADqHOEbBnBpcJIw&s');
+INSERT INTO boards (owner_id,name,image) VALUES (1,'MORE STUFF', 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTkjrQLgEVx2ub8jykrK6Puad9d6liNaH-xCZmADqHOEbBnBpcJIw&s');
+INSERT INTO boards (owner_id,name,image) VALUES (1,'MORE STUFF', 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTkjrQLgEVx2ub8jykrK6Puad9d6liNaH-xCZmADqHOEbBnBpcJIw&s');
+INSERT INTO boards (owner_id,name,image) VALUES (1,'MORE STUFF', 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTkjrQLgEVx2ub8jykrK6Puad9d6liNaH-xCZmADqHOEbBnBpcJIw&s');
+INSERT INTO boards (owner_id,name,image) VALUES (1,'MORE STUFF', 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTkjrQLgEVx2ub8jykrK6Puad9d6liNaH-xCZmADqHOEbBnBpcJIw&s');
+INSERT INTO boards (owner_id,name,image) VALUES (1,'MORE STUFF', 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTkjrQLgEVx2ub8jykrK6Puad9d6liNaH-xCZmADqHOEbBnBpcJIw&s');
+INSERT INTO boards (owner_id,name,image) VALUES (1,'MORE STUFF', 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTkjrQLgEVx2ub8jykrK6Puad9d6liNaH-xCZmADqHOEbBnBpcJIw&s');
+INSERT INTO boards (owner_id,name,image) VALUES (1,'MORE STUFF', 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTkjrQLgEVx2ub8jykrK6Puad9d6liNaH-xCZmADqHOEbBnBpcJIw&s');
+INSERT INTO boards (owner_id,name,image) VALUES (1,'MORE STUFF', 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTkjrQLgEVx2ub8jykrK6Puad9d6liNaH-xCZmADqHOEbBnBpcJIw&s');
+
 
 INSERT INTO boards_pins (board_id,pin_id) VALUES (1,1);
 INSERT INTO boards_pins (board_id,pin_id) VALUES (1,2);
+INSERT INTO boards_pins (board_id,pin_id) VALUES (1,3);
+INSERT INTO boards_pins (board_id,pin_id) VALUES (1,4);
+INSERT INTO boards_pins (board_id,pin_id) VALUES (1,5);
+INSERT INTO boards_pins (board_id,pin_id) VALUES (1,6);
+INSERT INTO boards_pins (board_id,pin_id) VALUES (1,7);
+INSERT INTO boards_pins (board_id,pin_id) VALUES (1,8 );
+
+
 
 INSERT INTO comments (user_id,pin_id,text) VALUES (2,1,'BRUH');
 INSERT INTO comments (user_id,pin_id,text) VALUES (2,2,'BRUHHHHHHHHHHHHHHH');
