@@ -163,19 +163,19 @@ module.exports = (db) => {
         if (user.rows.length) {
           // ERROR: USER ALREADY EXISTS
         } else {
-          // let hashedPassword;
-          // bcrypt.hash(req.body.password, SALT_ROUNDS, (err, hash) => {
-          //   hashedPassword = hash;
-          // })
-          let query = `
-          INSERT INTO users (name, email, password)
-          VALUES ($1, $2, $3);
-          `
-          db.query(query, [req.body.name, req.body.email, req.body.password])
-            .then(() => {
-              console.log("USER ADDED TO DATABASE");
-              res.redirect("/");
+          let hashedPassword;
+          bcrypt.hash(req.body.password, SALT_ROUNDS, (err, hash) => {
+            hashedPassword = hash;
+            let query = `
+            INSERT INTO users (name, email, password)
+            VALUES ($1, $2, $3);
+            `
+            db.query(query, [req.body.name, req.body.email, hashedPassword])
+              .then(() => {
+                console.log("USER ADDED TO DATABASE");
+                res.redirect("/");
             })
+          });
         }
       })
   });
