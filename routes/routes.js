@@ -143,6 +143,22 @@ module.exports = (db) => {
     });
   })
 
+  router.get("/search/pins/:keyword", (req, res) => {
+    // Finds pins where the search term is the category or in the description
+    // CASE SENSITIVE
+    let query = `
+    SELECT p.title, c.name
+    FROM pins p
+    JOIN categories_pins cp ON p.id = cp.pin_id
+    JOIN categories c on c.id = cp.category_id
+    WHERE c.name = $1 OR p.description LIKE '%$1%';
+    `
+    db.query(query, [req.params.keyword])
+    .then(data => {
+      console.log(data);
+    });
+  });
+
   router.post("/register", (req, res) => {
     if (req.body.password !== req.body['password-confirm']) {
       // ERROR MESSAGE
