@@ -5,11 +5,12 @@
  * See: https://expressjs.com/en/guide/using-middleware.html#middleware.router
  */
 
-const express     = require('express');
-const router      = express.Router();
-const path        = require('path');
-const bcrypt      = require('bcrypt');
-const SALT_ROUNDS = 12;
+const express       = require('express');
+const router        = express.Router();
+const path          = require('path');
+const cookieSession = require('cookie-session');
+const bcrypt        = require('bcrypt');
+const SALT_ROUNDS   = 12;
 
 module.exports = (db) => {
   router.get("/pins", (req, res) => {
@@ -21,7 +22,7 @@ module.exports = (db) => {
       .then(data => {
         let pins = data.rows
         let obj = {}
-        for(let pin of pins){
+        for (let pin of pins){
           obj[pin.id] = pin
         }
         res.json(obj);
@@ -51,7 +52,7 @@ module.exports = (db) => {
     .then(data => {
       let pins = data.rows
       let obj = {}
-      for(let pin of pins){
+      for (let pin of pins){
         obj[pin.id] = pin
       }
       res.json(obj);
@@ -70,7 +71,7 @@ module.exports = (db) => {
     .then(data => {
       let pins = data.rows
       let obj = {}
-      for(let pin of pins){
+      for (let pin of pins){
         obj[pin.id] = pin
       }
       res.json(obj);
@@ -82,8 +83,6 @@ module.exports = (db) => {
       root: path.join(__dirname, "../public")
     });
   });
-
-
 
   router.get("/users/:id/pins", (req, res) => {
     let query = `
@@ -97,7 +96,7 @@ module.exports = (db) => {
     .then(data => {
       let pins = data.rows
       let obj = {}
-      for(let pin of pins){
+      for (let pin of pins){
         obj[pin.id] = pin
       }
       res.json(obj);
@@ -117,7 +116,7 @@ module.exports = (db) => {
     .then(data => {
       let pins = data.rows
       let obj = {}
-      for(let pin of pins){
+      for (let pin of pins){
         obj[pin.id] = pin
       }
       res.json(obj);
@@ -137,7 +136,7 @@ module.exports = (db) => {
     .then(data => {
       let pins = data.rows
       let obj = {}
-      for(let pin of pins){
+      for (let pin of pins){
         obj[pin.id] = pin
       }
       res.json(obj);
@@ -154,23 +153,24 @@ module.exports = (db) => {
     WHERE email = $1;
     `
     db.query(query, [req.body.email])
-      .then((user) => {
-        if (user.rows.length) {
-          // ERROR: USER ALREADY EXISTS
-        } else {
-          bcrypt.hash(req.body.password, SALT_ROUNDS, (err, hash) => {
-            let query = `
-            INSERT INTO users (name, email, password)
-            VALUES ($1, $2, $3);
-            `
-            db.query(query, [req.body.name, req.body.email, hash])
-              .then(() => {
-                console.log("USER ADDED TO DATABASE");
-                res.redirect("/");
-            })
-          });
-        }
-      })
+    .then((user) => {
+      if (user.rows.length) {
+        // ERROR: USER ALREADY EXISTS
+      } else {
+        bcrypt.hash(req.body.password, SALT_ROUNDS, (err, hash) => {
+          let query = `
+          INSERT INTO users (name, email, password)
+          VALUES ($1, $2, $3)
+          RETURNING id;
+          `
+          db.query(query, [req.body.name, req.body.email, hash])
+          .then((id) => {
+            req.session.user_id = id;
+            res.redirect("/");
+          })
+        });
+      }
+    })
   });
 
   router.post("/login", (req, res) => {
@@ -180,19 +180,19 @@ module.exports = (db) => {
     WHERE email = $1;
     `
     db.query(query, [req.body.email])
-      .then((user) => {
-        console.log(user.rows[0].password)
-        if (user.rows.length) {
-          bcrypt.compare(req.body.password, user.rows[0].password, (err, success) => {
-            if (success) {
-              // Set a cookie
-              res.redirect("/");
-            }
-          });
-        } else {
-          // ERROR: Invalid username/password
-        }
-      })
+    .then((user) => {
+      const user_id = user.rows.id;
+      if (user.rows.length) {
+        bcrypt.compare(req.body.password, user.rows[0].password, (err, success) => {
+          if (success) {
+            req.session.user_id = user_id;
+            res.redirect("/");
+          }
+        });
+      } else {
+        // ERROR: Invalid username/password
+      }
+    })
   });
 
   // router.post("/pin/new", (req, res) => {
