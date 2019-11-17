@@ -32,7 +32,7 @@ app.use("/styles", sass({
 app.use(express.static("public"));
 app.use(cookieSession({
   name: 'session',
-  keys: ['key1', 'key2'],
+  keys: ['why hello there', 'peeping my keys'],
 }));
 
 // Separated Routes for each Resource

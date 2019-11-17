@@ -195,6 +195,11 @@ module.exports = (db) => {
     })
   });
 
+  router.post("/logout", (req, res) => {
+    req.session = null;
+    res.redirect("/login");
+  });
+
   // router.post("/pin/new", (req, res) => {
   //   let query = `
   //   INSERT INTO pins
