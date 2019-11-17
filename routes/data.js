@@ -5,14 +5,17 @@
  * See: https://expressjs.com/en/guide/using-middleware.html#middleware.router
  */
 
-const express = require('express');
-const router  = express.Router();
-const path = require("path");
+const express     = require('express');
+const router      = express.Router();
+const path        = require('path');
+const bcrypt      = require('bcrypt');
+const SALT_ROUNDS = 12;
 
 module.exports = (db) => {
   router.get("/pins", (req, res) => {
     let query = `
-    SELECT * FROM pins;
+    SELECT *
+    FROM pins;
     `
     db.query(query)
       .then(data => {
@@ -27,25 +30,39 @@ module.exports = (db) => {
 
   router.get("/users/:id", (req, res) => {
     let query = `
-    SELECT u.name, u.profile_picture, b.*
+    SELECT u.id,u.name,u.name,u.profile_picture
     FROM users u
-    JOIN boards b on b.owner_id = u.id
     WHERE u.id = $1;
-    res.sendFile("register.html", {
-      root: path.join(__dirname, "../public")
-    });
     `
-    // const arg = [req.params.id]
-    // db.query(query, arg)
-    // .then(data => {
-    //   let pins = data.rows
-    //   let obj = {}
-    //   for(let pin of pins){
-    //     obj[pin.id] = pin
-    //   }
-    //   res.json(obj);
-    // });
-    res.render('/userProfile')
+    const arg = [req.params.id]
+    db.query(query, arg)
+    .then(data => {
+      let pins = data.rows
+      let obj = {}
+      for(let pin of pins){
+        obj[pin.id] = pin
+      }
+      res.json(obj);
+    });
+  });
+
+  router.get("/users/boards/:user_id", (req, res) => {
+    let query = `
+    SELECT b.*
+    FROM users u
+    JOIN boards b ON b.owner_id = u.id
+    WHERE u.id = $1;
+    `
+    const arg = [req.params.user_id]
+    db.query(query, arg)
+    .then(data => {
+      let pins = data.rows
+      let obj = {}
+      for(let pin of pins){
+        obj[pin.id] = pin
+      }
+      res.json(obj);
+    });
   });
 
   router.get("/users/:id/pins", (req, res) => {
@@ -67,10 +84,6 @@ module.exports = (db) => {
     });
   })
 
-  router.get("/pins/new", (req, res) => {
-    res.json('Add pin here')
-  })
-
   router.get("/pins/:pin_id", (req, res) => {
     let query = `
     SELECT * FROM pins WHERE id = $1;
@@ -89,7 +102,8 @@ module.exports = (db) => {
 
   router.get("/boards/:board_id", (req, res) => {
     let query = `
-    SELECT * FROM boards
+    SELECT *
+    FROM boards
     JOIN boards_pins ON board_id = boards.id
     JOIN pins ON pin_id = pins.id
     WHERE boards.id = $1;
@@ -106,7 +120,59 @@ module.exports = (db) => {
     });
   })
 
+  router.post("/register", (req, res) => {
+    if (req.body.password !== req.body['password-confirm']) {
+      // ERROR MESSAGE
+    }
+    // db.users.findOne({
+    //   where: {
+    //     email: req.body.email
+    //   }
+    // })
+    let query = `
+    SELECT *
+    FROM users
+    WHERE email = $1;
+    `
+    db.query(query, [req.body.email])
+      .then((user) => {
+        if (user.rows.length) {
+          // ERROR: USER ALREADY EXISTS
+        } else {
+          // let hashedPassword;
+          // bcrypt.hash(req.body.password, SALT_ROUNDS, (err, hash) => {
+          //   hashedPassword = hash;
+          // })
+          let query = `
+          INSERT INTO users (name, email, password)
+          VALUES ($1, $2, $3);
+          `
+          db.query(query, [req.body.name, req.body.email, req.body.password])
+            .then(() => {
+              console.log("USER ADDED TO DATABASE");
+              res.redirect("/");
+            })
+        }
+      })
+  });
 
+  router.post("/login", (req, res) => {
+    let query = `
+    SELECT *
+    FROM users
+    WHERE email = $1 AND password = $2;
+    `
+    // Figure out how to do this with bcrypt.compare
+    db.query(query, [req.body.email, req.body.password])
+      .then(() => {
+        if (users.rows.length) {
+          // Set a cookie
+          res.redirect("/");
+        } else {
+          // ERROR: Invalid username/password
+        }
+      })
+  });
 
   // router.post("/pin/new", (req, res) => {
   //   let query = `
@@ -115,7 +181,6 @@ module.exports = (db) => {
   //   VALUES ()
   //   `
   // })
-
 
   return router;
 };

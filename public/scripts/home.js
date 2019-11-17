@@ -1,7 +1,7 @@
 const loadPins = () => {
   $.ajax({
     method: "GET",
-    url: "/pins"
+    url: "/data/pins"
   })
   .done((data) => {
     renderPins(data)

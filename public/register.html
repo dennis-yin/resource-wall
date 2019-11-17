@@ -22,7 +22,7 @@
      <!-- Nav bar -->
      <nav class="navBar">
       <img src="http://pngimg.com/uploads/pinterest/pinterest_PNG62.png" width="50px" height="40px">
-      <form class="search-bar" method="POST" action="/">
+      <form class="search-bar" method="POST" action="/">   <!--remember to request /data for anything related to database -->
         <textarea class="search" placeholder="Search"></textarea>
       </form>
       <a class="home-button" href="/">Home</a>
@@ -30,7 +30,7 @@
     </nav>
 
     <h1>Register</h1>
-    <form method="POST" action="/register">
+    <form method="POST" action="/data/register">
       <input class="text" name="name" placeholder="Full name" required="">
       <input class="text" name="email" placeholder="Email" required="">
       <input class="text" type="password" name="password" placeholder="Password" required="">

@@ -12,22 +12,6 @@ const bcrypt      = require('bcrypt');
 const SALT_ROUNDS = 12;
 
 module.exports = (db) => {
-  router.get("/pins", (req, res) => {
-    let query = `
-    SELECT *
-    FROM pins;
-    `
-    db.query(query)
-      .then(data => {
-        let pins = data.rows
-        let obj = {}
-        for(let pin of pins){
-          obj[pin.id] = pin
-        }
-        res.json(obj);
-      });
-  });
-
   router.get("/register", (req, res) => {
     res.sendFile("register.html", {
       root: path.join(__dirname, "../public")
@@ -40,109 +24,15 @@ module.exports = (db) => {
     });
   });
 
-  router.get("/data/users/:id", (req, res) => {
-    let query = `
-    SELECT u.id,u.name,u.name,u.profile_picture
-    FROM users u
-    WHERE u.id = $1;
-    `
-    const arg = [req.params.id]
-    db.query(query, arg)
-    .then(data => {
-      let pins = data.rows
-      let obj = {}
-      for(let pin of pins){
-        obj[pin.id] = pin
-      }
-      res.json(obj);
-    });
-  });
-
-  router.get("/data/users/boards/:user_id", (req, res) => {
-    let query = `
-    SELECT b.*
-    FROM users u
-    JOIN boards b ON b.owner_id = u.id
-    WHERE u.id = $1;
-    `
-    const arg = [req.params.user_id]
-    db.query(query, arg)
-    .then(data => {
-      let pins = data.rows
-      let obj = {}
-      for(let pin of pins){
-        obj[pin.id] = pin
-      }
-      res.json(obj);
-    });
-  });
-
   router.get("/users/:id", (req, res) => {
     res.sendFile("userProfile.html", {
       root: path.join(__dirname, "../public")
     });
   });
 
-
-
-  router.get("/users/:id/pins", (req, res) => {
-    let query = `
-    SELECT u.name, u.profile_picture, p.*
-    FROM users u
-    JOIN pins p ON u.id = p.owner_id
-    WHERE u.id = $1;
-    `
-    const arg = [req.params.id]
-    db.query(query, arg)
-    .then(data => {
-      let pins = data.rows
-      let obj = {}
-      for(let pin of pins){
-        obj[pin.id] = pin
-      }
-      res.json(obj);
-    });
-  })
-
   router.get("/pins/new", (req, res) => {
     res.json('Add pin here')
   });
-
-  router.get("/pins/:pin_id", (req, res) => {
-    let query = `
-    SELECT * FROM pins WHERE id = $1;
-    `
-    const arg = [req.params.pin_id]
-    db.query(query, arg)
-    .then(data => {
-      let pins = data.rows
-      let obj = {}
-      for(let pin of pins){
-        obj[pin.id] = pin
-      }
-      res.json(obj);
-    });
-  })
-
-  router.get("/boards/:board_id", (req, res) => {
-    let query = `
-    SELECT *
-    FROM boards
-    JOIN boards_pins ON board_id = boards.id
-    JOIN pins ON pin_id = pins.id
-    WHERE boards.id = $1;
-    `
-    const arg = [req.params.board_id]
-    db.query(query, arg)
-    .then(data => {
-      let pins = data.rows
-      let obj = {}
-      for(let pin of pins){
-        obj[pin.id] = pin
-      }
-      res.json(obj);
-    });
-  })
 
   router.post("/register", (req, res) => {
     if (req.body.password !== req.body['password-confirm']) {
