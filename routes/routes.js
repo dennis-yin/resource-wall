@@ -9,13 +9,18 @@ const express = require('express');
 const router  = express.Router();
 
 module.exports = (db) => {
-  router.get("", (req, res) => {
+  router.get("/pins", (req, res) => {
     let query = `
     SELECT * FROM pins;
     `
     db.query(query)
       .then(data => {
-        res.json(data.rows);
+        let pins = data.rows
+        let obj = {}
+        for(let pin of pins){
+          obj[pin.id] = pin
+        }
+        res.json(obj);
       });
   });
 
