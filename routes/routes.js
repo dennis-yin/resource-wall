@@ -36,5 +36,11 @@ module.exports = (db) => {
     });
   });
 
+  router.get("/boards/new", (req, res) => {
+    res.sendFile("newBoard.html", {
+      root: path.join(__dirname, "../public")
+    });
+  });
+
   return router;
 };

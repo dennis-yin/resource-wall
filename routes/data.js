@@ -197,5 +197,30 @@ module.exports = (db) => {
       });
   })
 
+  router.post("/boards/new", (req, res) => {
+    let query;
+    let data = [];
+    if(req.body.image){ //grab id from cookie for now default to owner_id 1
+      query = `
+      INSERT INTO boards
+      (owner_id,image,title,description)
+      VALUES (1,$1,$2,$3)
+      `
+      data.push(req.body.image,req.body.title,req.body.description)
+    }else{  //grab id from cookie for now default to owner_id 1
+      query = `
+      INSERT INTO boards
+      (owner_id,title,description)
+      VALUES (1,$1,$2)
+      `
+      data.push(req.body.title,req.body.description)
+    }
+    console.log(query,data)
+    db.query(query, data)
+      .then(() => {
+        res.redirect("/users/1") //grab id from cookie for now default to owner_id 1
+      });
+  })
+
   return router;
 };

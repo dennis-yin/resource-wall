@@ -37,18 +37,18 @@ INSERT INTO pins (owner_id,image,title,description,url) VALUES (2,'https://stati
 INSERT INTO categories_pins (category_id,pin_id) VALUES (1,1);
 INSERT INTO categories_pins (category_id,pin_id) VALUES (1,2);
 
-INSERT INTO boards (owner_id,name,image) VALUES (1,'STUFF','https://ddppl.in/wp-content/uploads/2018/01/sanjeet.jpg');
-INSERT INTO boards (owner_id,name,image) VALUES (2,'MORE STUFF', 'https://content3.jdmagicbox.com/comp/siliguri/j5/9999px353.x353.180501161015.c3j5/catalogue/dr-sanjeet-kumar-tiwari-college-para-siliguri-paediatricians-DHgY7fdOkS0p5Le.jpg');
-INSERT INTO boards (owner_id,name,image) VALUES (1,'MORE STUFF', 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTkjrQLgEVx2ub8jykrK6Puad9d6liNaH-xCZmADqHOEbBnBpcJIw&s');
-INSERT INTO boards (owner_id,name,image) VALUES (1,'MORE STUFF', 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTkjrQLgEVx2ub8jykrK6Puad9d6liNaH-xCZmADqHOEbBnBpcJIw&s');
-INSERT INTO boards (owner_id,name,image) VALUES (1,'MORE STUFF', 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTkjrQLgEVx2ub8jykrK6Puad9d6liNaH-xCZmADqHOEbBnBpcJIw&s');
-INSERT INTO boards (owner_id,name,image) VALUES (1,'MORE STUFF', 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTkjrQLgEVx2ub8jykrK6Puad9d6liNaH-xCZmADqHOEbBnBpcJIw&s');
-INSERT INTO boards (owner_id,name,image) VALUES (1,'MORE STUFF', 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTkjrQLgEVx2ub8jykrK6Puad9d6liNaH-xCZmADqHOEbBnBpcJIw&s');
-INSERT INTO boards (owner_id,name,image) VALUES (1,'MORE STUFF', 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTkjrQLgEVx2ub8jykrK6Puad9d6liNaH-xCZmADqHOEbBnBpcJIw&s');
-INSERT INTO boards (owner_id,name,image) VALUES (1,'MORE STUFF', 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTkjrQLgEVx2ub8jykrK6Puad9d6liNaH-xCZmADqHOEbBnBpcJIw&s');
-INSERT INTO boards (owner_id,name,image) VALUES (1,'MORE STUFF', 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTkjrQLgEVx2ub8jykrK6Puad9d6liNaH-xCZmADqHOEbBnBpcJIw&s');
-INSERT INTO boards (owner_id,name,image) VALUES (1,'MORE STUFF', 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTkjrQLgEVx2ub8jykrK6Puad9d6liNaH-xCZmADqHOEbBnBpcJIw&s');
-INSERT INTO boards (owner_id,name,image) VALUES (1,'MORE STUFF', 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTkjrQLgEVx2ub8jykrK6Puad9d6liNaH-xCZmADqHOEbBnBpcJIw&s');
+INSERT INTO boards (owner_id,title,description,image) VALUES (1,'STUFF','description NOT NULLNOT NULLNOT NULLNOT NULLNOT NULLNOT NULLNOT NULL','https://ddppl.in/wp-content/uploads/2018/01/sanjeet.jpg');
+INSERT INTO boards (owner_id,title,description,image) VALUES (2,'MORE STUFF','description NOT NULLNOT NULLNOT NULLNOT NULLNOT NULLNOT NULLNOT NULL', 'https://content3.jdmagicbox.com/comp/siliguri/j5/9999px353.x353.180501161015.c3j5/catalogue/dr-sanjeet-kumar-tiwari-college-para-siliguri-paediatricians-DHgY7fdOkS0p5Le.jpg');
+INSERT INTO boards (owner_id,title,description,image) VALUES (1,'MORE STUFF','description NOT NULLNOT NULLNOT NULLNOT NULLNOT NULLNOT NULLNOT NULL', 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTkjrQLgEVx2ub8jykrK6Puad9d6liNaH-xCZmADqHOEbBnBpcJIw&s');
+INSERT INTO boards (owner_id,title,description,image) VALUES (1,'MORE STUFF','description NOT NULLNOT NULLNOT NULLNOT NULLNOT NULLNOT NULLNOT NULL', 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTkjrQLgEVx2ub8jykrK6Puad9d6liNaH-xCZmADqHOEbBnBpcJIw&s');
+INSERT INTO boards (owner_id,title,description,image) VALUES (1,'MORE STUFF','description NOT NULLNOT NULLNOT NULLNOT NULLNOT NULLNOT NULLNOT NULL', 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTkjrQLgEVx2ub8jykrK6Puad9d6liNaH-xCZmADqHOEbBnBpcJIw&s');
+INSERT INTO boards (owner_id,title,description,image) VALUES (1,'MORE STUFF','description NOT NULLNOT NULLNOT NULLNOT NULLNOT NULLNOT NULLNOT NULL', 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTkjrQLgEVx2ub8jykrK6Puad9d6liNaH-xCZmADqHOEbBnBpcJIw&s');
+INSERT INTO boards (owner_id,title,description,image) VALUES (1,'MORE STUFF','description NOT NULLNOT NULLNOT NULLNOT NULLNOT NULLNOT NULLNOT NULL', 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTkjrQLgEVx2ub8jykrK6Puad9d6liNaH-xCZmADqHOEbBnBpcJIw&s');
+INSERT INTO boards (owner_id,title,description,image) VALUES (1,'MORE STUFF','description NOT NULLNOT NULLNOT NULLNOT NULLNOT NULLNOT NULLNOT NULL', 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTkjrQLgEVx2ub8jykrK6Puad9d6liNaH-xCZmADqHOEbBnBpcJIw&s');
+INSERT INTO boards (owner_id,title,description,image) VALUES (1,'MORE STUFF','description NOT NULLNOT NULLNOT NULLNOT NULLNOT NULLNOT NULLNOT NULL', 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTkjrQLgEVx2ub8jykrK6Puad9d6liNaH-xCZmADqHOEbBnBpcJIw&s');
+INSERT INTO boards (owner_id,title,description,image) VALUES (1,'MORE STUFF','description NOT NULLNOT NULLNOT NULLNOT NULLNOT NULLNOT NULLNOT NULL', 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTkjrQLgEVx2ub8jykrK6Puad9d6liNaH-xCZmADqHOEbBnBpcJIw&s');
+INSERT INTO boards (owner_id,title,description,image) VALUES (1,'MORE STUFF','description NOT NULLNOT NULLNOT NULLNOT NULLNOT NULLNOT NULLNOT NULL', 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTkjrQLgEVx2ub8jykrK6Puad9d6liNaH-xCZmADqHOEbBnBpcJIw&s');
+INSERT INTO boards (owner_id,title,description,image) VALUES (1,'MORE STUFF','description NOT NULLNOT NULLNOT NULLNOT NULLNOT NULLNOT NULLNOT NULL', 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTkjrQLgEVx2ub8jykrK6Puad9d6liNaH-xCZmADqHOEbBnBpcJIw&s');
 
 
 INSERT INTO boards_pins (board_id,pin_id) VALUES (1,1);
