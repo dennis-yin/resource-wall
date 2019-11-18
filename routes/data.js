@@ -19,9 +19,9 @@ module.exports = (db) => {
     `
     db.query(query)
     .then(data => {
-      let pins = data.rows
-      let obj = {}
-      for(let pin of pins){
+      const pins = data.rows;
+      let obj = {};
+      for (const pin of pins) {
         obj[pin.id] = pin
       }
       res.json(obj);
@@ -37,9 +37,9 @@ module.exports = (db) => {
     const arg = [req.params.id]
     db.query(query, arg)
     .then(data => {
-      let pins = data.rows
-      let obj = {}
-      for(let pin of pins){
+      const pins = data.rows;
+      let obj = {};
+      for (const pin of pins) {
         obj[pin.id] = pin
       }
       res.json(obj);
@@ -56,9 +56,9 @@ module.exports = (db) => {
     const arg = [req.params.user_id]
     db.query(query, arg)
     .then(data => {
-      let pins = data.rows
-      let obj = {}
-      for(let pin of pins){
+      const pins = data.rows;
+      let obj = {};
+      for (const pin of pins) {
         obj[pin.id] = pin
       }
       res.json(obj);
@@ -75,14 +75,14 @@ module.exports = (db) => {
     const arg = [req.params.id]
     db.query(query, arg)
     .then(data => {
-      let pins = data.rows
-      let obj = {}
-      for(let pin of pins){
+      const pins = data.rows;
+      let obj = {};
+      for (const pin of pins) {
         obj[pin.id] = pin
       }
       res.json(obj);
     });
-  })
+  });
 
   router.get("/pins/:pin_id", (req, res) => {
     let query = `
@@ -91,14 +91,14 @@ module.exports = (db) => {
     const arg = [req.params.pin_id]
     db.query(query, arg)
     .then(data => {
-      let pins = data.rows
-      let obj = {}
-      for(let pin of pins){
+      const pins = data.rows;
+      let obj = {};
+      for (const pin of pins) {
         obj[pin.id] = pin
       }
       res.json(obj);
     });
-  })
+  });
 
   router.get("/boards/:board_id", (req, res) => {
     let query = `
@@ -111,14 +111,14 @@ module.exports = (db) => {
     const arg = [req.params.board_id]
     db.query(query, arg)
     .then(data => {
-      let pins = data.rows
-      let obj = {}
-      for(let pin of pins){
+      const pins = data.rows;
+      let obj = {};
+      for (const pin of pins) {
         obj[pin.id] = pin
       }
       res.json(obj);
     });
-  })
+  });
 
   router.post("/register", (req, res) => {
     if (req.body.password !== req.body['password-confirm']) {
@@ -180,52 +180,52 @@ module.exports = (db) => {
   router.post("/pins/new", (req, res) => {
     let query;
     let data = [];
-    if(req.body.image){ //grab id from cookie for now default to owner_id 1
+    if (req.body.image) {
       query = `
       INSERT INTO pins
-      (owner_id,image,title,description,url)
-      VALUES (1,$1,$2,$3,$4)
+      (owner_id, image, title, description, url)
+      VALUES ($1, $2, $3, $4, $5);
       `
-      data.push(req.body.image,req.body.title,req.body.description,req.body.url)
-    }else{  //grab id from cookie for now default to owner_id 1
+      data.push(req.session.user_id, req.body.image,req.body.title,req.body.description,req.body.url);
+    } else {
       query = `
       INSERT INTO pins
-      (owner_id,title,description,url)
-      VALUES (1,$1,$2,$3)
+      (owner_id, title, description, url)
+      VALUES ($1, $2, $3, $4);
       `
-      data.push(req.body.title,req.body.description,req.body.url)
+      data.push(req.session.user_id, req.body.title, req.body.description,req.body.url);
     }
-    console.log(query,data)
+    console.log(query, data)
     db.query(query, data)
-      .then(() => {
-        res.redirect("/users/1") //grab id from cookie for now default to owner_id 1
-      });
-  })
+    .then(() => {
+      res.redirect(`/users/${req.session.user_id}`);
+    });
+  });
 
   router.post("/boards/new", (req, res) => {
     let query;
     let data = [];
-    if(req.body.image){ //grab id from cookie for now default to owner_id 1
+    if (req.body.image) {
       query = `
       INSERT INTO boards
-      (owner_id,image,title,description)
-      VALUES (1,$1,$2,$3)
+      (owner_id, image, title, description)
+      VALUES ($1, $2, $3, $4);
       `
-      data.push(req.body.image,req.body.title,req.body.description)
-    }else{  //grab id from cookie for now default to owner_id 1
+      data.push(req.session.user_id, req.body.image, req.body.title, req.body.description);
+    } else {
       query = `
       INSERT INTO boards
-      (owner_id,title,description)
-      VALUES (1,$1,$2)
+      (owner_id, title, description)
+      VALUES ($1, $2, $3);
       `
-      data.push(req.body.title,req.body.description)
+      data.push(req.session.user_id, req.body.title, req.body.description);
     }
     console.log(query,data)
     db.query(query, data)
-      .then(() => {
-        res.redirect("/users/1") //grab id from cookie for now default to owner_id 1
-      });
-  })
+    .then(() => {
+      res.redirect(`/users/${req.session.user_id}`);
+    });
+  });
 
   return router;
 };
