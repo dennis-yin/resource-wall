@@ -18,14 +18,14 @@ module.exports = (db) => {
     FROM pins;
     `
     db.query(query)
-      .then(data => {
-        let pins = data.rows
-        let obj = {}
-        for(let pin of pins){
-          obj[pin.id] = pin
-        }
-        res.json(obj);
-      });
+    .then(data => {
+      let pins = data.rows
+      let obj = {}
+      for(let pin of pins){
+        obj[pin.id] = pin
+      }
+      res.json(obj);
+    });
   });
 
   router.get("/users/:id", (req, res) => {

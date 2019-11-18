@@ -2,13 +2,14 @@
 require('dotenv').config();
 
 // Web server config
-const PORT       = process.env.PORT || 8080;
-const ENV        = process.env.ENV || "development";
-const express    = require("express");
-const bodyParser = require("body-parser");
-const sass       = require("node-sass-middleware");
-const app        = express();
-const morgan     = require('morgan');
+const PORT          = process.env.PORT || 8080;
+const ENV           = process.env.ENV || "development";
+const express       = require("express");
+const bodyParser    = require("body-parser");
+const cookieSession = require('cookie-session');
+const sass          = require("node-sass-middleware");
+const app           = express();
+const morgan        = require('morgan');
 
 // PG database client/connection setup
 const { Pool } = require('pg');
@@ -29,16 +30,28 @@ app.use("/styles", sass({
   outputStyle: 'expanded'
 }));
 app.use(express.static("public"));
+app.use(cookieSession({
+  name: 'session',
+  keys: ['why hello there', 'peeping my keys'],
+}));
 
 // Separated Routes for each Resource
 // Note: Feel free to replace the example routes below with your own
 const routes = require("./routes/routes");
+<<<<<<< HEAD
 const routesData = require("./routes/data")
+=======
+const data = require("./routes/data.js");
+>>>>>>> dennis/css-header
 
 // Mount all resource routes
 // Note: Feel free to replace the example routes below with your own
 app.use("/", routes(db));
+<<<<<<< HEAD
 app.use("/data", routesData(db));
+=======
+app.use("/data", data(db));
+>>>>>>> dennis/css-header
 // Note: mount other resources here, using the same pattern above
 
 
