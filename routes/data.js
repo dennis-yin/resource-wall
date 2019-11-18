@@ -130,24 +130,24 @@ module.exports = (db) => {
     WHERE email = $1;
     `
     db.query(query, [req.body.email])
-      .then((user) => {
-        if (user.rows.length) {
-          // ERROR: USER ALREADY EXISTS
-          console.log('User already exists')
-        } else {
-          bcrypt.hash(req.body.password, SALT_ROUNDS, (err, hash) => {
-            let query = `
-            INSERT INTO users (name, email, password)
-            VALUES ($1, $2, $3);
-            `
-            db.query(query, [req.body.name, req.body.email, hash])
-              .then(() => {
-                console.log("USER ADDED TO DATABASE");
-                res.redirect("/");
-            })
-          });
-        }
-      })
+    .then((user) => {
+      if (user.rows.length) {
+        // ERROR: USER ALREADY EXISTS
+      } else {
+        bcrypt.hash(req.body.password, SALT_ROUNDS, (err, hash) => {
+          let query = `
+          INSERT INTO users (name, email, password)
+          VALUES ($1, $2, $3)
+          RETURNING id;
+          `
+          db.query(query, [req.body.name, req.body.email, hash])
+          .then((id) => {
+            req.session.user_id = id;
+            res.redirect("/");
+          })
+        });
+      }
+    })
   });
 
   router.post("/login", (req, res) => {
@@ -157,19 +157,24 @@ module.exports = (db) => {
     WHERE email = $1;
     `
     db.query(query, [req.body.email])
-      .then((user) => {
-        console.log(user.rows[0].password)
-        if (user.rows.length) {
-          bcrypt.compare(req.body.password, user.rows[0].password, (err, success) => {
-            if (success) {
-              // Set a cookie
-              res.redirect("/");
-            }
-          });
-        } else {
-          // ERROR: Invalid username/password
-        }
-      })
+    .then((user) => {
+      const user_id = user.rows.id;
+      if (user.rows.length) {
+        bcrypt.compare(req.body.password, user.rows[0].password, (err, success) => {
+          if (success) {
+            req.session.user_id = user_id;
+            res.redirect("/");
+          }
+        });
+      } else {
+        // ERROR: Invalid username/password
+      }
+    })
+  });
+
+  router.post("/logout", (req, res) => {
+    req.session = null;
+    res.redirect("/login");
   });
 
   router.post("/pins/new", (req, res) => {

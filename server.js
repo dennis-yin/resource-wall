@@ -38,20 +38,12 @@ app.use(cookieSession({
 // Separated Routes for each Resource
 // Note: Feel free to replace the example routes below with your own
 const routes = require("./routes/routes");
-<<<<<<< HEAD
-const routesData = require("./routes/data")
-=======
 const data = require("./routes/data.js");
->>>>>>> dennis/css-header
 
 // Mount all resource routes
 // Note: Feel free to replace the example routes below with your own
 app.use("/", routes(db));
-<<<<<<< HEAD
-app.use("/data", routesData(db));
-=======
 app.use("/data", data(db));
->>>>>>> dennis/css-header
 // Note: mount other resources here, using the same pattern above
 
 
