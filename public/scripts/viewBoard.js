@@ -1,9 +1,25 @@
+const viewBoard = () => {
+  $.ajax({
+    method: "GET",
+    url: "/data/boards/1"
+  })
+  .done((data) => {
+    $(".title").text(data[1].title)
+    $(".image").attr("src",data[1].image)
+    $(".description").text(data[1].description)
+  })
+  .fail(() => {
+    console.log('Server down')
+  });
+};
+
 const loadPins = () => {
   $.ajax({
     method: "GET",
-    url: "/data/pins"
+    url: "/data/boards/pins/1"
   })
   .done((data) => {
+    console.log(data)
     renderPins(data)
   })
   .fail(() => {
@@ -34,5 +50,9 @@ const createPin = (data) => {
 };
 
 $(() => {
+  console.log(url)
+  // var arguments = url.split('#')[1].split('=');
+  // arguments.shift();
+  viewBoard()
   loadPins()
 });

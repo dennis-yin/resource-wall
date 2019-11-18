@@ -104,6 +104,24 @@ module.exports = (db) => {
     let query = `
     SELECT *
     FROM boards
+    WHERE boards.id = $1;
+    `
+    const arg = [req.params.board_id]
+    db.query(query, arg)
+    .then(data => {
+      let pins = data.rows
+      let obj = {}
+      for(let pin of pins){
+        obj[pin.id] = pin
+      }
+      res.json(obj);
+    });
+  })
+
+  router.get("/boards/pins/:board_id", (req, res) => {
+    let query = `
+    SELECT *
+    FROM boards
     JOIN boards_pins ON board_id = boards.id
     JOIN pins ON pin_id = pins.id
     WHERE boards.id = $1;
@@ -224,6 +242,32 @@ module.exports = (db) => {
     db.query(query, data)
       .then(() => {
         res.redirect("/users/1") //grab id from cookie for now default to owner_id 1
+      });
+  })
+
+  router.post("/pins/delete/:pin_id", (req, res) => {
+    let query;
+    let data = [];
+    query = `
+    DELETE FROM pins WHERE id = $1;
+    `
+    data.push(req.params.pin_id)            //grab id from cookie for now default to owner_id 1
+    db.query(query, data)
+      .then(() => {
+        res.redirect("/")
+      });
+  })
+
+  router.post("/boards/delete/:board_id", (req, res) => {
+    let query;
+    let data = [];
+    query = `
+    DELETE FROM boards WHERE id = $1;
+    `
+    data.push(req.params.board_id)            //grab id from cookie for now default to owner_id 1
+    db.query(query, data)
+      .then(() => {
+        res.redirect("/")
       });
   })
 

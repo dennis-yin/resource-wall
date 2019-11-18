@@ -37,8 +37,20 @@ module.exports = (db) => {
     });
   });
 
+  router.get("/pins/:id", (req, res) => {
+    res.sendFile("viewPin.html", {
+      root: path.join(__dirname, "../public")
+    });
+  });
+
   router.get("/boards/new", (req, res) => {
     res.sendFile("newBoard.html", {
+      root: path.join(__dirname, "../public")
+    });
+  });
+
+  router.get("/boards/:id", (req, res) => {
+    res.sendFile("viewBoard.html", {
       root: path.join(__dirname, "../public")
     });
   });

@@ -27,7 +27,8 @@ const createBoard = (data) => {
   const $board = $("<div>").addClass("board");
   const markup = `
     <img class ="img" src=${data.image}>
-    <p class = "title">${data.name}</p>
+    <p class = "title">${data.title}</p>
+    <p class = "description">${data.description}</p>
   `;
   $($board).append(markup);
   return $board;
