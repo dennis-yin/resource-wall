@@ -35,5 +35,6 @@ const createPin = (data) => {
 };
 
 $(() => {
+  console.log('what')
   loadPins()
 });
