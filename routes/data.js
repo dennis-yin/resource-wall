@@ -205,14 +205,14 @@ module.exports = (db) => {
       (owner_id, image, title, description, url)
       VALUES ($1, $2, $3, $4, $5);
       `
-      data.push(id, req.body.image,req.body.title,req.body.description,req.body.url);
+      data.push(id, req.body.image, req.body.title, req.body.description,req.body.url);
     } else {
       query = `
       INSERT INTO pins
       (owner_id, title, description, url)
       VALUES ($1, $2, $3, $4);
       `
-      data.push(id, req.body.title, req.body.description,req.body.url);
+      data.push(id, req.body.title, req.body.description, req.body.url);
     }
     console.log(query, data)
     db.query(query, data)
