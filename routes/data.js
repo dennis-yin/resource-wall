@@ -180,50 +180,52 @@ module.exports = (db) => {
   router.post("/pins/new", (req, res) => {
     let query;
     let data = [];
+    const id = req.session.user_id.rows[0].id;
     if (req.body.image) {
       query = `
       INSERT INTO pins
       (owner_id, image, title, description, url)
       VALUES ($1, $2, $3, $4, $5);
       `
-      data.push(req.session.user_id, req.body.image,req.body.title,req.body.description,req.body.url);
+      data.push(id, req.body.image,req.body.title,req.body.description,req.body.url);
     } else {
       query = `
       INSERT INTO pins
       (owner_id, title, description, url)
       VALUES ($1, $2, $3, $4);
       `
-      data.push(req.session.user_id, req.body.title, req.body.description,req.body.url);
+      data.push(id, req.body.title, req.body.description,req.body.url);
     }
     console.log(query, data)
     db.query(query, data)
     .then(() => {
-      res.redirect(`/users/${req.session.user_id}`);
+      res.redirect(`/users/${id}`);
     });
   });
 
   router.post("/boards/new", (req, res) => {
     let query;
     let data = [];
+    const id = req.session.user_id.rows[0].id;
     if (req.body.image) {
       query = `
       INSERT INTO boards
       (owner_id, image, title, description)
       VALUES ($1, $2, $3, $4);
       `
-      data.push(req.session.user_id, req.body.image, req.body.title, req.body.description);
+      data.push(id, req.body.image, req.body.title, req.body.description);
     } else {
       query = `
       INSERT INTO boards
       (owner_id, title, description)
       VALUES ($1, $2, $3);
       `
-      data.push(req.session.user_id, req.body.title, req.body.description);
+      data.push(id, req.body.title, req.body.description);
     }
     console.log(query,data)
     db.query(query, data)
     .then(() => {
-      res.redirect(`/users/${req.session.user_id}`);
+      res.redirect(`/users/${id}`);
     });
   });
 
