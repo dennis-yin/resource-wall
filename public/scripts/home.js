@@ -13,15 +13,14 @@ const loadPins = () => {
 
 const renderPins = function(data) {
   // loops through data
-    let pins = data;
-    console.log(pins)
-    for(let i in pins){
-      const $pin = createPin(pins[i])
-      $('.feed').append($pin);
+  let pins = data;
+  console.log(pins)
+  for(let i in pins){
+    const $pin = createPin(pins[i])
+    $('.feed').append($pin);
 
-    }
-  };
-
+  }
+};
 
 const createPin = (data) => {
   const $pin = $("<div>").addClass("pin");
