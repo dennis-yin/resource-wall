@@ -31,7 +31,9 @@ module.exports = (db) => {
   });
 
   router.get("/pins/new", (req, res) => {
-    res.json('Add pin here')
+    res.sendFile("newPin.html", {
+      root: path.join(__dirname, "../public")
+    });
   });
 
   return router;

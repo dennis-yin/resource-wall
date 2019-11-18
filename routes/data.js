@@ -172,13 +172,30 @@ module.exports = (db) => {
       })
   });
 
-  // router.post("/pin/new", (req, res) => {
-  //   let query = `
-  //   INSERT INTO pins
-  //   (owner_id,image,title,description,url)
-  //   VALUES ()
-  //   `
-  // })
+  router.post("/pins/new", (req, res) => {
+    let query;
+    let data = [];
+    if(req.body.image){ //grab id from cookie for now default to owner_id 1
+      query = `
+      INSERT INTO pins
+      (owner_id,image,title,description,url)
+      VALUES (1,$1,$2,$3,$4)
+      `
+      data.push(req.body.image,req.body.title,req.body.description,req.body.url)
+    }else{  //grab id from cookie for now default to owner_id 1
+      query = `
+      INSERT INTO pins
+      (owner_id,title,description,url)
+      VALUES (1,$1,$2,$3)
+      `
+      data.push(req.body.title,req.body.description,req.body.url)
+    }
+    console.log(query,data)
+    db.query(query, data)
+      .then(() => {
+        res.redirect("/users/1") //grab id from cookie for now default to owner_id 1
+      });
+  })
 
   return router;
 };
