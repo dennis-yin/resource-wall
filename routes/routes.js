@@ -25,7 +25,7 @@ module.exports = (db) => {
     });
   });
 
-  router.get("/users/:id", (req, res) => {
+  router.get("/user", (req, res) => {
     res.sendFile("userProfile.html", {
       root: path.join(__dirname, "../public")
     });
