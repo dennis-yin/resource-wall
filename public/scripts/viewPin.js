@@ -46,7 +46,7 @@ const getCategoryId = (name) => {
       return i
     }
   }
-}
+};
 
 const loadBoards = () => {
   $.ajax({
@@ -78,7 +78,38 @@ const getBoardId = (selected) => {
       return i
     }
   }
-}
+};
+
+const loadComments = function(pinId) {
+  $.ajax({
+    method: "GET",
+    url: `/data/pins/${pinId}/comments`,
+  })
+  .done((data) => {
+    renderComments(data);
+  })
+  .fail(() => {
+    console.log("Failed to retrieve comments in AJAX request");
+  })
+};
+
+const renderComments = function(data) {
+  console.log(data)
+  for (const comment in data) {
+    const $comment = createComment(data[comment])
+    $('.comment-section').append($comment)
+  }
+};
+
+const createComment = function(data) {
+  const $comment = $("<div>").addClass("comment");
+  const markup = `
+    <p class="commenter">${data.user_id}</p>
+    <p class="comment">${data.text}</p>
+  `;
+  $($comment).append(markup);
+  return $comment;
+};
 
 const createComment = function(data) {
   const $comment = $("<div>").addClass("comment");
@@ -97,10 +128,23 @@ const addComment = function() {
 $(() => {
   const url = window.location.pathname;
   const urlArr = url.split('/');
-  const pinId =urlArr[urlArr.length-1]
+  const pinId = urlArr[urlArr.length-1]
   viewPin(pinId)
   loadCategories()
   loadBoards()
+  loadComments(pinId)
+  $('#addComment').submit((event) => {
+    event.preventDefault();
+    $.ajax({
+      method: "POST",
+      url: `/data/pins/${pinId}/addComment`,
+      data: { pin_id: pinId, comment: $('.comment').val() }
+    })
+    .done(() => {
+      $('.comment-section').html(``);
+      loadComments();
+    })
+  })
   $('#addPin').click((event) => {
     event.preventDefault();
     const catSelected = $('#dropCategories').val();
@@ -114,4 +158,4 @@ $(() => {
       data: {pin_id: pinId,category_id: catId,board_id: boardId}
     })
   })
-})
+});

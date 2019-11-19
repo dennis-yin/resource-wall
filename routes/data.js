@@ -152,6 +152,23 @@ module.exports = (db) => {
     });
   });
 
+  router.get("/pins/:pin_id/comments", (req, res) => {
+    let query = `
+    SELECT *
+    FROM comments
+    WHERE pin_id = $1
+    `
+    db.query(query, [req.params.pin_id])
+    .then(data => {
+      const comments = data.rows;
+      let obj = {};
+      for (const comment of comments) {
+        obj[comment.id] = comment;
+      }
+      res.json(obj)
+    });
+  })
+
   router.post("/search", (req, res) => {
     let query = `
     SELECT p.*
@@ -294,11 +311,10 @@ module.exports = (db) => {
     data.push(req.body.board_id,req.body.pin_id,req.body.category_id)
     console.log(query,data)
     db.query(query, data)
-      .then(() => {
-        res.redirect("/")
-      });
+    .then(() => {
+      res.redirect("/")
+    });
   });
-
 
   router.post("/pins/delete/:pin_id", (req, res) => {
     let query;
@@ -308,9 +324,9 @@ module.exports = (db) => {
     `
     data.push(req.params.pin_id)            //grab id from cookie for now default to owner_id 1
     db.query(query, data)
-      .then(() => {
-        res.redirect("/")
-      });
+    .then(() => {
+      res.redirect("/")
+    });
   });
 
   router.post("/boards/delete/:board_id", (req, res) => {
@@ -321,9 +337,21 @@ module.exports = (db) => {
     `
     data.push(req.params.board_id)            //grab id from cookie for now default to owner_id 1
     db.query(query, data)
-      .then(() => {
-        res.redirect("/")
-      });
+    .then(() => {
+      res.redirect("/")
+    });
+  });
+
+  router.post("/pins/:pin_id/addComment", (req, res) => {
+    let query = `
+    INSERT INTO comments (user_id, pin_id, text) VALUES
+    ($1, $2, $3)
+    `
+    const id = req.session.user_id.rows[0].id;
+    db.query(query, [id, req.body.pin_id, req.body.comment])
+    .then(() => {
+      console.log("Inserted comment into db");
+    });
   });
 
   return router;
