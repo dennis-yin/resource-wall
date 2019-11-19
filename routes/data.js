@@ -151,7 +151,12 @@ module.exports = (db) => {
     const keyword = '%' + req.body.keyword + '%';
     db.query(query, [keyword, req.body.keyword])
     .then(data => {
-      res.json(data.rows)
+      const pins = data.rows;
+      let obj = {};
+      for (const pin of pins) {
+        obj[pin.id] = pin
+      }
+      res.json(obj);
     })
     .catch(err => {
       console.log(err);

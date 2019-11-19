@@ -15,11 +15,6 @@
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
 
-    <!-- External JS -->
-    <script src="/vendor/jquery-3.0.0.js"></script>
-
-    <!-- App JS -->
-    <script src="/scripts/home.js"></script>
   </head>
 
   <body>
@@ -28,7 +23,8 @@
       <a class="navbar-brand" href="/">
         <img src="http://pngimg.com/uploads/pinterest/pinterest_PNG62.png" width="50" height="30" alt="">
       </a>
-      <form class="search-bar form-inline my-2 my-lg-0" method="GET" action="/search">
+      <!-- <form id="search-bar" class="search-bar form-inline my-2 my-lg-0" method="POST" action="/data/search"> -->
+      <form id="search-bar" class="search-bar form-inline my-2 my-lg-0">
         <input class="form-control mr-sm-2" name="keyword" type="search" placeholder="Search" aria-label="Search">
       </form>
       <button type="home-button" class="home-button btn btn-light ml-auto" href="/">Home</button>
@@ -45,4 +41,10 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
   </body>
+
+  <!-- External JS -->
+  <script src="/vendor/jquery-3.0.0.js"></script>
+
+  <!-- App JS -->
+  <script src="/scripts/search.js"></script>
 </html>

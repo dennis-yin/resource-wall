@@ -55,5 +55,11 @@ module.exports = (db) => {
     });
   });
 
+  router.get("/search", (req, res) => {
+    res.sendFile("search.html", {
+      root: path.join(__dirname, "../public")
+    });
+  });
+
   return router;
 };
