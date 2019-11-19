@@ -1,1 +1,5 @@
+<<<<<<< HEAD
+{"version":3,"sourceRoot":"","sources":["../sass/header.scss"],"names":[],"mappings":"AAAA;EACE;EACA;EACA;EACA","file":"header.css"}
+=======
 {"version":3,"sourceRoot":"","sources":["../../sass/src/header.scss"],"names":[],"mappings":"AAAA;EACE;EACA;EACA;EACA","file":"header.css"}
+>>>>>>> 8d0f6f371fcc1c8d03af311cf1dca1d33a4e4e5a

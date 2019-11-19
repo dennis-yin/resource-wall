@@ -12,7 +12,7 @@ CREATE TABLE users (
   name VARCHAR(255) NOT NULL,
   email VARCHAR(255) NOT NULL,
   password VARCHAR(500) NOT NULL,
-  profile_picture VARCHAR(2000)  -- Have a default profile picture
+  profile_picture VARCHAR(2000) DEFAULT 'https://cdn3.f-cdn.com/contestentries/1376995/30494909/5b566bc71d308_thumb900.jpg'
 );
 
 CREATE TABLE categories (
@@ -23,7 +23,7 @@ CREATE TABLE categories (
 CREATE table pins (
   id SERIAL PRIMARY KEY NOT NULL,
   owner_id INTEGER REFERENCES users(id) ON DELETE CASCADE,
-  image VARCHAR(2000), -- Have a default profile picture
+  image VARCHAR(2000) DEFAULT 'https://webpop.github.io/jquery.pin/images/pin.png',
   title VARCHAR(255),
   description TEXT,
   url VARCHAR(2000)
@@ -35,11 +35,18 @@ CREATE TABLE categories_pins (
   pin_id INTEGER REFERENCES pins(id) ON DELETE CASCADE
 );
 
+CREATE TABLE categories_boards (
+  id SERIAL PRIMARY KEY NOT NULL,
+  category_id INTEGER REFERENCES categories(id) ON DELETE CASCADE,
+  board_id INTEGER REFERENCES pins(id) ON DELETE CASCADE
+);
+
+
 CREATE TABLE boards (
   id SERIAL PRIMARY KEY NOT NULL,
   title VARCHAR(255),
   owner_id INTEGER REFERENCES users(id) ON DELETE CASCADE,
-  image VARCHAR(500),
+  image VARCHAR(500) DEFAULT 'https://previews.123rf.com/images/bbtreesubmission/bbtreesubmission1810/bbtreesubmission181000461/109286486-peperoni-pizza.jpg',
   description TEXT
 );
 

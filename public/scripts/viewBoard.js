@@ -19,7 +19,6 @@ const loadPins = (id) => {
     url: `/data/boards/pins/${id}`
   })
   .done((data) => {
-    console.log(data)
     renderPins(data)
   })
   .fail(() => {
@@ -50,7 +49,7 @@ const createPin = (data) => {
 };
 
 $(() => {
-  const url = window.location.href;
+  const url = window.location.pathname;
   const urlArr = url.split('/');
   id = urlArr[urlArr.length-1]
   viewBoard(id)
