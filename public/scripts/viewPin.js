@@ -78,6 +78,13 @@ const createComment = function(data) {
   return $comment;
 };
 
+// const addComment = function() {
+
+// };
+
+const ratePin = function() {
+
+};
 
 $(() => {
   const url = window.location.pathname;
@@ -86,6 +93,7 @@ $(() => {
   viewPin()
   loadBoards()
   loadComments()
+  ratePin()
   $('#addComment').click((event) => {
     event.preventDefault();
     $.ajax({
@@ -102,7 +110,7 @@ $(() => {
     $.ajax({
       method: "POST",
       url: `/data/boards/addPin`,
-      data: {pin_id: pinId,board_id: boardId}
+      data: { pin_id: pinId, board_id: boardId }
     })
   })
 });
