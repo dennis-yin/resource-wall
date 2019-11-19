@@ -1,22 +1,22 @@
-const viewBoard = () => {
+const viewBoard = (id) => {
   $.ajax({
     method: "GET",
-    url: "/data/boards/1"
+    url: `/data/boards/${id}`
   })
   .done((data) => {
-    $(".title").text(data[1].title)
-    $(".image").attr("src",data[1].image)
-    $(".description").text(data[1].description)
+    $(".title").text(data[id].title)
+    $(".image").attr("src",data[id].image)
+    $(".description").text(data[id].description)
   })
   .fail(() => {
     console.log('Server down')
   });
 };
 
-const loadPins = () => {
+const loadPins = (id) => {
   $.ajax({
     method: "GET",
-    url: "/data/boards/pins/1"
+    url: `/data/boards/pins/${id}`
   })
   .done((data) => {
     console.log(data)
@@ -50,9 +50,9 @@ const createPin = (data) => {
 };
 
 $(() => {
-  console.log(url)
-  // var arguments = url.split('#')[1].split('=');
-  // arguments.shift();
-  viewBoard()
-  loadPins()
+  const url = window.location.href;
+  const urlArr = url.split('/');
+  id = urlArr[urlArr.length-1]
+  viewBoard(id)
+  loadPins(id)
 });

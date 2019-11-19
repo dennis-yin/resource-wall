@@ -1,7 +1,7 @@
 const loadBoards = () => {
   $.ajax({
     method: "GET",
-    url: "/data/users/boards/1"   //add cookie checker to give user id
+    url: "/data/users/boards"
   })
   .done((data) => {
     renderBoards(data)
@@ -37,7 +37,7 @@ const createBoard = (data) => {
 const loadProfile = () => {
   $.ajax({
     method: "GET",
-    url: "/data/users/1"   //add cookie checker to give user id
+    url: "/data/user"
   })
   .done((data) => {
     console.log('got here')

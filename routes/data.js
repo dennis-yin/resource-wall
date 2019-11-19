@@ -28,13 +28,13 @@ module.exports = (db) => {
     });
   });
 
-  router.get("/users/:id", (req, res) => {
+  router.get("/user", (req, res) => {
     let query = `
     SELECT u.id,u.name,u.name,u.profile_picture
     FROM users u
     WHERE u.id = $1;
     `
-    const arg = [req.params.id]
+    const arg = [req.session.user_id.rows[0].id]
     db.query(query, arg)
     .then(data => {
       const pins = data.rows;
@@ -46,14 +46,14 @@ module.exports = (db) => {
     });
   });
 
-  router.get("/users/boards/:user_id", (req, res) => {
+  router.get("/users/boards", (req, res) => {
     let query = `
     SELECT b.*
     FROM users u
     JOIN boards b ON b.owner_id = u.id
     WHERE u.id = $1;
     `
-    const arg = [req.params.user_id]
+    const arg = [req.session.user_id.rows[0].id]
     db.query(query, arg)
     .then(data => {
       const pins = data.rows;
@@ -65,14 +65,14 @@ module.exports = (db) => {
     });
   });
 
-  router.get("/users/:id/pins", (req, res) => {
+  router.get("/users/pins", (req, res) => {
     let query = `
     SELECT u.name, u.profile_picture, p.*
     FROM users u
     JOIN pins p ON u.id = p.owner_id
     WHERE u.id = $1;
     `
-    const arg = [req.params.id]
+    const arg = [req.session.user_id.rows[0].id]
     db.query(query, arg)
     .then(data => {
       const pins = data.rows;
