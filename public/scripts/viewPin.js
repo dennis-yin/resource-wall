@@ -1,5 +1,6 @@
 let categories;
 let boards;
+
 const viewPin = (id) => {
   $.ajax({
     method: "GET",
@@ -77,6 +78,20 @@ const getBoardId = (selected) => {
       return i
     }
   }
+}
+
+const createComment = function(data) {
+  const $comment = $("<div>").addClass("comment");
+  const markup = `
+    <p class="commenter">${data.title}</p>
+    <p class="comment">${data.description}</p>
+  `;
+  $($comment).append(markup);
+  return $comment;
+};
+
+const addComment = function() {
+
 }
 
 $(() => {
