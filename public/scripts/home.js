@@ -17,7 +17,6 @@ const renderPins = function(data) {
   for(let i in pins){
     const $pin = createPin(pins[i])
     $('.feed').append($pin);
-
   }
 };
 
@@ -27,7 +26,6 @@ const createPin = (data) => {
     <img class ="img" src=${data.image}>
     <p class = "title">${data.title}</p>
     <p class = "description">${data.description}</p>
-
   `;
   $($pin).append(markup);
   return $pin;

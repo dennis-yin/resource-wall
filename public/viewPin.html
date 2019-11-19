@@ -45,9 +45,18 @@
         <button type="submit" id="addPin">Add to board</button>
       </div>
     </form>
-      <form method="POST" action="/data/pins/delete/1">
+    <form method="POST" action="/data/pins/delete/1">
       <button type="submit">Delete</button>
     </form>
+    <form id="addComment">
+      <textarea class="comment" placeholder="Add a comment"></textarea>
+      <button type="submit" class="post-comment">Post</button>
+    </form>
+    <p><strong>Comments</strong></p>
+    <main class="comment-section">
+
+    </main>
+
     <!-- add edit form hidden tho-->
 
     <!-- Bootstrap JS -->
