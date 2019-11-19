@@ -246,6 +246,22 @@ module.exports = (db) => {
     })
   });
 
+  router.post("/categories/new", (req, res) => {
+    let query = `
+    INSERT INTO categories (name) VALUES ($1)
+    RETURNING *
+    `
+    db.query(query, [req.body.category_name])
+    .then(() => {
+      const pins = data.rows;
+      let obj = {};
+      for (const pin of pins) {
+        obj[pin.id] = pin
+      }
+      res.json(obj);
+    })
+  });
+
   router.post("/logout", (req, res) => {
     req.session = null;
     res.redirect("/login");
@@ -254,12 +270,15 @@ module.exports = (db) => {
   router.post("/pins/new", (req, res) => {
     let query;
     let data = [];
+    let category_id;
+    let pin_id;
     const id = req.session.user_id.rows[0].id;
     if (req.body.image) {
       query = `
       INSERT INTO pins
       (owner_id, image, title, description, url)
       VALUES ($1, $2, $3, $4, $5)
+      RETURNING *;
       `
       data.push(id, req.body.image, req.body.title, req.body.description,req.body.url);
     } else {
@@ -267,13 +286,28 @@ module.exports = (db) => {
       INSERT INTO pins
       (owner_id, title, description, url)
       VALUES ($1, $2, $3, $4)
+      RETURNING *;
       `
       data.push(id, req.body.title, req.body.description, req.body.url);
     }
-    console.log(query, data)
     db.query(query, data)
-    .then(() => {
-      res.redirect(`/user`);
+    .then((result) => {
+      pin_id = result.rows[0].id
+      query_cat = `SELECT id from categories WHERE name = $1`
+      db.query(query_cat,[req.body.dropCategories])
+      .then((result) => {
+        category_id = result.rows[0].id
+        console.log(category_id,pin_id)
+        query_link=`
+        INSERT INTO categories_pins
+        (category_id,pin_id)
+        VALUES ($1, $2)
+        `
+        db.query(query_link,[category_id,pin_id])
+        .then(() => {
+          res.redirect(`/user`);
+        })
+      })
     });
   });
 

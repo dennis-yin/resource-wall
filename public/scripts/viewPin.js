@@ -1,4 +1,3 @@
-let categories;
 let boards;
 
 const viewPin = (id) => {
@@ -55,7 +54,6 @@ const loadBoards = () => {
   })
   .done((data) => {
     boards = data
-    console.log(boards)
     renderBoards()
   })
   .fail(() => {
@@ -72,7 +70,6 @@ const renderBoards = function() {
 };
 
 const getBoardId = (selected) => {
-  console.log('yo')
   for(let i in boards){
     if(boards[i]['title'] === selected){
       return i
@@ -130,7 +127,6 @@ $(() => {
   const urlArr = url.split('/');
   const pinId = urlArr[urlArr.length-1]
   viewPin(pinId)
-  loadCategories()
   loadBoards()
   loadComments(pinId)
   $('#addComment').submit((event) => {
@@ -147,15 +143,12 @@ $(() => {
   })
   $('#addPin').click((event) => {
     event.preventDefault();
-    const catSelected = $('#dropCategories').val();
     const boardSelected = $('#dropBoards').val();
-    const catId = getCategoryId(catSelected)
     const boardId = getBoardId(boardSelected)
-    console.log(boardSelected)
     $.ajax({
       method: "POST",
       url: `/data/boards/addPin`,
-      data: {pin_id: pinId,category_id: catId,board_id: boardId}
+      data: {pin_id: pinId,board_id: boardId}
     })
   })
 });

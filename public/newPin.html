@@ -16,6 +16,8 @@
     <script src="/vendor/jquery-3.0.0.js"></script>
 
     <!-- App JS -->
+    <script src="/scripts/newPin.js"></script>
+
   </head>
 
   <body>
@@ -35,6 +37,13 @@
       <input class="description" name="description" placeholder="Description" required="">
       <input class="url" name="url" placeholder="Link ot the resource" required="">
       <input class="image" name="image" placeholder="image url">
+      <div>
+      <label for="sel1">Choose a Category</label>
+      <select class="form-control" class="dropCategories" id="dropCategories" name="dropCategories" required="">
+      </select>
+      <input class = "category" name = "category" placeholder="Category" style="visibility: hidden">
+      <button style="visibility: hidden" type="submit" id="addCategory">Add Category</button>
+      </div>
       <button type="submit">Add</button>
     </form>
 
