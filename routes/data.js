@@ -385,6 +385,8 @@ module.exports = (db) => {
     db.query(query, [id, req.body.pin_id, req.body.comment])
     .then(() => {
       console.log("Inserted comment into db");
+      res.status(204)
+      res.send()
     });
   });
 
