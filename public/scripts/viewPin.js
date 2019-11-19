@@ -17,37 +17,6 @@ const viewPin = () => {
   });
 };
 
-const loadCategories = () => {
-  $.ajax({
-    method: "GET",
-    url: `/data/categories`
-  })
-  .done((data) => {
-    categories = data
-    renderCategories()
-
-  })
-  .fail(() => {
-    console.log('Server down')
-  });
-};
-
-const renderCategories = function() {
-  // loops through data
-  for(let i in categories){
-    const markup = `<option>${categories[i].name}</option>`
-    $("#dropCategories").append(markup);
-  }
-};
-
-const getCategoryId = (name) => {
-  for(let i in categories){
-    if(categories[i].name === name){
-      return i
-    }
-  }
-};
-
 const loadBoards = () => {
   $.ajax({
     method: "GET",
