@@ -15,7 +15,7 @@ module.exports = (db) => {
   router.get("/pins", (req, res) => {
     let query = `
     SELECT *
-    FROM pins;
+    FROM pins
     `
     db.query(query)
     .then(data => {
@@ -30,9 +30,9 @@ module.exports = (db) => {
 
   router.get("/users/:id", (req, res) => {
     let query = `
-    SELECT u.id,u.name,u.name,u.profile_picture
+    SELECT u.id, u.name,u.name,u.profile_picture
     FROM users u
-    WHERE u.id = $1;
+    WHERE u.id = $1
     `
     const arg = [req.params.id]
     db.query(query, arg)
@@ -51,7 +51,7 @@ module.exports = (db) => {
     SELECT b.*
     FROM users u
     JOIN boards b ON b.owner_id = u.id
-    WHERE u.id = $1;
+    WHERE u.id = $1
     `
     const arg = [req.params.user_id]
     db.query(query, arg)
@@ -70,7 +70,7 @@ module.exports = (db) => {
     SELECT u.name, u.profile_picture, p.*
     FROM users u
     JOIN pins p ON u.id = p.owner_id
-    WHERE u.id = $1;
+    WHERE u.id = $1
     `
     const arg = [req.params.id]
     db.query(query, arg)
@@ -86,7 +86,7 @@ module.exports = (db) => {
 
   router.get("/pins/:pin_id", (req, res) => {
     let query = `
-    SELECT * FROM pins WHERE id = $1;
+    SELECT * FROM pins WHERE id = $1
     `
     const arg = [req.params.pin_id]
     db.query(query, arg)
@@ -104,14 +104,14 @@ module.exports = (db) => {
     let query = `
     SELECT *
     FROM boards
-    WHERE boards.id = $1;
+    WHERE boards.id = $1
     `
     const arg = [req.params.board_id]
     db.query(query, arg)
     .then(data => {
       let pins = data.rows
       let obj = {}
-      for(let pin of pins){
+      for (let pin of pins) {
         obj[pin.id] = pin
       }
       res.json(obj);
@@ -124,7 +124,7 @@ module.exports = (db) => {
     FROM boards
     JOIN boards_pins ON board_id = boards.id
     JOIN pins ON pin_id = pins.id
-    WHERE boards.id = $1;
+    WHERE boards.id = $1
     `
     const arg = [req.params.board_id]
     db.query(query, arg)
@@ -138,27 +138,23 @@ module.exports = (db) => {
     });
   });
 
-  router.get("/search", (req, res) => {
-    // let query = `
-    // SELECT p.*
-    // FROM pins p
-    // JOIN categories_pins cp ON p.id = cp.pin_id
-    // JOIN categories c ON cp.category_id = c.id
-    // WHERE p.title LIKE '%$1%'
-    // OR p.description LIKE '%$1%'
-    // OR c.name = $1;
-    // `
-
+  router.post("/search", (req, res) => {
     let query = `
-    select *
-    from pins
-    where title like '%$1%';
+    SELECT p.*
+    FROM pins p
+    FULL JOIN categories_pins cp ON p.id = cp.pin_id
+    FULL JOIN categories c ON cp.category_id = c.id
+    WHERE p.title LIKE $1
+    OR p.description LIKE $1
+    OR c.name = $2
     `
-    console.log(req.body.keyword)
-    db.query(query, ['Quantum'])
+    const keyword = '%' + req.body.keyword + '%';
+    db.query(query, [keyword, req.body.keyword])
     .then(data => {
-      console.log(data);
       res.json(data.rows)
+    })
+    .catch(err => {
+      console.log(err);
     });
   });
 
@@ -169,7 +165,7 @@ module.exports = (db) => {
     let query = `
     SELECT *
     FROM users
-    WHERE email = $1;
+    WHERE email = $1
     `
     db.query(query, [req.body.email])
     .then((user) => {
@@ -180,7 +176,7 @@ module.exports = (db) => {
           let query = `
           INSERT INTO users (name, email, password)
           VALUES ($1, $2, $3)
-          RETURNING id;
+          RETURNING id
           `
           db.query(query, [req.body.name, req.body.email, hash])
           .then((id) => {
@@ -196,7 +192,7 @@ module.exports = (db) => {
     let query = `
     SELECT *
     FROM users
-    WHERE email = $1;
+    WHERE email = $1
     `
     db.query(query, [req.body.email])
     .then((user) => {
@@ -227,14 +223,14 @@ module.exports = (db) => {
       query = `
       INSERT INTO pins
       (owner_id, image, title, description, url)
-      VALUES ($1, $2, $3, $4, $5);
+      VALUES ($1, $2, $3, $4, $5)
       `
       data.push(id, req.body.image, req.body.title, req.body.description,req.body.url);
     } else {
       query = `
       INSERT INTO pins
       (owner_id, title, description, url)
-      VALUES ($1, $2, $3, $4);
+      VALUES ($1, $2, $3, $4)
       `
       data.push(id, req.body.title, req.body.description, req.body.url);
     }
@@ -253,14 +249,14 @@ module.exports = (db) => {
       query = `
       INSERT INTO boards
       (owner_id, image, title, description)
-      VALUES ($1, $2, $3, $4);
+      VALUES ($1, $2, $3, $4)
       `
       data.push(id, req.body.image, req.body.title, req.body.description);
     } else {
       query = `
       INSERT INTO boards
       (owner_id, title, description)
-      VALUES ($1, $2, $3);
+      VALUES ($1, $2, $3)
       `
       data.push(id, req.body.title, req.body.description);
     }
@@ -275,7 +271,7 @@ module.exports = (db) => {
     let query;
     let data = [];
     query = `
-    DELETE FROM pins WHERE id = $1;
+    DELETE FROM pins WHERE id = $1
     `
     data.push(req.params.pin_id)            //grab id from cookie for now default to owner_id 1
     db.query(query, data)
@@ -288,7 +284,7 @@ module.exports = (db) => {
     let query;
     let data = [];
     query = `
-    DELETE FROM boards WHERE id = $1;
+    DELETE FROM boards WHERE id = $1
     `
     data.push(req.params.board_id)            //grab id from cookie for now default to owner_id 1
     db.query(query, data)
