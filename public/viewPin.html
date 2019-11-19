@@ -10,25 +10,34 @@
     <link rel="stylesheet" href="/styles/feed.css" type="text/css"/>
     <link rel="stylesheet" href="/styles/stars.css" type="text/css"/>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/styles/header.css" type="text/css"/>
+
 
     <!-- App CSS -->
 
     <!-- External JS -->
     <script src="/vendor/jquery-3.0.0.js"></script>
 
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
     <!-- App JS -->
     <script src="/scripts/viewPin.js"></script>
   </head>
 
   <body>
      <!-- Nav bar -->
-     <nav class="navBar">
-      <img src="http://pngimg.com/uploads/pinterest/pinterest_PNG62.png" width="50px" height="40px">
-      <form class="search-bar" method="POST" action="/">
-        <textarea class="search" placeholder="Search"></textarea>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+      <a class="navbar-brand" href="/">
+        <img src="http://pngimg.com/uploads/pinterest/pinterest_PNG62.png" width="50" height="30" alt="">
+      </a>
+      <form class="search-bar form-inline my-2 my-lg-0" method="GET" action="/search">
+        <input class="form-control mr-sm-2" name="keyword" type="search" placeholder="Search" aria-label="Search">
       </form>
-      <a class="home-button" href="/">Home</a>
+      <button type="home-button" class="home-button btn btn-light ml-auto" href="/">Home</button>
       <!-- <a class="profile-button" href="/users/:id"></a>     TO DO !! ! -->
+      <form class="logout" method="POST" action="/data/logout">
+        <button type="logout-button" class="logout-button btn btn-light" href="/">Logout</button>
+      </form>
     </nav>
 
     <h1 class="title"></h1>
