@@ -61,7 +61,7 @@ const loadComments = function() {
 };
 
 const renderComments = function(data) {
-  console.log(data)
+  $('.comment-section').empty()
   for (const comment in data) {
     const $comment = createComment(data[comment])
     $('.comment-section').append($comment)
