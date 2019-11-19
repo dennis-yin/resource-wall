@@ -35,13 +35,6 @@ CREATE TABLE categories_pins (
   pin_id INTEGER REFERENCES pins(id) ON DELETE CASCADE
 );
 
-CREATE TABLE categories_boards (
-  id SERIAL PRIMARY KEY NOT NULL,
-  category_id INTEGER REFERENCES categories(id) ON DELETE CASCADE,
-  board_id INTEGER REFERENCES pins(id) ON DELETE CASCADE
-);
-
-
 CREATE TABLE boards (
   id SERIAL PRIMARY KEY NOT NULL,
   title VARCHAR(255),

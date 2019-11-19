@@ -1,4 +1,3 @@
-let categories;
 let boards;
 
 const viewPin = (id) => {
@@ -17,37 +16,6 @@ const viewPin = (id) => {
   });
 };
 
-const loadCategories = () => {
-  $.ajax({
-    method: "GET",
-    url: `/data/categories`
-  })
-  .done((data) => {
-    categories = data
-    renderCategories()
-
-  })
-  .fail(() => {
-    console.log('Server down')
-  });
-};
-
-const renderCategories = function() {
-  // loops through data
-  for(let i in categories){
-    const markup = `<option>${categories[i].name}</option>`
-    $("#dropCategories").append(markup);
-  }
-};
-
-const getCategoryId = (name) => {
-  for(let i in categories){
-    if(categories[i].name === name){
-      return i
-    }
-  }
-}
-
 const loadBoards = () => {
   $.ajax({
     method: "GET",
@@ -55,7 +23,6 @@ const loadBoards = () => {
   })
   .done((data) => {
     boards = data
-    console.log(boards)
     renderBoards()
   })
   .fail(() => {
@@ -72,7 +39,6 @@ const renderBoards = function() {
 };
 
 const getBoardId = (selected) => {
-  console.log('yo')
   for(let i in boards){
     if(boards[i]['title'] === selected){
       return i
@@ -99,19 +65,15 @@ $(() => {
   const urlArr = url.split('/');
   const pinId =urlArr[urlArr.length-1]
   viewPin(pinId)
-  loadCategories()
   loadBoards()
   $('#addPin').click((event) => {
     event.preventDefault();
-    const catSelected = $('#dropCategories').val();
     const boardSelected = $('#dropBoards').val();
-    const catId = getCategoryId(catSelected)
     const boardId = getBoardId(boardSelected)
-    console.log(boardSelected)
     $.ajax({
       method: "POST",
       url: `/data/boards/addPin`,
-      data: {pin_id: pinId,category_id: catId,board_id: boardId}
+      data: {pin_id: pinId,board_id: boardId}
     })
   })
 })
