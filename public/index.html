@@ -29,8 +29,8 @@
         <img src="http://pngimg.com/uploads/pinterest/pinterest_PNG62.png" width="50" height="30" alt="">
       </a>
       <!-- Update search bar so it posts to /search route -->
-      <form class="search-bar form-inline my-2 my-lg-0" method="POST" action="/">
-        <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+      <form class="search-bar form-inline my-2 my-lg-0" method="GET" action="/data/search">
+        <input class="form-control mr-sm-2" name="keyword" type="search" placeholder="Search" aria-label="Search">
       </form>
       <button type="home-button" class="home-button btn btn-light ml-auto" href="/">Home</button>
       <!-- <a class="profile-button" href="/users/:id"></a>     TO DO !! ! -->

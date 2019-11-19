@@ -116,7 +116,7 @@ module.exports = (db) => {
       }
       res.json(obj);
     });
-  })
+  });
 
   router.get("/boards/pins/:board_id", (req, res) => {
     let query = `
@@ -135,6 +135,30 @@ module.exports = (db) => {
         obj[pin.id] = pin
       }
       res.json(obj);
+    });
+  });
+
+  router.get("/search", (req, res) => {
+    // let query = `
+    // SELECT p.*
+    // FROM pins p
+    // JOIN categories_pins cp ON p.id = cp.pin_id
+    // JOIN categories c ON cp.category_id = c.id
+    // WHERE p.title LIKE '%$1%'
+    // OR p.description LIKE '%$1%'
+    // OR c.name = $1;
+    // `
+
+    let query = `
+    select *
+    from pins
+    where title like '%$1%';
+    `
+    console.log(req.body.keyword)
+    db.query(query, ['Quantum'])
+    .then(data => {
+      console.log(data);
+      res.json(data.rows)
     });
   });
 
@@ -258,7 +282,7 @@ module.exports = (db) => {
       .then(() => {
         res.redirect("/")
       });
-  })
+  });
 
   router.post("/boards/delete/:board_id", (req, res) => {
     let query;
@@ -271,7 +295,7 @@ module.exports = (db) => {
       .then(() => {
         res.redirect("/")
       });
-  })
+  });
 
   return router;
 };
