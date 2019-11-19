@@ -241,7 +241,6 @@ module.exports = (db) => {
           }
         });
       } else {
-        // ERROR: Invalid username/password
       }
     })
   });
