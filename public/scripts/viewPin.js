@@ -107,7 +107,7 @@ $(() => {
       url: `/data/pins/${pinId}/addComment`,
       data: { pin_id: pinId, comment: $('.comment').val() }
     })
-    .done(loadComments(pinId))
+    .done(loadComments())
   })
   $('#addPin').click((event) => {
     event.preventDefault();
