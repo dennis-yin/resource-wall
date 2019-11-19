@@ -78,26 +78,12 @@ const createComment = function(data) {
   return $comment;
 };
 
-const createComment = function(data) {
-  const $comment = $("<div>").addClass("comment");
-  const markup = `
-    <p class="commenter">${data.title}</p>
-    <p class="comment">${data.description}</p>
-  `;
-  $($comment).append(markup);
-  return $comment;
-};
-
-const addComment = function() {
-
-}
 
 $(() => {
   const url = window.location.pathname;
   const urlArr = url.split('/');
   pinId = urlArr[urlArr.length-1]
   viewPin()
-  loadCategories()
   loadBoards()
   loadComments()
   $('#addComment').submit((event) => {
