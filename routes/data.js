@@ -34,19 +34,33 @@ module.exports = (db) => {
     FROM users u
     WHERE u.id = $1;
     `
-    const arg = [req.session.user_id.rows[0].id]
-    db.query(query, arg)
+    const id = req.session.user_id.rows[0].id
+    db.query(query, [id])
     .then(data => {
-      const pins = data.rows;
+      const user = data.rows;
       let obj = {};
-      for (const pin of pins) {
-        obj[pin.id] = pin
+      obj['id'] = user[0]
+      res.json(obj);
+    });
+  });
+
+  router.get("/categories", (req, res) => {
+    let query = `
+    SELECT *
+    FROM categories
+    `
+    db.query(query)
+    .then(data => {
+      const categories = data.rows;
+      let obj = {};
+      for (const category of categories) {
+        obj[category.id] = category
       }
       res.json(obj);
     });
   });
 
-  router.get("/users/boards", (req, res) => {
+  router.get("/user/boards", (req, res) => {
     let query = `
     SELECT b.*
     FROM users u
@@ -241,7 +255,7 @@ module.exports = (db) => {
     console.log(query, data)
     db.query(query, data)
     .then(() => {
-      res.redirect(`/users/${id}`);
+      res.redirect(`/user`);
     });
   });
 
@@ -264,12 +278,26 @@ module.exports = (db) => {
       `
       data.push(id, req.body.title, req.body.description);
     }
-    console.log(query,data)
     db.query(query, data)
     .then(() => {
-      res.redirect(`/users/${id}`);
+      res.redirect(`/user`);
     });
   });
+
+  router.post("/boards/addPin", (req, res) => {
+    let query;
+    let data = [];
+    query = `INSERT INTO boards_pins (board_id,pin_id) VALUES ($1,$2);
+    INSERT INTO categories_boards (board_id,category_id) VALUES ($1,$3);
+    `
+    data.push(req.body.board_id,req.body.pin_id,req.body.category_id)
+    console.log(query,data)
+    db.query(query, data)
+      .then(() => {
+        res.redirect("/")
+      });
+  });
+
 
   router.post("/pins/delete/:pin_id", (req, res) => {
     let query;

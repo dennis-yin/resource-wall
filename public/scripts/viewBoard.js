@@ -19,7 +19,6 @@ const loadPins = (id) => {
     url: `/data/boards/pins/${id}`
   })
   .done((data) => {
-    console.log(data)
     renderPins(data)
   })
   .fail(() => {

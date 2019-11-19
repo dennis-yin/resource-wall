@@ -1,0 +1,8 @@
+.navBar {
+  display: flex;
+  flex-direction: row;
+  height: 20px;
+  background-color: white;
+}
+
+/*# sourceMappingURL=header.css.map */

@@ -1,7 +1,7 @@
 const loadBoards = () => {
   $.ajax({
     method: "GET",
-    url: "/data/users/boards"
+    url: "/data/user/boards"
   })
   .done((data) => {
     renderBoards(data)
@@ -40,10 +40,8 @@ const loadProfile = () => {
     url: "/data/user"
   })
   .done((data) => {
-    console.log('got here')
-    console.log(data)
-    $(".profileImage").attr("src",data[1].profile_picture)
-    $(".profileName").text(data[1].name)
+    $(".profileImage").attr("src",data['id'].profile_picture)
+    $(".profileName").text(data['id'].name)
   })
   .fail(() => {
     console.log('Server down')
