@@ -86,7 +86,7 @@ $(() => {
   viewPin()
   loadBoards()
   loadComments()
-  $('#addComment').submit((event) => {
+  $('#addComment').click((event) => {
     event.preventDefault();
     $.ajax({
       method: "POST",
