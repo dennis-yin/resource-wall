@@ -1,13 +1,14 @@
-const viewPin = () => {
+const viewPin = (id) => {
   $.ajax({
     method: "GET",
-    url: "/data/pins/1"
+    url: `/data/pins/${id}`
   })
   .done((data) => {
-    $(".title").text(data[1].title)
-    $(".image").attr("src",data[1].image)
-    $(".url").attr("href",data[1].url)
-    $(".description").text(data[1].description)
+    console.log(data)
+    $(".title").text(data[id].title)
+    $(".image").attr("src",data[id].image)
+    $(".url").attr("href",data[id].url)
+    $(".description").text(data[id].description)
   })
   .fail(() => {
     console.log('Server down')
@@ -15,5 +16,7 @@ const viewPin = () => {
 };
 
 $(() => {
-  viewPin()
+  const url = window.location.href;
+  const urlArr = url.split('/');
+  viewPin(urlArr[urlArr.length-1])
 });
