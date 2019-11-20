@@ -2,4 +2,13 @@ html {
   background-color: white;
 }
 
+.checked {
+  color: yellow;
+}
+
+.pin {
+  color: #FFFFFF;
+  text-decoration: none;
+}
+
 /*# sourceMappingURL=layout.css.map */

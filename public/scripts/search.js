@@ -1,7 +1,7 @@
 const loadPins = (key) => {
   $.ajax({
     method: "POST",
-    url: "/data/search", 
+    url: "/data/search",
     data: {keyword: key}
 
   })
@@ -26,9 +26,11 @@ const renderPins = function(data) {
 const createPin = (data) => {
   const $pin = $("<div>").addClass("pin");
   const markup = `
+  <a href="/pins/${data.id}">
     <img class ="img" src=${data.image}>
     <p class = "title">${data.title}</p>
     <p class = "description">${data.description}</p>
+  </a>
   `;
   $($pin).append(markup);
   return $pin;

@@ -1,3 +1,4 @@
+
 const viewBoard = (id) => {
   $.ajax({
     method: "GET",
@@ -39,10 +40,11 @@ const renderPins = function(data) {
 const createPin = (data) => {
   const $pin = $("<div>").addClass("pin");
   const markup = `
+  <a href="/pins/${data.id}">
     <img class ="img" src=${data.image}>
     <p class = "title">${data.title}</p>
     <p class = "description">${data.description}</p>
-
+  </a>
   `;
   $($pin).append(markup);
   return $pin;
@@ -52,6 +54,7 @@ $(() => {
   const url = window.location.pathname;
   const urlArr = url.split('/');
   id = urlArr[urlArr.length-1]
+  $('#delete').attr('action',`/data/boards/delete/${id}`)
   viewBoard(id)
   loadPins(id)
 });
