@@ -2,9 +2,19 @@ html {
   background-color: white;
 }
 
-.myUser {
+.noUser {
   position: relative;
   left: 75%;
+}
+
+.username {
+  position: relative;
+  top: 0.5em;
+}
+
+.loggedIn {
+  position: relative;
+  left: 70%;
 }
 
 .checked {
