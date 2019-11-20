@@ -70,6 +70,7 @@ module.exports = (db) => {
     const arg = [req.session.user_id.rows[0].id]
     db.query(query, arg)
     .then(data => {
+      console.log(data)
       const pins = data.rows;
       let obj = {};
       for (const pin of pins) {

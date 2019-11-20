@@ -47,7 +47,15 @@
         <label for="sel1">Choose a Board</label>
         <select class="form-control" class="dropBoards" id="dropBoards" required="">
         </select>
+        <main id='create-board' style="visibility: hidden;">
+        <p>Create A Board</p>
+          <input id="title-board" name="title" placeholder="Title" required="">
+          <input id="description-board" name="description" placeholder="Description" required="">
+          <input id="image-board"name="image" placeholder="image url">
+          <button id="btn-board"type="submit">Create</button>
+        </main>
         <button type="submit" id="addPin">Add to board</button>
+      </form>
       </div>
     </form>
     <form method="POST" action="/data/pins/delete/1">

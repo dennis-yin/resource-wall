@@ -24,6 +24,7 @@ const loadBoards = () => {
   })
   .done((data) => {
     boards = data
+    console.log(boards)
     renderBoards()
   })
   .fail(() => {
@@ -32,11 +33,17 @@ const loadBoards = () => {
 };
 
 const renderBoards = function() {
-  // loops through data
-  for(let i in boards){
-    const markup = `<option>${boards[i].title}</option>`
-    $("#dropBoards").append(markup);
+  $('#dropBoards').empty();
+  $('#create-board').attr("style","visibility: hidden")
+  let keys = Object.keys(boards)
+  if(keys.length === 0){
+    $("#dropBoards").append(`<option>--</option>`);
+  }else{
+    for(let i = keys.length-1;i>=0;i--){
+      $("#dropBoards").append(`<option>${boards[keys[i]].title}</option>`);
+    }
   }
+  $("#dropBoards").append(`<option>Create a Board</option>`);
 };
 
 const getBoardId = (selected) => {
@@ -86,6 +93,23 @@ $(() => {
   viewPin()
   loadBoards()
   loadComments()
+  $( "#dropBoards" ).change(() => {
+    const value = $('#dropBoards').val();
+    if(value == 'Create a Board'){
+      $('#create-board').attr("style","visibility: visible")
+    }
+  });
+  $('#btn-board').click((event) => {
+    event.preventDefault();
+    $.ajax({
+      method: "POST",
+      url: `/data/boards/new`,
+      data: {title: $('#title-board').val(), description: $('#description-board').val(), image: $('#image-board').val()}
+    })
+    .done(
+      loadBoards()
+    )
+  })
   $('.post-comment').click((event) => {
     event.preventDefault();
     $.ajax({

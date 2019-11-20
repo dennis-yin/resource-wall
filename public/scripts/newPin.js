@@ -20,17 +20,17 @@ const renderCategories = function() {
   $('.category').val('');
   $('.category').attr("style","visibility: hidden")
   $('#addCategory').attr("style","visibility: hidden")
+  let keys = Object.keys(categories)
   // loops through data
-  for(let i in categories){
-    const markup = `<option>${categories[i].name}</option>`
-    $("#dropCategories").append(markup);
+  for(let i = keys.length-1;i>=0;i--){
+    $("#dropCategories").append(`<option>${categories[keys[i]].name}</option>`);
   }
   $("#dropCategories").append(`<option class="temp">Add a new Category</option>`);
 };
 
 $(() => {
   loadCategories()
-  $( "#dropCategories" ).change(function() {
+  $( "#dropCategories" ).change(() => {
     const catSelected = $('#dropCategories').val();
     if(catSelected === 'Add a new Category'){
       $('.category').attr("style","visibility: visible")
