@@ -39,42 +39,46 @@
       </form>
     </nav>
 
-    <a class="url"><h1 class="title"></h1></a>
-    <img class="image">
-    <p class="description"></p>
-    <div class="form-group">
-      <label for="sel1">Choose a Board</label>
-      <select class="form-control" class="dropBoards" id="dropBoards" required="">
-      </select>
-      <form>
-      <main id='create-board' style="visibility: hidden;">
-      <p>Create A Board</p>
-        <input id="title-board" name="title" placeholder="Title" required="">
-        <input id="description-board" name="description" placeholder="Description" required="">
-        <input id="image-board"name="image" placeholder="image url">
-        <button id="btn-board"type="submit">Create</button>
-      </main>
+    <main class="pin">
+      <a class="url"><h1 class="title"></h1></a>
+      <img class="image">
+      <p class="description"></p>
+      <div class="form-group">
+        <label for="sel1">Choose a Board</label>
+        <select class="form-control" class="dropBoards" id="dropBoards" required="">
+        </select>
+        <form>
+        <main id='create-board' style="visibility: hidden;">
+        <p>Create A Board</p>
+          <input id="title-board" name="title" placeholder="Title" required="">
+          <input id="description-board" name="description" placeholder="Description" required="">
+          <input id="image-board"name="image" placeholder="image url">
+          <button id="btn-board"type="submit">Create</button>
+        </main>
+        </form>
+      </div>
+      <form id ="delete" method="POST" action="/data/pins/delete">
+        <button type="submit">Delete</button>
       </form>
-    </div>
-    <form id ="delete" method="POST" action="/data/pins/delete">
-      <button type="submit">Delete</button>
-    </form>
-    <div id="rating">
-      <span class="starOne fa fa-star checked"></span>
-      <span class="starTwo fa fa-star checked"></span>
-      <span class="starThree fa fa-star checked"></span>
-      <span class="starFour fa fa-star"></span>
-      <span class="starFive fa fa-star"></span>
-    </div>
-    <form id="addComment">
-      <textarea class="comment" placeholder="Add a comment"></textarea>
-      <button type="submit" class="post-comment">Post</button>
-    </form>
-    <p class="comments-header"><strong>Comments</strong></p>
-    <main class="comment-section">
-
+      <div id="rating">
+        <span class="starOne fa fa-star checked"></span>
+        <span class="starTwo fa fa-star checked"></span>
+        <span class="starThree fa fa-star checked"></span>
+        <span class="starFour fa fa-star"></span>
+        <span class="starFive fa fa-star"></span>
+      </div>
     </main>
 
+    <main class="comments">
+      <form id="addComment">
+        <textarea class="comment" placeholder="Add a comment"></textarea>
+        <button type="submit" class="post-comment">Post</button>
+      </form>
+      <p class="comments-header"><strong>Comments</strong></p>
+      <main class="comment-section">
+
+      </main>
+    </main>
     <!-- add edit form hidden tho-->
 
     <!-- Bootstrap JS -->
