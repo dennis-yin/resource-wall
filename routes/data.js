@@ -34,7 +34,7 @@ module.exports = (db) => {
     FROM users u
     WHERE u.id = $1
     `
-    const id = req.session.user_id.rows[0].id
+    const id = req.session.user_id
     db.query(query, [id])
     .then(data => {
       const user = data.rows;
@@ -176,7 +176,6 @@ module.exports = (db) => {
     WHERE pin_id = $1
     GROUP BY pin_id
     `
-    console.log(req.params.pin_id)
     db.query(query, [req.params.pin_id])
     .then((data) => {
       let obj = {};
@@ -231,8 +230,8 @@ module.exports = (db) => {
           RETURNING id
           `
           db.query(query, [req.body.name, req.body.email, hash])
-          .then((id) => {
-            req.session.user_id = id;
+          .then((data) => {
+            req.session.user_id = data.rows[0].id;
             res.redirect("/");
           })
         });
@@ -248,19 +247,40 @@ module.exports = (db) => {
     `
     db.query(query, [req.body.email])
     .then((user) => {
-      const user_id = user.rows.id;
       if (user.rows.length) {
         bcrypt.compare(req.body.password, user.rows[0].password, (err, success) => {
           if (success) {
-            req.session.user_id = user_id;
+            req.session.user_id = user.rows[0].id;
             res.redirect("/");
+          }
+          else {
+            res.redirect('https://http.cat/404')
           }
         });
       } else {
+        res.redirect('https://http.cat/404')
       }
     })
   });
 
+  router.post("/user/id",(req,res) => {
+    if(req.session.user_id){
+      let query = `
+      SELECT name
+      FROM users
+      WHERE id = $1
+      `
+      const id = req.session.user_id;
+      db.query(query, [id])
+      .then((data) => {
+        let obj = {};
+        obj['user'] = data.rows[0]
+        res.json(obj);
+      })
+    }else{
+      res.send(false)
+    }
+  })
   router.post("/categories/new", (req, res) => {
     let query = `
     INSERT INTO categories (name) VALUES ($1)
@@ -279,7 +299,7 @@ module.exports = (db) => {
 
   router.post("/logout", (req, res) => {
     req.session = null;
-    res.redirect("/login");
+    res.redirect("/");
   });
 
   router.post("/pins/new", (req, res) => {
@@ -287,7 +307,7 @@ module.exports = (db) => {
     let data = [];
     let category_id;
     let pin_id;
-    const id = req.session.user_id.rows[0].id;
+    const id = req.session.user_id;
     if (req.body.image) {
       query = `
       INSERT INTO pins
@@ -329,7 +349,7 @@ module.exports = (db) => {
   router.post("/boards/new", (req, res) => {
     let query;
     let data = [];
-    const id = req.session.user_id.rows[0].id;
+    const id = req.session.user_id
     if (req.body.image) {
       query = `
       INSERT INTO boards
@@ -394,7 +414,7 @@ module.exports = (db) => {
     INSERT INTO comments (user_id, pin_id, text) VALUES
     ($1, $2, $3)
     `
-    const id = req.session.user_id.rows[0].id;
+    const id = req.session.user_id
     db.query(query, [id, req.body.pin_id, req.body.comment])
     .then(() => {
       console.log("Inserted comment into db");
@@ -408,7 +428,7 @@ module.exports = (db) => {
     INSERT INTO ratings (pin_id, user_id, value) VALUES
     ($1, $2, $3)
     `
-    const id = req.session.user_id.rows[0].id;
+    const id = req.session.user_id
     db.query(query, [req.params.pin_id, id, req.body.rating])
     .then(() => {
       console.log("Inserted rating into db");

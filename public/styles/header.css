@@ -1,8 +1,4 @@
-.navBar {
-  display: flex;
-  flex-direction: row;
-  height: 20px;
-  background-color: white;
+.myUser {
+  float: right;
 }
-
 /*# sourceMappingURL=header.css.map */
