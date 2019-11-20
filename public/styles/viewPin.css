@@ -72,6 +72,7 @@ div.form-group {
 }
 
 #delete {
+  width: 50px;
   -webkit-box-ordinal-group: 6;
       -ms-flex-order: 5;
           order: 5;
@@ -105,7 +106,7 @@ main.comments {
       flex-wrap: wrap;
   margin-right: 40px;
   margin-top: 70px;
-  width: 50vw;
+  width: 50%;
   position: relative;
   left: 39%;
   bottom: 184px;
