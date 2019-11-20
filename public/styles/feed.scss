@@ -4,12 +4,14 @@
   background-color: white;
   flex-flow: row wrap;
   align-items: flex-start;
-  justify-content: space-evenly;
+  justify-content: center;
+  margin: 5px;
 }
 
 .pin{
   width: 300px;
-  height: 350px;
+  height: 300px;
+  margin-left: 10px;
 }
 
 .description {

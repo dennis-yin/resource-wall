@@ -11,14 +11,16 @@
   -webkit-box-align: start;
       -ms-flex-align: start;
           align-items: flex-start;
-  -webkit-box-pack: space-evenly;
-      -ms-flex-pack: space-evenly;
-          justify-content: space-evenly;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  margin: 5px;
 }
 
 .pin {
   width: 300px;
-  height: 350px;
+  height: 300px;
+  margin-left: 10px;
 }
 
 .description {
