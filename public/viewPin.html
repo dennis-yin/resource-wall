@@ -6,12 +6,10 @@
 
     <!-- External CSS -->
     <link rel="stylesheet" href="/vendor/normalize-4.1.1.css" type="text/css"/>
-    <link rel="stylesheet" href="/styles/layout.css" type="text/css"/>
-    <link rel="stylesheet" href="/styles/feed.css" type="text/css"/>
     <link rel="stylesheet" href="/styles/stars.css" type="text/css"/>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="/styles/header.css" type="text/css"/>
-
+    <link rel="stylesheet" href="/styles/viewPin.css" type="text/css"/>
 
     <!-- App CSS -->
 
@@ -40,26 +38,24 @@
       </form>
     </nav>
 
-    <h1 class="title"></h1>
-    <a class="url">link</a>
-    <form>
-      <img class="image">
-      <p class="description"></p>
-      <div class="form-group">
-        <label for="sel1">Choose a Board</label>
-        <select class="form-control" class="dropBoards" id="dropBoards" required="">
-        </select>
-        <main id='create-board' style="visibility: hidden;">
-        <p>Create A Board</p>
-          <input id="title-board" name="title" placeholder="Title" required="">
-          <input id="description-board" name="description" placeholder="Description" required="">
-          <input id="image-board"name="image" placeholder="image url">
-          <button id="btn-board"type="submit">Create</button>
-        </main>
-        <button type="submit" id="addPin">Add to board</button>
+    <a class="url"><h1 class="title"></h1></a>
+    <img class="image">
+    <p class="description"></p>
+    <div class="form-group">
+      <label for="sel1">Choose a Board</label>
+      <select class="form-control" class="dropBoards" id="dropBoards" required="">
+      </select>
+      <form>
+      <main id='create-board' style="visibility: hidden;">
+      <p>Create A Board</p>
+        <input id="title-board" name="title" placeholder="Title" required="">
+        <input id="description-board" name="description" placeholder="Description" required="">
+        <input id="image-board"name="image" placeholder="image url">
+        <button id="btn-board"type="submit">Create</button>
+      </main>
       </form>
-      </div>
-    </form>
+      <button type="submit" id="addPin">Add to board</button>
+    </div>
     <form method="POST" action="/data/pins/delete/1">
       <button type="submit">Delete</button>
     </form>
@@ -74,7 +70,7 @@
       <textarea class="comment" placeholder="Add a comment"></textarea>
       <button type="submit" class="post-comment">Post</button>
     </form>
-    <p><strong>Comments</strong></p>
+    <p class="comments-header"><strong>Comments</strong></p>
     <main class="comment-section">
 
     </main>

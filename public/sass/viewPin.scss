@@ -1,0 +1,52 @@
+body {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap
+}
+
+nav {
+  width: 100vw
+}
+
+img.image {
+  position: relative;
+  left: 5%;
+  border-radius: 5%;
+  overflow: hidden;
+  order: 1
+}
+
+a.url {
+  position: relative;
+  height: 30%;
+  left: 10%;
+  width: 50%;
+  order: 2
+}
+
+p.description {
+  position: relative;
+  left: 200px;
+  width: 50vw;
+  order: 3
+}
+
+div.form-group {
+  order: 4
+}
+
+body > form {
+  order: 5
+}
+
+#rating {
+  order: 6
+}
+
+p.comments-header {
+  order: 7
+}
+
+.comment-section {
+  order: 8
+}
