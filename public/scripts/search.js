@@ -34,9 +34,9 @@ const loadPins = (key) => {
     method: "POST",
     url: "/data/search",
     data: {keyword: key}
-
   })
   .done((data) => {
+    console.log(data)
     renderPins(data)
   })
   .fail(() => {
@@ -49,8 +49,8 @@ const renderPins = function(data) {
   let pins = data;
   for(let i in pins){
     const $pin = createPin(pins[i])
+    console.log($pin)
     $('.feed').append($pin);
-
   }
 };
 
@@ -70,6 +70,7 @@ const createPin = (data) => {
 $(() => {
   const searchParams = new URLSearchParams(window.location.search);
   const keyword = searchParams.get("keyword");
+  console.log(keyword)
   loadNav()
   loadPins(keyword);
 });

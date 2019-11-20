@@ -188,13 +188,13 @@ module.exports = (db) => {
     let query = `
     SELECT p.*
     FROM pins p
-    FULL JOIN categories_pins cp ON p.id = cp.pin_id
-    FULL JOIN categories c ON cp.category_id = c.id
+    FULL JOIN categories c ON p.category_id = c.id
     WHERE p.title LIKE $1
     OR p.description LIKE $1
     OR c.name = $2
     `
     const keyword = '%' + req.body.keyword + '%';
+    console.log(keyword)
     db.query(query, [keyword, req.body.keyword])
     .then(data => {
       const pins = data.rows;
@@ -202,6 +202,7 @@ module.exports = (db) => {
       for (const pin of pins) {
         obj[pin.id] = pin
       }
+      console.log(obj)
       res.json(obj);
     })
     .catch(err => {
@@ -303,46 +304,35 @@ module.exports = (db) => {
   });
 
   router.post("/pins/new", (req, res) => {
-    let query;
-    let data = [];
-    let category_id;
-    let pin_id;
-    const id = req.session.user_id;
-    if (req.body.image) {
-      query = `
-      INSERT INTO pins
-      (owner_id, image, title, description, url)
-      VALUES ($1, $2, $3, $4, $5)
-      RETURNING *;
-      `
-      data.push(id, req.body.image, req.body.title, req.body.description,req.body.url);
-    } else {
-      query = `
-      INSERT INTO pins
-      (owner_id, title, description, url)
-      VALUES ($1, $2, $3, $4)
-      RETURNING *;
-      `
-      data.push(id, req.body.title, req.body.description, req.body.url);
-    }
-    db.query(query, data)
-    .then((result) => {
-      pin_id = result.rows[0].id
       query_cat = `SELECT id from categories WHERE name = $1`
       db.query(query_cat,[req.body.dropCategories])
       .then((result) => {
-        category_id = result.rows[0].id
-        console.log(category_id,pin_id)
-        query_link=`
-        INSERT INTO categories_pins
-        (category_id,pin_id)
-        VALUES ($1, $2)
-        `
-        db.query(query_link,[category_id,pin_id])
-        .then(() => {
+        let query;
+        let data = [];
+        let category_id = result.rows[0].id;
+        let pin_id;
+        const id = req.session.user_id;
+        if (req.body.image) {
+          query = `
+          INSERT INTO pins
+          (owner_id, image, title, description, url,category_id)
+          VALUES ($1, $2, $3, $4, $5,$6)
+          RETURNING *;
+          `
+          data.push(id, req.body.image, req.body.title, req.body.description,req.body.url,category_id);
+        } else {
+          query = `
+          INSERT INTO pins
+          (owner_id, title, description, url,category_id)
+          VALUES ($1, $2, $3, $4, $5)
+          RETURNING *;
+          `
+          data.push(id, req.body.title, req.body.description, req.body.url,category_id);
+        }
+        db.query(query, data)
+          .then(() => {
           res.redirect(`/user`);
         })
-      })
     });
   });
 
