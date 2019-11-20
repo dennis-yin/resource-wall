@@ -67,7 +67,7 @@ module.exports = (db) => {
     JOIN boards b ON b.owner_id = u.id
     WHERE u.id = $1
     `
-    const arg = [req.session.user_id.rows[0].id]
+    const arg = [req.session.user_id]
     db.query(query, arg)
     .then(data => {
       const pins = data.rows;
@@ -86,7 +86,7 @@ module.exports = (db) => {
     JOIN pins p ON u.id = p.owner_id
     WHERE u.id = $1
     `
-    const arg = [req.session.user_id.rows[0].id]
+    const arg = [req.session.user_id]
     db.query(query, arg)
     .then(data => {
       const pins = data.rows;
