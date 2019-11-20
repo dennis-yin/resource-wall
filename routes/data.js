@@ -369,6 +369,7 @@ module.exports = (db) => {
     data.push(req.body.board_id,req.body.pin_id)
     db.query(query, data)
     .then(() => {
+      console.log('added')
       res.send()
     });
   });
