@@ -8,6 +8,8 @@
     <link rel="stylesheet" href="/vendor/normalize-4.1.1.css" type="text/css"/>
     <link rel="stylesheet" href="/styles/layout.css" type="text/css"/>
     <link rel="stylesheet" href="/styles/feed.css" type="text/css"/>
+    <link rel="stylesheet" href="/styles/stars.css" type="text/css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="/styles/header.css" type="text/css"/>
 
 
@@ -61,6 +63,13 @@
     <form method="POST" action="/data/pins/delete/1">
       <button type="submit">Delete</button>
     </form>
+    <div id="rating">
+      <span class="starOne fa fa-star checked"></span>
+      <span class="starTwo fa fa-star checked"></span>
+      <span class="starThree fa fa-star checked"></span>
+      <span class="starFour fa fa-star"></span>
+      <span class="starFive fa fa-star"></span>
+    </div>
     <form id="addComment">
       <textarea class="comment" placeholder="Add a comment"></textarea>
       <button type="submit" class="post-comment">Post</button>

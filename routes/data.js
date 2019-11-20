@@ -170,6 +170,22 @@ module.exports = (db) => {
     });
   })
 
+  router.get("/pins/:pin_id/rating", (req, res) => {
+    let query = `
+    SELECT AVG(value) avg_rating
+    FROM ratings
+    WHERE pin_id = $1
+    GROUP BY pin_id
+    `
+    console.log(req.params.pin_id)
+    db.query(query, [req.params.pin_id])
+    .then((data) => {
+      let obj = {};
+      obj['rating'] = data.rows[0];
+      res.json(obj);
+    })
+  });
+
   router.post("/search", (req, res) => {
     let query = `
     SELECT p.*
@@ -388,6 +404,20 @@ module.exports = (db) => {
       res.status(204)
       res.send()
     });
+  });
+
+  router.post("/pins/:pin_id/rating", (req, res) => {
+    let query = `
+    INSERT INTO ratings (pin_id, user_id, value) VALUES
+    ($1, $2, $3)
+    `
+    const id = req.session.user_id.rows[0].id;
+    db.query(query, [req.params.pin_id, id, req.body.rating])
+    .then(() => {
+      console.log("Inserted rating into db");
+      res.status(204)
+      res.send()
+    })
   });
 
   return router;

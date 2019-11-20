@@ -85,6 +85,53 @@ const createComment = function(data) {
   return $comment;
 };
 
+const loadRating = function() {
+  $.ajax({
+    method: "GET",
+    url: `/data/pins/${pinId}/rating`
+  })
+  .done((data) => {
+    let rating = data.rating['avg_rating'];
+    if (rating % 1 === 0) {
+      rating = Math.floor(rating);
+    } else {
+      rating = rating.toFixed(2);
+    }
+    $('#rating').append(`<p>${rating} / 5</p>`)
+  })
+};
+
+const ratePin = function() {
+  $('.fa-star').click(function() {
+    let rating;
+
+    if ($(this).hasClass('starOne')) {
+      rating = 1;
+    }
+
+    if ($(this).hasClass('starTwo')) {
+      rating = 2;
+    }
+
+    if ($(this).hasClass('starThree')) {
+      rating = 3;
+    }
+
+    if ($(this).hasClass('starFour')) {
+      rating = 4;
+    }
+
+    if ($(this).hasClass('starFive')) {
+      rating = 5;
+    }
+
+    $.ajax({
+      method: "POST",
+      url: `/data/pins/${pinId}/rating`,
+      data: { rating: rating }
+    })
+  })
+};
 
 $(() => {
   const url = window.location.pathname;
@@ -93,6 +140,8 @@ $(() => {
   viewPin()
   loadBoards()
   loadComments()
+  loadRating()
+  ratePin()
   $( "#dropBoards" ).change(() => {
     const value = $('#dropBoards').val();
     if(value == 'Create a Board'){
@@ -126,7 +175,7 @@ $(() => {
     $.ajax({
       method: "POST",
       url: `/data/boards/addPin`,
-      data: {pin_id: pinId,board_id: boardId}
+      data: { pin_id: pinId, board_id: boardId }
     })
   })
 });
