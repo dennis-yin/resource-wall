@@ -78,6 +78,22 @@ const createComment = function(data) {
   return $comment;
 };
 
+const loadRating = function() {
+  $.ajax({
+    method: "GET",
+    url: `/data/pins/${pinId}/rating`
+  })
+  .done((data) => {
+    let rating = data.rating['avg_rating'];
+    if (rating % 1 === 0) {
+      rating = Math.floor(rating);
+    } else {
+      rating = rating.toFixed(2);
+    }
+    $('#rating').append(`<p>${rating} / 5</p>`)
+  })
+};
+
 const ratePin = function() {
   $('.fa-star').click(function() {
     let rating;
@@ -104,7 +120,7 @@ const ratePin = function() {
 
     $.ajax({
       method: "POST",
-      url: `/data/pins/${pinId}/rate`,
+      url: `/data/pins/${pinId}/rating`,
       data: { rating: rating }
     })
   })
@@ -117,6 +133,7 @@ $(() => {
   viewPin()
   loadBoards()
   loadComments()
+  loadRating()
   ratePin()
   $('#addComment').submit((event) => {
     event.preventDefault();
