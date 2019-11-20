@@ -1,0 +1,133 @@
+nav {
+  width: 100vw;
+}
+
+main.pin {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-flow: column wrap;
+          flex-flow: column wrap;
+  width: 40%;
+  height: 600px;
+}
+
+img.image {
+  margin-left: 40px;
+  margin-top: 30px;
+  position: relative;
+  left: 10%;
+  top: 5%;
+  border-radius: 5%;
+  overflow: hidden;
+  -webkit-box-ordinal-group: 2;
+      -ms-flex-order: 1;
+          order: 1;
+}
+
+a.url {
+  text-decoration: none;
+  color: black;
+  margin-right: 40px;
+  height: 30%;
+  position: relative;
+  top: 9%;
+  left: 15%;
+  width: 50vw;
+  -webkit-box-ordinal-group: 3;
+      -ms-flex-order: 2;
+          order: 2;
+}
+
+a.url:hover {
+  color: black;
+}
+
+p.description {
+  margin-right: 40px;
+  position: relative;
+  left: 15%;
+  top: 5%;
+  width: 50vw;
+  -webkit-box-ordinal-group: 4;
+      -ms-flex-order: 3;
+          order: 3;
+}
+
+div.form-group {
+  -webkit-box-ordinal-group: 11;
+      -ms-flex-order: 10;
+          order: 10;
+  position: relative;
+  right: 85em;
+  top: 42em;
+  margin-right: 100px;
+  width: 300px;
+}
+
+.form-group label {
+  font-size: large;
+}
+
+#delete {
+  -webkit-box-ordinal-group: 6;
+      -ms-flex-order: 5;
+          order: 5;
+  margin-right: 40px;
+  position: relative;
+  left: 130%;
+  top: 2%;
+}
+
+#rating {
+  -webkit-box-ordinal-group: 5;
+      -ms-flex-order: 4;
+          order: 4;
+  position: relative;
+  left: 15%;
+  top: 7%;
+}
+
+main.comments {
+  -webkit-box-ordinal-group: 8;
+      -ms-flex-order: 7;
+          order: 7;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  margin-right: 40px;
+  margin-top: 70px;
+  width: 50vw;
+  position: relative;
+  left: 39%;
+  bottom: 184px;
+}
+
+#addComment {
+  width: 100%;
+}
+
+#addComment > button {
+  position: relative;
+  top: 10px;
+}
+
+.comments-header {
+  position: relative;
+  top: 25px;
+  font-size: 30px;
+}
+
+main.comment-section {
+  position: relative;
+  top: 2em;
+}
+/*# sourceMappingURL=viewPin.css.map */
