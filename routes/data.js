@@ -70,7 +70,6 @@ module.exports = (db) => {
     const arg = [req.session.user_id.rows[0].id]
     db.query(query, arg)
     .then(data => {
-      console.log(data)
       const pins = data.rows;
       let obj = {};
       for (const pin of pins) {
@@ -356,23 +355,21 @@ module.exports = (db) => {
     let query;
     let data = [];
     query = `INSERT INTO boards_pins (board_id,pin_id) VALUES ($1,$2);
-    INSERT INTO categories_boards (board_id,category_id) VALUES ($1,$3);
     `
-    data.push(req.body.board_id,req.body.pin_id,req.body.category_id)
-    console.log(query,data)
+    data.push(req.body.board_id,req.body.pin_id)
     db.query(query, data)
     .then(() => {
-      res.redirect("/")
+      res.send()
     });
   });
 
-  router.post("/pins/delete/:pin_id", (req, res) => {
+  router.post("/pins/delete", (req, res) => {
     let query;
     let data = [];
     query = `
     DELETE FROM pins WHERE id = $1
     `
-    data.push(req.params.pin_id)            //grab id from cookie for now default to owner_id 1
+    data.push(req.body.pin_id)
     db.query(query, data)
     .then(() => {
       res.redirect("/")
@@ -385,10 +382,10 @@ module.exports = (db) => {
     query = `
     DELETE FROM boards WHERE id = $1
     `
-    data.push(req.params.board_id)            //grab id from cookie for now default to owner_id 1
+    data.push(req.params.board_id)
     db.query(query, data)
     .then(() => {
-      res.redirect("/")
+      res.redirect("/user")
     });
   });
 

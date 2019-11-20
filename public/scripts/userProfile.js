@@ -14,7 +14,6 @@ const loadBoards = () => {
 const renderBoards = function(data) {
   // loops through data
     let boards = data;
-    console.log(boards)
     for(let i in boards){
       const $board = createBoard(boards[i])
       $('.feed').append($board);
@@ -26,9 +25,11 @@ const renderBoards = function(data) {
 const createBoard = (data) => {
   const $board = $("<div>").addClass("board");
   const markup = `
+  <a href="/boards/${data.id}">
     <img class ="img" src=${data.image}>
     <p class = "title">${data.title}</p>
     <p class = "description">${data.description}</p>
+  </a>
   `;
   $($board).append(markup);
   return $board;

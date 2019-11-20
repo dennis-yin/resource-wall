@@ -24,7 +24,6 @@ const loadBoards = () => {
   })
   .done((data) => {
     boards = data
-    console.log(boards)
     renderBoards()
   })
   .fail(() => {
@@ -91,13 +90,17 @@ const loadRating = function() {
     url: `/data/pins/${pinId}/rating`
   })
   .done((data) => {
-    let rating = data.rating['avg_rating'];
-    if (rating % 1 === 0) {
-      rating = Math.floor(rating);
-    } else {
-      rating = rating.toFixed(2);
+    if(data.rating){
+      let rating = data.rating['avg_rating'];
+      if (rating % 1 === 0) {
+        rating = Math.floor(rating);
+      } else {
+        rating = rating.toFixed(2);
+      }
+      $('#rating').append(`<p>${rating} / 5</p>`)
+    }else {
+      $('#rating').append(`<p>Not rated yet</p>`)
     }
-    $('#rating').append(`<p>${rating} / 5</p>`)
   })
 };
 
@@ -137,6 +140,7 @@ $(() => {
   const url = window.location.pathname;
   const urlArr = url.split('/');
   pinId = urlArr[urlArr.length-1]
+  $('#delete').attr('action',`/data/boards/delete/${pinId}`)
   viewPin()
   loadBoards()
   loadComments()
@@ -176,6 +180,9 @@ $(() => {
       method: "POST",
       url: `/data/boards/addPin`,
       data: { pin_id: pinId, board_id: boardId }
+    })
+    .done(() => {
+      window.location.href = "/";
     })
   })
 });
