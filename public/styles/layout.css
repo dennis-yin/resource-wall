@@ -2,12 +2,16 @@ html {
   background-color: white;
 }
 
+.myUser {
+  position: relative;
+  left: 75%;
+}
+
 .checked {
   color: yellow;
 }
 
 .pin {
-  color: #FFFFFF;
   text-decoration: none;
 }
 /*# sourceMappingURL=layout.css.map */

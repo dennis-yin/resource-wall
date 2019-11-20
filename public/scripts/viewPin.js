@@ -7,22 +7,24 @@ const loadNav = () => {
     url: "/data/user/id"
   })
   .done((data) => {
-    if(data){
+    if (data) {
       const markup = `
       <p> ${data.user.name}</p>
       <form class="myUser" method="GET" action="/user">
-      <button  type="home-button" class="home-button btn btn-light ml-auto">My Resources</button></form>
-      <form class="logout" method="POST" action="/data/logout">
-      <button type="logout-button" class="logout-button btn btn-light">Logout</button>
+        <button  type="home-button" class="home-button btn btn-light ml-auto">My  Resources</button>
+      </form>
+      <form class="myUser" method="POST" action="/data/logout">
+        <button type="logout-button" class="logout-button btn btn-light">Logout</button>
       </form>
       `
       $("#navbar").append(markup)
-    }else{
+    } else {
       const markup = `
       <form class="myUser" method="GET" action="/login">
-      <button  type="home-button" class="home-button btn btn-light ml-auto">Login</button></form>
+        <button  type="home-button" class="home-button btn btn-light ml-auto">Login</button>
+      </form>
       <form class="myUser" method="GET" action="/register">
-      <button type="logout-button" class="logout-button btn btn-light">Register</button>
+        <button type="logout-button" class="logout-button btn btn-light">Register</button>
       </form>
       `
       $("#navbar").append(markup)
@@ -32,6 +34,7 @@ const loadNav = () => {
     console.log('Server down')
   });
 }
+
 const viewPin = () => {
   $.ajax({
     method: "GET",

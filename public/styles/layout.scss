@@ -4,11 +4,15 @@ html {
   background-color: rgb(255, 255, 255);
 }
 
+.myUser {
+  position: relative;
+  left: 75%;
+}
+
 .checked {
   color: yellow;
 }
 
 .pin {
-  color: #FFFFFF;
   text-decoration: none;
 }
