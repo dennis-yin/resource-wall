@@ -389,5 +389,19 @@ module.exports = (db) => {
     });
   });
 
+  router.post("/pins/:pin_id/rate", (req, res) => {
+    let query = `
+    INSERT INTO ratings (pin_id, user_id, value) VALUES
+    ($1, $2, $3)
+    `
+    const id = req.session.user_id.rows[0].id;
+    db.query(query, [req.params.pin_id, id, req.body.rating])
+    .then(() => {
+      console.log("Inserted rating into db");
+      res.status(204)
+      res.send()
+    })
+  });
+
   return router;
 };

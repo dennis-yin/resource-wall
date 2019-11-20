@@ -78,12 +78,36 @@ const createComment = function(data) {
   return $comment;
 };
 
-// const addComment = function() {
-
-// };
-
 const ratePin = function() {
+  $('.fa-star').click(function() {
+    let rating;
 
+    if ($(this).hasClass('starOne')) {
+      rating = 1;
+    }
+
+    if ($(this).hasClass('starTwo')) {
+      rating = 2;
+    }
+
+    if ($(this).hasClass('starThree')) {
+      rating = 3;
+    }
+
+    if ($(this).hasClass('starFour')) {
+      rating = 4;
+    }
+
+    if ($(this).hasClass('starFive')) {
+      rating = 5;
+    }
+
+    $.ajax({
+      method: "POST",
+      url: `/data/pins/${pinId}/rate`,
+      data: { rating: rating }
+    })
+  })
 };
 
 $(() => {
@@ -94,7 +118,7 @@ $(() => {
   loadBoards()
   loadComments()
   ratePin()
-  $('#addComment').click((event) => {
+  $('#addComment').submit((event) => {
     event.preventDefault();
     $.ajax({
       method: "POST",
