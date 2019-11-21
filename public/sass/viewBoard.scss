@@ -1,0 +1,39 @@
+
+nav {
+  width: 100vw
+}
+
+.feed{
+  display: flex;
+  flex-flow: row wrap;
+}
+
+img.image {
+  margin-left: 3%;
+  margin-right: 2%;
+
+  width: 590px;
+  height: 570px;
+  position: relative;
+  border-radius: 5%;
+
+}
+.board {
+  margin: 3%;
+  padding-right: 8%;
+  display: flex;
+}
+
+.title{
+  width: auto;
+  margin-bottom: 60px;
+}
+.description{
+  margin: 0%;
+  margin-right: 0%;
+  height: auto;
+}
+
+
+
+

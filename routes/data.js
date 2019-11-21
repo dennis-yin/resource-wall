@@ -161,12 +161,14 @@ module.exports = (db) => {
 
   router.get("/pins/:pin_id/comments", (req, res) => {
     let query = `
-    SELECT *
-    FROM comments
+    SELECT c.*,u.name,u.profile_picture as image
+    FROM comments c
+    JOIN users u ON c.user_id = u.id
     WHERE pin_id = $1
     `
     db.query(query, [req.params.pin_id])
     .then(data => {
+      console.log(data)
       const comments = data.rows;
       let obj = {};
       for (const comment of comments) {

@@ -93,6 +93,7 @@ const loadComments = function() {
     url: `/data/pins/${pinId}/comments`,
   })
   .done((data) => {
+    console.log(data)
     renderComments(data);
   })
   .fail(() => {
@@ -111,8 +112,11 @@ const renderComments = function(data) {
 const createComment = function(data) {
   const $comment = $("<div>").addClass("comment");
   const markup = `
-    <p class="commenter">${data.user_id}</p>
-    <p class="comment">${data.text}</p>
+  <img class="comment-image"src="${data.image}">
+  <div>
+    <p class="commenter">${data.name}</p>
+    <p class="comment-text">${data.text}</p>
+    <div>
   `;
   $($comment).append(markup);
   return $comment;

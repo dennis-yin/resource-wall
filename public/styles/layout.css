@@ -1,20 +1,11 @@
 #navbar {
   background-color: #f2e9e9;
-}
-
-.noUser {
-  position: relative;
-  left: 75%;
+  width: 100%;
 }
 
 .username {
   position: relative;
   top: 0.5em;
-}
-
-.loggedIn {
-  position: relative;
-  left: 70%;
 }
 
 .checked {
