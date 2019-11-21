@@ -36,6 +36,7 @@ const loadPins = () => {
     url: "/data/pins"
   })
   .done((data) => {
+    console.log(data)
     renderPins(data)
   })
   .fail(() => {
@@ -45,10 +46,14 @@ const loadPins = () => {
 
 const renderPins = function(data) {
   // loops through data
-  let pins = data;
-  for(let i in pins){
-    const $pin = createPin(pins[i])
-    $('.feed').append($pin);
+  let categories = data;
+  for(let i in categories){
+    $('.feed').append(`<div class="${categories[i].category_name}">${categories[i].category_name}</div> `);
+    for(let j in categories[i]){
+      const $pin = createPin(categories[i][j])
+      $(`.${categories[i].category_name}`).append($pin)
+    }
+
   }
 };
 

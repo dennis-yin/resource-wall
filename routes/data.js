@@ -14,15 +14,19 @@ const SALT_ROUNDS = 12;
 module.exports = (db) => {
   router.get("/pins", (req, res) => {
     let query = `
-    SELECT *
-    FROM pins
+    SELECT p.*,c.name as category_name
+    FROM pins p
+    JOIN categories c
+    ON p.category_id = c.id
     `
     db.query(query)
     .then(data => {
+      console.log(data.rows)
       const pins = data.rows;
       let obj = {};
       for (const pin of pins) {
-        obj[pin.id] = pin
+        obj[pin.category_name] = {}
+        obj[pin.category_name][pin.id] = pin
       }
       res.json(obj);
     });
