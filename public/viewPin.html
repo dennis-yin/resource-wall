@@ -6,12 +6,10 @@
 
     <!-- External CSS -->
     <link rel="stylesheet" href="/vendor/normalize-4.1.1.css" type="text/css"/>
-    <link rel="stylesheet" href="/styles/layout.css" type="text/css"/>
-    <link rel="stylesheet" href="/styles/feed.css" type="text/css"/>
     <link rel="stylesheet" href="/styles/stars.css" type="text/css"/>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <link rel="stylesheet" href="/styles/header.css" type="text/css"/>
-
+    <link rel="stylesheet" href="/styles/layout.css" type="text/css"/>
+    <link rel="stylesheet" href="/styles/viewPin.css" type="text/css"/>
 
     <!-- App CSS -->
 
@@ -25,55 +23,69 @@
   </head>
 
   <body>
-     <!-- Nav bar -->
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
-      <a class="navbar-brand" href="/">
-        <img src="http://pngimg.com/uploads/pinterest/pinterest_PNG62.png" width="50" height="30" alt="">
-      </a>
-      <form class="search-bar form-inline my-2 my-lg-0" method="GET" action="/search">
-        <input class="form-control mr-sm-2" name="keyword" type="search" placeholder="Search" aria-label="Search">
-      </form>
-      <button type="home-button" class="home-button btn btn-light ml-auto" href="/">Home</button>
-      <!-- <a class="profile-button" href="/users/:id"></a>     TO DO !! ! -->
-      <form class="logout" method="POST" action="/data/logout">
-        <button type="logout-button" class="logout-button btn btn-light" href="/">Logout</button>
-      </form>
-    </nav>
+      <!-- Nav bar -->
+  <nav id ='navbar' class="navbar navbar-expand-lg navbar-light bg-light">
+    <a class="navbar-brand" href="/">
+      <img src="http://pngimg.com/uploads/pinterest/pinterest_PNG62.png" width="50" height="30" alt="">
+    </a>
+    <form class="search-bar form-inline my-2 my-lg-0" method="GET" action="/search">
+      <input class="form-control mr-sm-2" name="keyword" type="search" placeholder="Search" aria-label="Search">
+    </form>
+    <div id="divNav" style="flex: 1"></div>
+  </nav>
 
-    <h1 class="title"></h1>
-    <a class="url">link</a>
-    <form>
+    <main class="big-pin">
+
+      <div>
       <img class="image">
-      <p class="description"></p>
-      <div class="form-group">
-        <label for="sel1">Choose a Board</label>
-        <select class="form-control" class="dropBoards" id="dropBoards" required="">
-        </select>
-        <button type="submit" id="addPin">Add to board</button>
+      <form>
+        <main id='create-board' style="visibility: hidden;">
+        <p>Create A Board</p>
+          <input id="title-board" name="title" placeholder="Title" required="">
+          <input id="description-board" name="description" placeholder="Description" required="">
+          <input id="image-board"name="image" placeholder="image url">
+          <button id="btn-board"type="submit">Create</button>
+          <div class="form-group">
+              <label for="sel1">Choose a Board</label>
+              <select class="form-control" class="dropBoards" id="dropBoards" required="">
+              </select>
+              <button id ="addPin" type="submit">Add to board</button>
+            </div>
+        </main>
+        </form>
       </div>
-    </form>
-    <form method="POST" action="/data/pins/delete/1">
-      <button type="submit">Delete</button>
-    </form>
-    <div id="rating">
-      <span class="starOne fa fa-star checked"></span>
-      <span class="starTwo fa fa-star checked"></span>
-      <span class="starThree fa fa-star checked"></span>
-      <span class="starFour fa fa-star"></span>
-      <span class="starFive fa fa-star"></span>
-    </div>
-    <form id="addComment">
-      <textarea class="comment" placeholder="Add a comment"></textarea>
-      <button type="submit" class="post-comment">Post</button>
-    </form>
-    <p><strong>Comments</strong></p>
-    <main class="comment-section">
-
+      <main class="pinInfo">
+      <div class="pin-only">
+      <a style="text-decoration:none;" class="url"><h1 class="title"></h1></a>
+      <p class="description"></p>
+      <form id ="delete" method="POST" action="/data/pins/delete">
+        <button type="submit">Delete</button>
+      </form>
+      <div id="rating">
+        <span class="starOne fa fa-star checked"></span>
+        <span class="starTwo fa fa-star checked"></span>
+        <span class="starThree fa fa-star checked"></span>
+        <span class="starFour fa fa-star"></span>
+        <span class="starFive fa fa-star"></span>
+      </div>
+      </div>
+      <main class="comments">
+        <div class="post-container">
+          <p class="comments-header"><strong>Comments</strong></p>
+            <textarea style="resize: none" class="comment-input" rows="3" placeholder="Add a comment"></textarea>
+            <form id="addComment">
+                <button type="submit" class="btn btn-primary post-comment">Post</button>
+            </form>
+        </div>
+        <main class="comment-section">
+        </main>
     </main>
-
+    </main>
+    </main>
     <!-- add edit form hidden tho-->
 
     <!-- Bootstrap JS -->
+    <script src="https://kit.fontawesome.com/b21a6baabb.js" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
 

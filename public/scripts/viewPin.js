@@ -1,6 +1,40 @@
 let boards;
 let pinId;
 
+const loadNav = () => {
+  $.ajax({
+    method: "POST",
+    url: "/data/user/id"
+  })
+  .done((data) => {
+    if (data) {
+      const markup = `
+      <p class="loggedIn username"> ${data.user.name}</p>
+      <form class="loggedIn" method="GET" action="/user">
+        <button  type="home-button" class="home-button btn btn-light ml-auto">My Resources</button>
+      </form>
+      <form class="loggedIn" method="POST" action="/data/logout">
+        <button type="logout-button" class="logout-button btn btn-light">Logout</button>
+      </form>
+      `
+      $("#navbar").append(markup)
+    } else {
+      const markup = `
+      <form class="noUser" method="GET" action="/login">
+        <button  type="home-button" class="home-button btn btn-light ml-auto">Login</button>
+      </form>
+      <form class="noUser" method="GET" action="/register">
+        <button type="register-button" class="register-button btn btn-light">Register</button>
+      </form>
+      `
+      $("#navbar").append(markup)
+    }
+  })
+  .fail(() => {
+    console.log('Server down')
+  });
+}
+
 const viewPin = () => {
   $.ajax({
     method: "GET",
@@ -32,11 +66,17 @@ const loadBoards = () => {
 };
 
 const renderBoards = function() {
-  // loops through data
-  for(let i in boards){
-    const markup = `<option>${boards[i].title}</option>`
-    $("#dropBoards").append(markup);
+  $('#dropBoards').empty();
+  $('#create-board').attr("style","visibility: hidden")
+  let keys = Object.keys(boards)
+  if(keys.length === 0){
+    $("#dropBoards").append(`<option>--</option>`);
+  }else{
+    for(let i = keys.length-1;i>=0;i--){
+      $("#dropBoards").append(`<option>${boards[keys[i]].title}</option>`);
+    }
   }
+  $("#dropBoards").append(`<option>Create a Board</option>`);
 };
 
 const getBoardId = (selected) => {
@@ -53,6 +93,7 @@ const loadComments = function() {
     url: `/data/pins/${pinId}/comments`,
   })
   .done((data) => {
+    console.log(data)
     renderComments(data);
   })
   .fail(() => {
@@ -71,8 +112,11 @@ const renderComments = function(data) {
 const createComment = function(data) {
   const $comment = $("<div>").addClass("comment");
   const markup = `
-    <p class="commenter">${data.user_id}</p>
-    <p class="comment">${data.text}</p>
+  <img class="comment-image"src="${data.image}">
+  <div>
+    <p class="commenter">${data.name}</p>
+    <p class="comment-text">${data.text}</p>
+    <div>
   `;
   $($comment).append(markup);
   return $comment;
@@ -84,13 +128,17 @@ const loadRating = function() {
     url: `/data/pins/${pinId}/rating`
   })
   .done((data) => {
-    let rating = data.rating['avg_rating'];
-    if (rating % 1 === 0) {
-      rating = Math.floor(rating);
-    } else {
-      rating = rating.toFixed(2);
+    if(data.rating){
+      let rating = data.rating['avg_rating'];
+      if (rating % 1 === 0) {
+        rating = Math.floor(rating);
+      } else {
+        rating = rating.toFixed(2);
+      }
+      $('#rating').append(`<p>${rating} / 5</p>`)
+    }else {
+      $('#rating').append(`<p>Not rated yet</p>`)
     }
-    $('#rating').append(`<p>${rating} / 5</p>`)
   })
 };
 
@@ -130,13 +178,33 @@ $(() => {
   const url = window.location.pathname;
   const urlArr = url.split('/');
   pinId = urlArr[urlArr.length-1]
+  $('#delete').attr('action',`/data/boards/delete/${pinId}`)
+  loadNav()
   viewPin()
   loadBoards()
   loadComments()
   loadRating()
   ratePin()
-  $('#addComment').submit((event) => {
+  $( "#dropBoards" ).change(() => {
+    const value = $('#dropBoards').val();
+    if(value == 'Create a Board'){
+      $('#create-board').attr("style","visibility: visible")
+    }
+  });
+  $('#btn-board').click((event) => {
     event.preventDefault();
+    $.ajax({
+      method: "POST",
+      url: `/data/boards/new`,
+      data: {title: $('#title-board').val(), description: $('#description-board').val(), image: $('#image-board').val()}
+    })
+    .done(
+      loadBoards()
+    )
+  })
+  $('.post-comment').click((event) => {
+    event.preventDefault();
+    console.log($('.comment').val())
     $.ajax({
       method: "POST",
       url: `/data/pins/${pinId}/addComment`,
@@ -152,6 +220,9 @@ $(() => {
       method: "POST",
       url: `/data/boards/addPin`,
       data: { pin_id: pinId, board_id: boardId }
+    })
+    .done(() => {
+      window.location.href = "/";
     })
   })
 });

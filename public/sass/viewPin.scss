@@ -1,0 +1,85 @@
+
+nav {
+  width: 100vw
+}
+
+.big-pin{
+  margin: 3%;
+  display: flex;
+}
+
+.pinInfo{
+  padding-right: 8%;
+  padding-left: 4%;
+}
+.feed{
+  display: flex;
+  flex-flow: row wrap;
+}
+
+.pin-only{
+  height: 570px;
+  margin-bottom: 50px;
+}
+
+img.image {
+  margin-left: 3%;
+  margin-right: 2%;
+  width: 590px;
+  height: 570px;
+  position: relative;
+  border-radius: 5%;
+
+}
+
+
+.title{
+  width: auto;
+  margin-bottom: 60px;
+}
+
+a.url {
+  text-decoration: none;
+  color: black;
+  position: relative;
+}
+
+a.url:hover {
+  color: black;
+}
+
+.comments{
+  background-color: #f5f0f0;
+}
+.comment{
+  display: flex;
+  margin:10px;
+  border-bottom: 2px solid black;
+}
+
+.comment-image{
+  height: 90px;
+  width: 90px;
+  padding-right: 5px;
+}
+
+.comment-input{
+  margin:10px;
+  width: 97%;
+
+  display: relative;
+}
+
+.post-comment{
+  float: right;
+  margin-right: 20px;
+}
+.comment-section{
+  margin-top: 60px;
+}
+
+.comments-header{
+  padding: 10px;
+}
+
+

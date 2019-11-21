@@ -26,13 +26,8 @@ CREATE table pins (
   image VARCHAR(2000) DEFAULT 'https://webpop.github.io/jquery.pin/images/pin.png',
   title VARCHAR(255),
   description TEXT,
-  url VARCHAR(2000)
-);
-
-CREATE TABLE categories_pins (
-  id SERIAL PRIMARY KEY NOT NULL,
-  category_id INTEGER REFERENCES categories(id) ON DELETE CASCADE,
-  pin_id INTEGER REFERENCES pins(id) ON DELETE CASCADE
+  url VARCHAR(2000),
+  category_id INTEGER REFERENCES categories(id) ON DELETE CASCADE
 );
 
 CREATE TABLE boards (
