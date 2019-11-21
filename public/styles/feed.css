@@ -32,13 +32,8 @@ a {
 }
 
 .title {
-  text-decoration: none;
   color: black;
-  font-size: 18px;
   font-weight: bold;
-  width: 300px;
-  overflow: hidden;
-  text-overflow: ellipsis;
 }
 
 .img {
