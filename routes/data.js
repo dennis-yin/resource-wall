@@ -193,6 +193,22 @@ module.exports = (db) => {
     })
   });
 
+  router.get("/pins/:pin_id/rating/userRating", (req, res) => {
+    let query = `
+    SELECT value
+    FROM ratings
+    WHERE pin_id = $1 AND user_id = $2
+    `
+    db.query(query, [req.params.pin_id, req.session.user_id])
+    .then((data) => {
+      let obj = {};
+      obj['rating'] = data.rows[0].value;
+      console.log(obj['rating'])
+      res.json(obj);
+    })
+  });
+
+
   router.post("/search", (req, res) => {
     let query = `
     SELECT p.*
