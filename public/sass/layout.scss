@@ -2,16 +2,16 @@ $main-color: #292828;
 $secondary-color: #f5f0f0;
 $nav-color: #000000;
 
-html {
-  background-color: $main-color;
-}
+// html {
+  // background-color: $main-color;
+// }
 
-body {
-  background-color: $main-color;
-}
+// body {
+  // background-color: $main-color;
+// }
 
 #navbar {
-  background-color: $nav-color;
+  background-color: #f2e9e9;
 }
 
 .noUser {
@@ -35,4 +35,5 @@ body {
 
 .pin {
   text-decoration: none;
+  background-color: #f2e9e9;
 }

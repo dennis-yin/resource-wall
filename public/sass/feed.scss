@@ -4,7 +4,7 @@ $nav-color: #000000;
 
 .feed {
   width: auto;
-  background-color: $main-color;
+  // background-color: $main-color;
   justify-content: center;
   margin: 5px;
 }
@@ -12,23 +12,31 @@ $nav-color: #000000;
 .pin {
   width: 300px;
   height: 300px;
-  margin-left: 15px;
+  margin-left: 10px;
+  text-decoration: none;
 }
 
-.categories{
-  background-color: $main-color;
+.categories {
+  // background-color: $main-color;
   display: flex;
   width: 100%;
   overflow: auto;
 }
 
 .catLabel {
-  color: $secondary-color;
+  // color: $secondary-color;
+  margin-left: 10px;
   font-size: 30px;
   font-weight: bold;
 }
 
+a {
+  text-decoration: none;
+}
+
 .title {
+  text-decoration: none;
+  color: black;
   font-size: 18px;
   font-weight: bold;
   width: 300px;

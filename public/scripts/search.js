@@ -60,7 +60,7 @@ const renderPins = function(data) {
 const createPin = (data) => {
   const $pin = $("<div>").addClass("pin");
   const markup = `
-  <a href="/pins/${data.id}">
+  <a style="text-decoration:none;" href="/pins/${data.id}">
     <img class ="img" src=${data.image}>
     <p class = "title">${data.title}</p>
   </a>

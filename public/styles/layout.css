@@ -1,13 +1,5 @@
-html {
-  background-color: #292828;
-}
-
-body {
-  background-color: #292828;
-}
-
 #navbar {
-  background-color: #000000;
+  background-color: #f2e9e9;
 }
 
 .noUser {
@@ -31,5 +23,6 @@ body {
 
 .pin {
   text-decoration: none;
+  background-color: #f2e9e9;
 }
 /*# sourceMappingURL=layout.css.map */
