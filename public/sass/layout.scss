@@ -1,15 +1,17 @@
-// See: https://sass-lang.com/
+$main-color: #292828;
+$secondary-color: #f5f0f0;
+$nav-color: #000000;
 
 html {
-  background-color: #292828;
+  background-color: $main-color;
 }
 
 body {
-  background-color: #292828;
+  background-color: $main-color;
 }
 
 #navbar {
-  background-color: #000000;
+  background-color: $nav-color;
 }
 
 .noUser {

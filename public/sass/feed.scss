@@ -1,6 +1,10 @@
+$main-color: #292828;
+$secondary-color: #f5f0f0;
+$nav-color: #000000;
+
 .feed {
   width: auto;
-  background-color: #292828;
+  background-color: $main-color;
   justify-content: center;
   margin: 5px;
 }
@@ -12,14 +16,14 @@
 }
 
 .categories{
-  background-color: #292828;
+  background-color: $main-color;
   display: flex;
   width: 100%;
   overflow: auto;
 }
 
 .catLabel {
-  color: #f5f0f0;
+  color: $secondary-color;
   font-size: 30px;
   font-weight: bold;
 }
