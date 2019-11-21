@@ -71,3 +71,12 @@ a {
 .scrollRight:focus {
   outline-width: 0;
 }
+
+.no-scroll {
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+  &::-webkit-scrollbar {
+    width: 0px;
+    background: transparent;
+  }
+}

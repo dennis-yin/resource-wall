@@ -54,7 +54,7 @@ const renderPins = function(data) {
     const $catLabel = $(`<p class="catLabel">${catName}</p>`)
     const $leftButton = $(`<button class="scrollLeft ${catName}"><i class="fas fa-chevron-left"></i></button>`)
     const $rightButton = $(`<button class="scrollRight ${catName}"><i class="fas fa-chevron-right"></i></button>`)
-    const $catContainer= $(`<div class="categories ${catName}Scroll"></div> `)
+    const $catContainer= $(`<div class="no-scroll categories ${catName}Scroll"></div> `)
     $('.feed').append($catLabel);
     $('.feed').append($leftButton)
     $('.feed').append($rightButton)
