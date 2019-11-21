@@ -54,14 +54,15 @@ const renderPins = function(data) {
     const $catLabel = $(`<p class="catLabel">${catName}</p>`)
     const $leftButton = $(`<button class="scrollLeft ${catName}"><i class="fas fa-chevron-left"></i></button>`)
     const $rightButton = $(`<button class="scrollRight ${catName}"><i class="fas fa-chevron-right"></i></button>`)
-    const $catContainer= $(`<div class="no-scroll categories ${catName}Scroll"></div> `)
-    $('.feed').append($catLabel);
-    $('.feed').append($leftButton)
-    $('.feed').append($rightButton)
-    $('.feed').append($catContainer);
+    const $pinContainer= $(`<div class="no-scroll categories ${catName}Scroll"></div> `)
+    $('.feed').append(`<div class="catContainer ${catName}Container"></div>`)
+    $(`.${catName}Container`).append($catLabel);
+    $(`.${catName}Container`).append($leftButton)
+    $(`.${catName}Container`).append($rightButton)
+    $(`.${catName}Container`).append($pinContainer);
     for (let pinId in categories[catName]) {
       const $pin = createPin(categories[catName][pinId])
-      $catContainer.append($pin)
+      $pinContainer.append($pin)
     }
 
     $(`.${catName}`).click(function() {

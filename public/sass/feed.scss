@@ -31,6 +31,10 @@ $nav-color: #000000;
   font-weight: bold;
 }
 
+.catContainer {
+  position: relative;
+}
+
 a {
   text-decoration: none;
 }
@@ -55,13 +59,39 @@ a {
 }
 
 .scrollLeft {
-  background-color: transparent;
+  background-color: darkgray;
+  opacity: 0%;
   border: 0px;
+
+  position: absolute;
+  top: 17.5%;
+  left: 0.5%;
+  height: 275px;
+  width: 50px;
+  color: black;
+  z-index: 10;
 }
 
 .scrollRight {
-  background-color: transparent;
+  background-color: darkgray;
+  opacity: 0%;
   border: 0px;
+
+  position: absolute;
+  top: 17.5%;
+  left: 97%;
+  height: 275px;
+  width: 50px;
+  color: black;
+  z-index: 10;
+}
+
+.scrollLeft:hover {
+  opacity: 80%;
+}
+
+.scrollRight:hover {
+  opacity: 80%;
 }
 
 .scrollLeft:focus {
