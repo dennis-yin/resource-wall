@@ -2,12 +2,26 @@ html {
   background-color: white;
 }
 
+.noUser {
+  position: relative;
+  left: 75%;
+}
+
+.username {
+  position: relative;
+  top: 0.5em;
+}
+
+.loggedIn {
+  position: relative;
+  left: 70%;
+}
+
 .checked {
   color: yellow;
 }
 
 .pin {
-  color: #FFFFFF;
   text-decoration: none;
 }
 /*# sourceMappingURL=layout.css.map */
