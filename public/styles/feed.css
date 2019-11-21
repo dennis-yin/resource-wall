@@ -19,12 +19,17 @@
   display: flex;
   width: 100%;
   overflow: auto;
+  scroll-behavior: smooth;
 }
 
 .catLabel {
   margin-left: 10px;
   font-size: 30px;
   font-weight: bold;
+}
+
+.catContainer {
+  position: relative;
 }
 
 a {
@@ -49,20 +54,54 @@ a {
 }
 
 .scrollLeft {
-  background-color: transparent;
+  background-color: darkgray;
+  opacity: 0%;
   border: 0px;
+  position: absolute;
+  top: 17.5%;
+  left: 0.5%;
+  height: 275px;
+  width: 50px;
+  color: black;
+  z-index: 10;
 }
 
 .scrollRight {
-  background-color: transparent;
+  background-color: darkgray;
+  opacity: 0%;
   border: 0px;
+  position: absolute;
+  top: 17.5%;
+  left: 97%;
+  height: 275px;
+  width: 50px;
+  color: black;
+  z-index: 10;
 }
 
-.scrollLeft:focus {
+.scrollLeft:hover {
+  opacity: 80%;
+  -webkit-transition-duration: 0.5s;
+          transition-duration: 0.5s;
+}
+
+.scrollRight:hover {
+  opacity: 80%;
+  -webkit-transition-duration: 0.5s;
+          transition-duration: 0.5s;
+}
+
+.scroll:focus {
   outline-width: 0;
 }
 
-.scrollRight:focus {
-  outline-width: 0;
+.no-scroll {
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+.no-scroll::-webkit-scrollbar {
+  width: 0px;
+  background: transparent;
 }
 /*# sourceMappingURL=feed.css.map */
