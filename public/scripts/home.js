@@ -52,13 +52,27 @@ const renderPins = function(data) {
   console.log(data)
   for (let catName in categories) {
     const $catLabel = $(`<p class="catLabel">${catName}</p>`)
-    const $catContainer= $(`<div class="categories ${catName}"></div> `)
+    const $leftButton = $(`<button class="scrollLeft ${catName}">Slide left</button>`)
+    const $rightButton = $(`<button class="scrollRight ${catName}">Slide right</button>`)
+    const $catContainer= $(`<div class="categories ${catName}Scroll"></div> `)
     $('.feed').append($catLabel);
+    $('.feed').append($leftButton)
+    $('.feed').append($rightButton)
     $('.feed').append($catContainer);
     for (let pinId in categories[catName]) {
       const $pin = createPin(categories[catName][pinId])
       $catContainer.append($pin)
     }
+
+    $(`.${catName}`).click(function() {
+      let scrollPos = $(`.${catName}Scroll`).scrollLeft();
+      if ($(this).hasClass('scrollLeft')) {
+        $(`.${catName}Scroll`).scrollLeft(scrollPos - 400);
+      } else {
+        console.log(`.${catName}Scroll`)
+        $(`.${catName}Scroll`).scrollLeft(scrollPos + 400);
+      }
+    })
   }
 };
 
@@ -66,8 +80,8 @@ const createPin = (data) => {
   const $pin = $("<div>").addClass("pin");
   const markup = `
   <a style="text-decoration:none;" href="/pins/${data.id}">
-    <img class ="img" src=${data.image}>
-    <p class = "title">${data.title}</p>
+  <img class="img" src=${data.image}>
+  <p class="title">${data.title}</p>
   `;
   $($pin).append(markup);
   return $pin;
@@ -76,8 +90,4 @@ const createPin = (data) => {
 $(() => {
   loadNav()
   loadPins()
-  $('#feed)').click((event) => {
-    console.log('ayyy')
-    console.log(event)
-  })
 });
