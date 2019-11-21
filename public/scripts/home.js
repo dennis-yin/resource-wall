@@ -52,8 +52,8 @@ const renderPins = function(data) {
   console.log(data)
   for (let catName in categories) {
     const $catLabel = $(`<p class="catLabel">${catName}</p>`)
-    const $leftButton = $(`<button class="scrollLeft ${catName}">Slide left</button>`)
-    const $rightButton = $(`<button class="scrollRight ${catName}">Slide right</button>`)
+    const $leftButton = $(`<button class="scrollLeft ${catName}"><i class="fas fa-chevron-left"></i></button>`)
+    const $rightButton = $(`<button class="scrollRight ${catName}"><i class="fas fa-chevron-right"></i></button>`)
     const $catContainer= $(`<div class="categories ${catName}Scroll"></div> `)
     $('.feed').append($catLabel);
     $('.feed').append($leftButton)

@@ -48,4 +48,22 @@ a {
   height: 200px;
   margin-bottom: 5px;
 }
+
+.scrollLeft {
+  background-color: transparent;
+  border: 0px;
+}
+
+.scrollRight {
+  background-color: transparent;
+  border: 0px;
+}
+
+.scrollLeft:focus {
+  outline-width: 0;
+}
+
+.scrollRight:focus {
+  outline-width: 0;
+}
 /*# sourceMappingURL=feed.css.map */
