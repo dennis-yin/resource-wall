@@ -202,9 +202,13 @@ module.exports = (db) => {
     db.query(query, [req.params.pin_id, req.session.user_id])
     .then((data) => {
       let obj = {};
-      obj['rating'] = data.rows[0].value;
+      if (data.rows.length) {
+        obj['rating'] = data.rows[0].value;
+        res.json(obj);
+      } else {
+        res.send(false);
+      }
       console.log(obj['rating'])
-      res.json(obj);
     })
   });
 
