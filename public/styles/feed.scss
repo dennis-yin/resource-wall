@@ -2,8 +2,6 @@
   width: auto;
   display: flex;
   background-color: white;
-  flex-flow: row wrap;
-  align-items: flex-start;
   justify-content: center;
   margin: 5px;
 }
@@ -12,6 +10,10 @@
   width: 300px;
   height: 300px;
   margin-left: 5px;
+}
+
+.categories{
+  display: inline-block;
 }
 
 .title {
