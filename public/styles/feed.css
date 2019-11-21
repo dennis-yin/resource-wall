@@ -54,7 +54,7 @@ a {
 }
 
 .scrollLeft {
-  background-color: darkgray;
+  background-color: black;
   opacity: 0%;
   border: 0px;
   position: absolute;
@@ -62,12 +62,12 @@ a {
   left: 0.5%;
   height: 275px;
   width: 50px;
-  color: black;
+  color: white;
   z-index: 10;
 }
 
 .scrollRight {
-  background-color: darkgray;
+  background-color: black;
   opacity: 0%;
   border: 0px;
   position: absolute;
@@ -75,18 +75,18 @@ a {
   left: 97%;
   height: 275px;
   width: 50px;
-  color: black;
+  color: white;
   z-index: 10;
 }
 
 .scrollLeft:hover {
-  opacity: 80%;
+  opacity: 70%;
   -webkit-transition-duration: 0.5s;
           transition-duration: 0.5s;
 }
 
 .scrollRight:hover {
-  opacity: 80%;
+  opacity: 70%;
   -webkit-transition-duration: 0.5s;
           transition-duration: 0.5s;
 }

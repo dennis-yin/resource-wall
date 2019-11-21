@@ -68,10 +68,10 @@ const renderPins = function(data) {
     $(`.${catName}`).click(function() {
       let scrollPos = $(`.${catName}Scroll`).scrollLeft();
       if ($(this).hasClass('scrollLeft')) {
-        $(`.${catName}Scroll`).scrollLeft(scrollPos - 400);
+        $(`.${catName}Scroll`).scrollLeft(scrollPos - 600);
       } else {
         console.log(`.${catName}Scroll`)
-        $(`.${catName}Scroll`).scrollLeft(scrollPos + 400);
+        $(`.${catName}Scroll`).scrollLeft(scrollPos + 600);
       }
     })
   }
