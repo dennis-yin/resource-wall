@@ -35,52 +35,51 @@
   </nav>
 
     <main class="big-pin">
-
       <div>
-      <img class="image">
-      <form>
-        <main id='create-board' style="visibility: hidden;">
-        <p>Create A Board</p>
-          <input id="title-board" name="title" placeholder="Title" required="">
-          <input id="description-board" name="description" placeholder="Description" required="">
-          <input id="image-board"name="image" placeholder="image url">
-          <button id="btn-board"type="submit">Create</button>
-          <div class="form-group">
+        <img class="image">
+        <form>
+          <main id='create-board' style="visibility: hidden;">
+          <p>Create A Board</p>
+            <input id="title-board" name="title" placeholder="Title" required="">
+            <input id="description-board" name="description" placeholder="Description" required="">
+            <input id="image-board"name="image" placeholder="image url">
+            <button id="btn-board"type="submit">Create</button>
+            <div class="form-group">
               <label for="sel1">Choose a Board</label>
               <select class="form-control" class="dropBoards" id="dropBoards" required="">
               </select>
               <button id ="addPin" type="submit">Add to board</button>
             </div>
-        </main>
+          </main>
         </form>
       </div>
       <main class="pinInfo">
-      <div class="pin-only">
-      <a style="text-decoration:none;" class="url"><h1 class="title"></h1></a>
-      <p class="description"></p>
-      <form id ="delete" method="POST" action="/data/pins/delete">
-        <button type="submit">Delete</button>
-      </form>
-      <div id="rating">
-        <span class="starOne fa fa-star checked"></span>
-        <span class="starTwo fa fa-star checked"></span>
-        <span class="starThree fa fa-star checked"></span>
-        <span class="starFour fa fa-star"></span>
-        <span class="starFive fa fa-star"></span>
-      </div>
-      </div>
-      <main class="comments">
-        <div class="post-container">
-          <p class="comments-header"><strong>Comments</strong></p>
-            <textarea style="resize: none" class="comment-input" rows="3" placeholder="Add a comment"></textarea>
-            <form id="addComment">
-                <button type="submit" class="btn btn-primary post-comment">Post</button>
-            </form>
+        <div class="pin-only">
+          <a style="text-decoration:none;" class="url"><h1 class="title"></h1></a>
+          <p class="description"></p>
+          <form id ="delete" method="POST" action="/data/pins/delete">
+            <button type="submit">Delete</button>
+          </form>
+          <div id="rating">
+            <span class="starOne fa fa-star"></span>
+            <span class="starTwo fa fa-star"></span>
+            <span class="starThree fa fa-star"></span>
+            <span class="starFour fa fa-star"></span>
+            <span class="starFive fa fa-star"></span>
+          </div>
         </div>
-        <main class="comment-section">
+        <main class="comments">
+          <div class="post-container">
+            <p class="comments-header"><strong>Comments</strong></p>
+              <textarea style="resize: none" class="comment-input" rows="3" placeholder="Add a comment"></textarea>
+              <form id="addComment">
+                  <button type="submit" class="btn btn-primary post-comment">Post</button>
+              </form>
+          </div>
+          <main class="comment-section">
+          </main>
         </main>
-    </main>
-    </main>
+      </main>
     </main>
     <!-- add edit form hidden tho-->
 

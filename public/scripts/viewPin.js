@@ -128,21 +128,41 @@ const loadRating = function() {
     url: `/data/pins/${pinId}/rating`
   })
   .done((data) => {
-    if(data.rating){
+    if (data.rating) {
       let rating = data.rating['avg_rating'];
       if (rating % 1 === 0) {
         rating = Math.floor(rating);
       } else {
         rating = rating.toFixed(2);
       }
-      $('#rating').append(`<p>${rating} / 5</p>`)
-    }else {
+      $('#rating').append(`<p>Average: ${rating} / 5</p>`)
+    } else {
       $('#rating').append(`<p>Not rated yet</p>`)
     }
+
+    $.ajax({
+      method: "GET",
+      url: `/data/pins/${pinId}/rating/userRating`
+    })
+    .done((data) => {
+      if (data.rating) {
+        const stars = ['', 'starOne', 'starTwo', 'starThree', 'starFour', 'starFive'];
+        $star = $(`.${stars[data.rating]}`);
+        $star.addClass('checked')
+        $star.prevAll().addClass('checked')
+        $star.nextAll().removeClass('checked')
+      }
+    })
   })
 };
 
 const ratePin = function() {
+  $('.fa-star').hover(function() {
+    $(this).addClass('checked')
+    $(this).prevAll().addClass('checked')
+    $(this).nextAll().removeClass('checked')
+  })
+
   $('.fa-star').click(function() {
     let rating;
 
