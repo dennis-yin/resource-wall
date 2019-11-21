@@ -19,6 +19,7 @@
   display: flex;
   width: 100%;
   overflow: auto;
+  scroll-behavior: smooth;
 }
 
 .catLabel {
@@ -77,17 +78,17 @@ a {
 
 .scrollLeft:hover {
   opacity: 80%;
+  -webkit-transition-duration: 0.5s;
+          transition-duration: 0.5s;
 }
 
 .scrollRight:hover {
   opacity: 80%;
+  -webkit-transition-duration: 0.5s;
+          transition-duration: 0.5s;
 }
 
-.scrollLeft:focus {
-  outline-width: 0;
-}
-
-.scrollRight:focus {
+.scroll:focus {
   outline-width: 0;
 }
 

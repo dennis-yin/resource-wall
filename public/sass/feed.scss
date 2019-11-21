@@ -21,6 +21,7 @@ $nav-color: #000000;
   display: flex;
   width: 100%;
   overflow: auto;
+  scroll-behavior: smooth;
   // overflow-x: scroll;
 }
 
@@ -83,17 +84,15 @@ a {
 
 .scrollLeft:hover {
   opacity: 80%;
+  transition-duration: 0.5s;
 }
 
 .scrollRight:hover {
   opacity: 80%;
+  transition-duration: 0.5s;
 }
 
-.scrollLeft:focus {
-  outline-width: 0;
-}
-
-.scrollRight:focus {
+.scroll:focus {
   outline-width: 0;
 }
 
