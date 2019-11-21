@@ -81,7 +81,7 @@ const createPin = (data) => {
   const markup = `
   <a style="text-decoration:none;" href="/pins/${data.id}">
   <img class="img" src=${data.image}>
-  <p class="title">${data.title}</p>
+  <p class="title title-pin">${data.title}</p>
   `;
   $($pin).append(markup);
   return $pin;

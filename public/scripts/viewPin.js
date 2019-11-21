@@ -67,7 +67,7 @@ const loadBoards = () => {
 
 const renderBoards = function() {
   $('#dropBoards').empty();
-  $('#create-board').attr("style","visibility: hidden")
+  $("#create-board").slideUp();
   let keys = Object.keys(boards)
   if(keys.length === 0){
     $("#dropBoards").append(`<option>--</option>`);
@@ -178,6 +178,7 @@ $(() => {
   const url = window.location.pathname;
   const urlArr = url.split('/');
   pinId = urlArr[urlArr.length-1]
+  $("#create-board").slideUp(10);
   $('#delete').attr('action',`/data/boards/delete/${pinId}`)
   loadNav()
   viewPin()
@@ -188,7 +189,7 @@ $(() => {
   $( "#dropBoards" ).change(() => {
     const value = $('#dropBoards').val();
     if(value == 'Create a Board'){
-      $('#create-board').attr("style","visibility: visible")
+      $("#create-board").slideDown();
     }
   });
   $('#btn-board').click((event) => {

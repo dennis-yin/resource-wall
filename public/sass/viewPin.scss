@@ -18,8 +18,6 @@ nav {
 }
 
 .pin-only{
-  height: 570px;
-  margin-bottom: 50px;
 }
 
 img.image {
@@ -49,18 +47,21 @@ a.url:hover {
 }
 
 .comments{
-  background-color: #f5f0f0;
+  background-color: #c4c4c4;
+  border-radius: 1%;
 }
 .comment{
   display: flex;
   margin:10px;
-  border-bottom: 2px solid black;
+  border-bottom: 1px solid black;
 }
 
 .comment-image{
-  height: 90px;
-  width: 90px;
+  height: 80px;
+  border-radius: 10%;
+  width: 80px;
   padding-right: 5px;
+  padding-bottom: 5px;
 }
 
 .comment-input{
@@ -82,4 +83,27 @@ a.url:hover {
   padding: 10px;
 }
 
+#create-board{
+  display: flex;
+  flex-flow: column;
+  padding-top: 30px;
+  padding-bottom: 30px;
+}
 
+#addPin{
+  margin-top: 30px;
+}
+
+#title-board{
+  margin-bottom: 10px;
+}
+#description-board{
+  margin-bottom: 10px;
+}
+#image-board{
+  margin-bottom: 10px;
+}
+
+#btn-board{
+  width: 75px;
+}
