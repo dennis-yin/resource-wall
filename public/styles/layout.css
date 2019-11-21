@@ -1,5 +1,13 @@
 html {
-  background-color: white;
+  background-color: #292828;
+}
+
+body {
+  background-color: #292828;
+}
+
+#navbar {
+  background-color: #000000;
 }
 
 .noUser {

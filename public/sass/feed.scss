@@ -1,6 +1,6 @@
 .feed {
   width: auto;
-  background-color: white;
+  background-color: #292828;
   justify-content: center;
   margin: 5px;
 }
@@ -8,14 +8,20 @@
 .pin {
   width: 300px;
   height: 300px;
-  margin-left: 5px;
+  margin-left: 15px;
 }
 
 .categories{
+  background-color: #292828;
   display: flex;
   width: 100%;
   overflow: auto;
+}
 
+.catLabel {
+  color: #f5f0f0;
+  font-size: 30px;
+  font-weight: bold;
 }
 
 .title {
