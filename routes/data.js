@@ -24,8 +24,11 @@ module.exports = (db) => {
       console.log(data.rows)
       const pins = data.rows;
       let obj = {};
+      console.log(pins)
       for (const pin of pins) {
-        obj[pin.category_name] = {}
+        if(!obj[pin.category_name]){
+          obj[pin.category_name] = {}
+        }
         obj[pin.category_name][pin.id] = pin
       }
       res.json(obj);

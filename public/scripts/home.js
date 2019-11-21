@@ -47,12 +47,13 @@ const loadPins = () => {
 const renderPins = function(data) {
   // loops through data
   let categories = data;
-  for(let i in categories){
-    let cat = categories[i].category_name
-    $('.feed').append(`<div class="categories ${cat}">${cat}</div> `);
-    for(let j in categories[i]){
-      const $pin = createPin(categories[i][j])
-      $(`.${cat}`).append($pin)
+  console.log(data)
+  for(let catName in categories){
+    const $catContainer= $(`<div class="categories ${catName}">${catName}</div> `)
+    $('.feed').append($catContainer);
+    for(let pinId in categories[catName]){
+      const $pin = createPin(categories[catName][pinId])
+      $catContainer.append($pin)
     }
 
   }
