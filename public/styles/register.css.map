@@ -2,7 +2,7 @@
     "version": 3,
     "mappings": "",
     "sources": [
-        "register.scss"
+        "../sass/register.scss"
     ],
     "names": [],
     "file": "register.css"
