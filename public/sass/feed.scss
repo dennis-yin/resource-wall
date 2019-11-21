@@ -11,7 +11,7 @@ $nav-color: #000000;
 
 .pin {
   width: 300px;
-  height: 300px;
+  height: 275px;
   margin-left: 10px;
   text-decoration: none;
 }
@@ -21,6 +21,7 @@ $nav-color: #000000;
   display: flex;
   width: 100%;
   overflow: auto;
+  // overflow-x: scroll;
 }
 
 .catLabel {
@@ -35,6 +36,9 @@ a {
 }
 
 .title {
+  padding-left: 10px;
+  padding-right: 10px;
+  text-decoration: none;
   color: black;
   font-weight: bold;
 }
@@ -43,4 +47,22 @@ a {
   width: 300px;
   height: 200px;
   margin-bottom: 5px;
+}
+
+.scrollLeft {
+  background-color: transparent;
+  border: 0px;
+}
+
+.scrollRight {
+  background-color: transparent;
+  border: 0px;
+}
+
+.scrollLeft:focus {
+  outline-width: 0;
+}
+
+.scrollRight:focus {
+  outline-width: 0;
 }
