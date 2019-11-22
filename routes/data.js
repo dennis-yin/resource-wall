@@ -307,7 +307,7 @@ module.exports = (db) => {
   router.post("/user/id",(req,res) => {
     if(req.session.user_id){
       let query = `
-      SELECT name
+      SELECT name,id
       FROM users
       WHERE id = $1
       `

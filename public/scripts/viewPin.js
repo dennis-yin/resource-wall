@@ -1,6 +1,7 @@
 let boards;
 let pinId;
-
+let pinOwner;
+let userId;
 const loadNav = () => {
   $.ajax({
     method: "POST",
@@ -22,6 +23,7 @@ const loadNav = () => {
         </div>
       </div>
       `
+      userId=data.user.id
       $("#navbar").append(markup)
     } else {
       const markup = `
@@ -33,6 +35,7 @@ const loadNav = () => {
       </form>
       `
       $("#navbar").append(markup)
+      userId=0
     }
   })
   .fail(() => {
@@ -46,6 +49,11 @@ const viewPin = () => {
     url: `/data/pins/${pinId}`
   })
   .done((data) => {
+    pinOwner = data[pinId].owner_id;
+    if(userId === pinOwner){
+      $('#delete').attr("style","visibility: visible")
+    }
+    console.log(data[pinId])
     $(".title").text(data[pinId].title)
     $(".image").attr("src",data[pinId].image)
     $(".url").attr("href",data[pinId].url)
@@ -214,6 +222,8 @@ $(() => {
   loadComments()
   loadRating()
   ratePin()
+  console.log(userId,pinOwner)
+
   $( "#dropBoards" ).change(() => {
     const value = $('#dropBoards').val();
     if(value == 'Create a Board'){

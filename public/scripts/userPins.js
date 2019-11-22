@@ -65,7 +65,7 @@ const renderBoards = function(data) {
 const createBoard = (data) => {
   const $board = $("<div>").addClass("board");
   const markup = `
-  <a style="text-decoration:none;" href="/boards/${data.id}">
+  <a style="text-decoration:none;" href="/pins/${data.id}">
     <img class ="img board-img" src=${data.image}>
     <p class = "title board-name">${data.title}</p>
   </a>
