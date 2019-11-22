@@ -22,11 +22,27 @@ const loadNav = () => {
       $("#navbar").append(markup)
     } else {
       const markup = `
-      <form class="noUser" method="GET" action="/login">
-        <button  type="home-button" class="home-button ml-auto nav-btn">Login</button>
-      </form>
+      <div class="dropdown">
+        <button class="nav-btn dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        Login
+        </button>
+      <div class="dropdown-menu">
+        <form class="noUser px-4 py-3" method="POST" action="/data/login">
+          <div class="form-group">
+            <label for="exampleDropdownFormEmail1">Email address</label>
+            <input type="email" class="form-control" id="exampleDropdownFormEmail1" name="email" placeholder="email@example.com">
+          </div>
+          <div class="form-group">
+            <label for="exampleDropdownFormPassword1">Password</label>
+            <input type="password" name="password" class="form-control" id="exampleDropdownFormPassword1" placeholder="Password">
+          </div>
+          <button type="submit" class="btn btn-dark">Sign in</button>
+        </form>
+      </div>
+      </div>
+  
       <form class="noUser" method="GET" action="/register">
-        <button type="register-button" class="register-button nav-btn">Register</button>
+        <button type="register-button" class="register-button reg-btn">Register</button>
       </form>
       `
       $("#navbar").append(markup)
