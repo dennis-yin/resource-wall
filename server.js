@@ -42,8 +42,9 @@ const data = require("./routes/data.js");
 
 // Mount all resource routes
 // Note: Feel free to replace the example routes below with your own
-app.use("/", routes(db));
 app.use("/data", data(db));
+app.use("/", routes(db));
+
 // Note: mount other resources here, using the same pattern above
 
 

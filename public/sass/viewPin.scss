@@ -52,7 +52,9 @@ a.url:hover {
   margin:10px;
   border-bottom: 1px solid #e5e5e5;
 }
-
+#delete{
+  visibility: hidden;
+}
 .comment-image{
   height: 80px;
   border-radius: 10%;

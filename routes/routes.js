@@ -13,6 +13,12 @@ const bcrypt        = require('bcrypt');
 const SALT_ROUNDS   = 12;
 
 module.exports = (db) => {
+  router.get("/", (req, res) => {
+    res.sendFile("index.html", {
+      root: path.join(__dirname, "../public")
+    });
+  });
+
   router.get("/register", (req, res) => {
     res.sendFile("register.html", {
       root: path.join(__dirname, "../public")
@@ -26,15 +32,23 @@ module.exports = (db) => {
   });
 
   router.get("/user", (req, res) => {
-    res.sendFile("userProfile.html", {
-      root: path.join(__dirname, "../public")
-    });
+    if(req.session.user_id){
+      res.sendFile("userProfile.html", {
+        root: path.join(__dirname, "../public")
+      });
+    }else{
+      res.redirect("/login")
+    }
   });
 
   router.get("/user/pins", (req, res) => {
-    res.sendFile("userPins.html", {
-      root: path.join(__dirname, "../public")
-    });
+    if(req.session.user_id){
+      res.sendFile("userPins.html", {
+        root: path.join(__dirname, "../public")
+      });
+    }else{
+      res.redirect("/login")
+    }
   });
 
   router.get("/user/settings", (req, res) => {
@@ -47,19 +61,17 @@ module.exports = (db) => {
   });
 
   router.get("/pins/new", (req, res) => {
-    res.sendFile("newPin.html", {
-      root: path.join(__dirname, "../public")
-    });
+    if(req.session.user_id){
+      res.sendFile("newPin.html", {
+        root: path.join(__dirname, "../public")
+      });
+    }else{
+      res.redirect("/login")
+    }
   });
 
   router.get("/pins/:id", (req, res) => {
     res.sendFile("viewPin.html", {
-      root: path.join(__dirname, "../public")
-    });
-  });
-
-  router.get("/boards/new", (req, res) => {
-    res.sendFile("newBoard.html", {
       root: path.join(__dirname, "../public")
     });
   });
@@ -75,6 +87,11 @@ module.exports = (db) => {
       root: path.join(__dirname, "../public")
     });
   });
+
+  router.get("/*", (req, res) => {
+    res.redirect("https://http.cat/404")
+  });
+
 
   return router;
 };
