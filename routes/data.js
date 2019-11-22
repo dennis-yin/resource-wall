@@ -371,7 +371,7 @@ module.exports = (db) => {
         }
         db.query(query, data)
           .then(() => {
-          res.redirect(`/user`);
+          res.redirect(`/user/pins`);
         })
     });
   });

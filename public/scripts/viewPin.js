@@ -243,11 +243,11 @@ $(() => {
   })
   $('.post-comment').click((event) => {
     event.preventDefault();
-    console.log($('.comment').val())
+    console.log($('.comment-input').val())
     $.ajax({
       method: "POST",
       url: `/data/pins/${pinId}/addComment`,
-      data: { pin_id: pinId, comment: $('.comment').val() }
+      data: { pin_id: pinId, comment: $('.comment-input').val() }
     })
     .done(loadComments())
   })
