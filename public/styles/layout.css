@@ -3,13 +3,27 @@ html {
 }
 
 #navbar {
-  background-color: black;
   width: 100%;
 }
 
 .username {
   position: relative;
   top: 0.5em;
+}
+
+.loggedIn {
+  margin-left: 5px;
+  margin-right: 5px;
+}
+
+.nav-btn {
+  color: #e5e5e5;
+  background-color: black;
+  border-width: 0px;
+}
+
+.nav-btn:hover {
+  cursor: pointer;
 }
 
 .checked {
