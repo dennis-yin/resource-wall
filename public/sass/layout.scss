@@ -4,6 +4,7 @@ $nav-color: #000000;
 
 html {
   scroll-behavior: smooth;
+
 }
 
 #navbar {
@@ -12,6 +13,7 @@ html {
 
 .body-profile{
   background-color: #141414;
+  font-family: 'Open Sans', sans-serif;
   color:#e5e5e5;
 }
 
@@ -36,7 +38,7 @@ html {
   color: #e5e5e5;
   background-color: black;
   border-width: 0px;
-  margin-right: 40px;
+  min-width: 160px;
 }
 
 .nav-btn:hover{
