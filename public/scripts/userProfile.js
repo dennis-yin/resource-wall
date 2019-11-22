@@ -6,22 +6,24 @@ const loadNav = () => {
   .done((data) => {
     if (data) {
       const markup = `
-      <p class="loggedIn username"> ${data.user.name}</p>
       <form class="loggedIn" method="GET" action="/user">
-        <button  type="home-button" class="home-button btn btn-light ml-auto">My Resources</button>
+      <button  type="home-button" class="home-button ml-auto nav-btn">${data.user.name}</button>
+    </form>
+      <form class="loggedIn" method="GET" action="/user">
+        <button  type="home-button" class="home-button ml-auto nav-btn">My Resources</button>
       </form>
       <form class="loggedIn" method="POST" action="/data/logout">
-        <button type="logout-button" class="logout-button btn btn-light">Logout</button>
+        <button type="logout-button" class="logout-button nav-btn">Logout</button>
       </form>
       `
       $("#navbar").append(markup)
     } else {
       const markup = `
       <form class="noUser" method="GET" action="/login">
-        <button  type="home-button" class="home-button btn btn-light ml-auto">Login</button>
+        <button  type="home-button" class="home-button ml-auto nav-btn">Login</button>
       </form>
       <form class="noUser" method="GET" action="/register">
-        <button type="register-button" class="register-button btn btn-light">Register</button>
+        <button type="register-button" class="register-button nav-btn">Register</button>
       </form>
       `
       $("#navbar").append(markup)
@@ -60,8 +62,8 @@ const createBoard = (data) => {
   const $board = $("<div>").addClass("board");
   const markup = `
   <a style="text-decoration:none;" href="/boards/${data.id}">
-    <img class ="img" src=${data.image}>
-    <p class = "title">${data.title}</p>
+    <img class ="img board-img" src=${data.image}>
+    <p class = "title board-name">${data.title}</p>
   </a>
   `;
   $($board).append(markup);

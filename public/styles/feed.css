@@ -8,7 +8,7 @@
 
 .pin {
   width: 300px;
-  height: 275px;
+  height: 270px;
   margin-left: 10px;
   text-decoration: none;
 }
@@ -38,13 +38,14 @@ a {
 
 .title {
   text-decoration: none;
-  color: black;
   font-weight: bold;
+  color: #e5e5e5;
 }
 
 .title-pin {
   padding-left: 10px;
   padding-right: 10px;
+  color: #e5e5e5;
 }
 
 .img {
