@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <!-- Meta Information -->
+    <title>Pin Interest</title>
+
+    <!-- External CSS -->
+    <link rel="stylesheet" href="/vendor/normalize-4.1.1.css" type="text/css"/>
+    <link rel="stylesheet" href="/styles/layout.css" type="text/css"/>
+    <link rel="stylesheet" href="/styles/feed.css" type="text/css"/>
+    <link rel="stylesheet" href="/styles/header.css" type="text/css"/>
+
+
+    <!-- App CSS -->
+
+    <!-- External JS -->
+    <script src="/vendor/jquery-3.0.0.js"></script>
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+    <!-- App JS -->
+    <script src="/scripts/userSettings.js"></script>
+  </head>
+
+  <body>
+    <!-- Nav bar -->
+    <nav id ='navbar' class="navbar navbar-expand-lg navbar-light bg-light">
+      <a class="navbar-brand" href="/">
+      <img src="/images/logo.png" width="50" height="30" alt="">
+      </a>
+      <form class="search-bar form-inline my-2 my-lg-0" method="GET" action="/search">
+        <input class="form-control mr-sm-2" name="keyword" type="search" placeholder="Search" aria-label="Search">
+      </form>
+      <div id="divNav" style="flex: 1"></div>
+    </nav>
+    <div class="spacer"></div>
+    <div class='profile'width="100%" height="400px">
+      <img class="profileImage" width="100px" height="100px">
+      <h2 class="profileName" width="100px" height="100px"></h2>
+    </div>
+
+    <div class="edit-section">
+      <form method="POST", action="/data/update-email">
+        <label>Email address</label>
+        <input name="email" type="email" class="email form-control" id="new-email" aria-describedby="emailHelp" placeholder="Enter a new email">
+        <button type="submit" class="btn-dark btn">Submit</button>
+      </form>
+      <form method="POST", action="/data/update-name">
+        <label>Name</label>
+        <input name="name" type="name" class="name form-control" id="new-name" aria-describedby="emailHelp" placeholder="Enter a new name">
+        <button type="submit" class="btn-dark btn">Submit</button>
+      </form>
+      <form method="POST", action="/data/update-password">
+        <label>Password</label>
+        <input name="password" type="password" class="password form-control" id="new-password" aria-describedby="emailHelp" placeholder="Enter a new password">
+        <label>Confirm password</label>
+        <input type="password" class="password form-control" id="new-password" aria-describedby="emailHelp" placeholder="Confirm your new password">
+        <button type="submit" class="btn-dark btn">Submit</button>
+      </form>
+      <form method="POST", action="/data/update-picture">
+        <label>Profile picture</label>
+        <input name="picture" type="url" class="form-control" id="new-profile-pic" aria-describedby="emailHelp" placeholder="Enter image URL">
+        <button type="submit" class="btn-dark btn">Submit</button>
+      </form>
+    </div>
+  </body>
+</html>

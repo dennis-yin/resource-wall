@@ -212,6 +212,17 @@ module.exports = (db) => {
     })
   });
 
+  router.get("/:user_id/settings", (req, res) => {
+    let query = `
+    SELECT *
+    FROM users
+    WHERE id = $1
+    `
+    db.query(query, [req.session.user_id])
+    .then((data) => {
+      res.send(data.rows[0]);
+    })
+  });
 
   router.post("/search", (req, res) => {
     let query = `
@@ -456,6 +467,64 @@ module.exports = (db) => {
       res.send()
     })
   });
+
+  router.post("/update-email", (req, res) => {
+    let query = `
+    UPDATE users 
+    SET email = $1
+    WHERE id = $2
+    `
+    console.log(req.body.email);
+    db.query(query, [req.body.email, req.session.user_id])
+    .then(() => {
+      console.log("Updated email")
+      res.send()
+    })
+  })
+
+  router.post("/update-name", (req, res) => {
+    let query = `
+    UPDATE users 
+    SET name = $1
+    WHERE id = $2
+    `
+  
+    console.log(req.body)
+    db.query(query, [req.body.name, req.session.user_id])
+    .then(() => {
+      console.log("Updated name")
+      res.send()
+    })
+  })
+
+  router.post("/update-password", (req, res) => {
+    const password = req.body.password;
+    bcrypt.hash(req.body.password, SALT_ROUNDS, (err, hash) => {
+      let query = `
+      UPDATE users
+      SET password = $1
+      WHERE id = $2
+      `
+      db.query(query, [hash, req.session.user_id])
+      .then(() => {
+        console.log("Updated password")
+        res.send()
+      })
+    })
+  })
+
+  router.post("/update-picture", (req, res) => {
+    let query = `
+    UPDATE users 
+    SET profile_picture = $1
+    WHERE id = $2
+    `
+    db.query(query, [req.body.picture, req.session.user_id])
+    .then(() => {
+      console.log("Updated profile picture")
+      res.send()
+    })
+  })
 
   return router;
 };
