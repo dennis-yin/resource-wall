@@ -1,6 +1,17 @@
 $main-color: #292828;
 $secondary-color: #f5f0f0;
 $nav-color: #000000;
+$pinHeight: 280px;
+$pinWidth: 300px;
+$growFactor : 1.5; // 1.5 times the original size
+$duration : 450ms;
+
+// $pinWidth : 250px;
+// $pinHeight : ($pinWidth / (16/9));
+// $iconSize : 50px;
+
+$moveLeft : -($pinWidth * ($growFactor - 1) / 2);
+$moveRight : $pinWidth * ($growFactor - 1);
 
 .feed {
   width: auto;
@@ -10,10 +21,16 @@ $nav-color: #000000;
 }
 
 .pin {
-  width: 300px;
-  height: 270px;
+  width: $pinWidth;
+  height: $pinHeight;
   margin-left: 10px;
   text-decoration: none;
+  // transition: $duration all;
+  // z-index: 10;
+}
+
+.pin:hover {
+  // margin: 20px;
 }
 
 .categories {
@@ -69,7 +86,7 @@ a {
   position: absolute;
   top: 17.5%;
   left: 0.5%;
-  height: 275px;
+  height: $pinHeight;
   width: 50px;
   color: white;
   z-index: 10;
@@ -83,7 +100,7 @@ a {
   position: absolute;
   top: 17.5%;
   left: 97%;
-  height: 275px;
+  height: $pinHeight;
   width: 50px;
   color: white;
   z-index: 10;
@@ -111,3 +128,24 @@ a {
     background: transparent;
   }
 }
+
+// .categories:hover {
+//   transform: translate3d($moveLeft, 0, 0)
+// }
+
+// .categories:hover .pin {
+
+//   // And then grow the current pin and make it opaque again
+//   &:hover {
+//     transform: scale($growFactor);
+//     opacity: 1;
+//   }
+
+//   opacity: .3
+// }
+
+// // And finally move all pins right of the current pin to the right,
+// // so its flush against the hovered pin
+// .pin:hover ~ .pin {
+//   transform: translate3d($moveRight, 0, 0)
+// }
