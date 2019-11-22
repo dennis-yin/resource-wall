@@ -10,7 +10,7 @@ const loadNav = () => {
         <button class="nav-btn dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
         ${data.user.name}
         </button>
-        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuButton">
           <a class="dropdown-item" href="/pins/new">Add Resource</a>
           <a class="dropdown-item" href="/user">My Boards</a>
           <a class="dropdown-item" href="/user/pins">My Pins</a>
