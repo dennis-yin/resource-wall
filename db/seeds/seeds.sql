@@ -1,6 +1,6 @@
 -- Users table seeds here (Example)
-INSERT INTO users (name,email,password,profile_picture) VALUES ('Sanjeet','kang.sanjeet1401@gmail.com','password','https://cdn3.f-cdn.com/contestentries/1376995/30494909/5b566bc71d308_thumb900.jpg');
-INSERT INTO users (name,email,password,profile_picture) VALUES ('Dennis','dennis.y95@gmail.com','password','https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRJcdbk1Fs7EWlDHH4qsWbyTJJcNIdhRRH_-RV41tAyTpMyL0YE&s');
+INSERT INTO users (name,email,password,profile_picture) VALUES ('Sanjeet','kang.sanjeet1401@gmail.com','$2b$12$aLApJPB5Nmg5y2ZOmn/W3ue3AVyS1UivBOefUblOvZyZa98Y4LaVK','https://cdn3.f-cdn.com/contestentries/1376995/30494909/5b566bc71d308_thumb900.jpg');
+INSERT INTO users (name,email,password,profile_picture) VALUES ('Dennis','dennis.y95@gmail.com','$2b$12$aLApJPB5Nmg5y2ZOmn/W3ue3AVyS1UivBOefUblOvZyZa98Y4LaVK','https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRJcdbk1Fs7EWlDHH4qsWbyTJJcNIdhRRH_-RV41tAyTpMyL0YE&s');
 
 INSERT INTO categories (name) VALUES ('Health');
 INSERT INTO categories (name) VALUES ('Computing');

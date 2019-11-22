@@ -21,10 +21,8 @@ module.exports = (db) => {
     `
     db.query(query)
     .then(data => {
-      console.log(data.rows)
       const pins = data.rows;
       let obj = {};
-      console.log(pins)
       for (const pin of pins) {
         if(!obj[pin.category_name]){
           obj[pin.category_name] = {}
@@ -158,6 +156,19 @@ module.exports = (db) => {
       res.json(obj);
     });
   });
+  router.post("/delete/boi", (req, res) => {
+    let query;
+    let data = [];
+    query = `
+    DELETE FROM pins WHERE id = $1
+    `
+    console.log('hellooooooooooooooooooooooooooooooooooooooooooooooooooooo')
+    data.push(req.body.pin_id)
+    db.query(query, data)
+    .then(() => {
+      res.redirect("/")
+    });
+  });
 
   router.get("/pins/:pin_id/comments", (req, res) => {
     let query = `
@@ -168,7 +179,6 @@ module.exports = (db) => {
     `
     db.query(query, [req.params.pin_id])
     .then(data => {
-      console.log(data)
       const comments = data.rows;
       let obj = {};
       for (const comment of comments) {
@@ -193,6 +203,8 @@ module.exports = (db) => {
     })
   });
 
+  
+
   router.get("/pins/:pin_id/rating/userRating", (req, res) => {
     let query = `
     SELECT value
@@ -208,7 +220,6 @@ module.exports = (db) => {
       } else {
         res.send(false);
       }
-      console.log(obj['rating'])
     })
   });
 
@@ -234,7 +245,6 @@ module.exports = (db) => {
     OR c.name = $2
     `
     const keyword = '%' + req.body.keyword + '%';
-    console.log(keyword)
     db.query(query, [keyword, req.body.keyword])
     .then(data => {
       const pins = data.rows;
@@ -242,7 +252,6 @@ module.exports = (db) => {
       for (const pin of pins) {
         obj[pin.id] = pin
       }
-      console.log(obj)
       res.json(obj);
     })
     .catch(err => {
@@ -270,6 +279,7 @@ module.exports = (db) => {
           VALUES ($1, $2, $3)
           RETURNING id
           `
+          console.log(hash)
           db.query(query, [req.body.name, req.body.email, hash])
           .then((data) => {
             req.session.user_id = data.rows[0].id;
@@ -409,24 +419,11 @@ module.exports = (db) => {
     data.push(req.body.board_id,req.body.pin_id)
     db.query(query, data)
     .then(() => {
-      console.log('added')
       res.send()
     });
   });
 
-  router.post("/pins/delete", (req, res) => {
-    let query;
-    let data = [];
-    query = `
-    DELETE FROM pins WHERE id = $1
-    `
-    data.push(req.body.pin_id)
-    db.query(query, data)
-    .then(() => {
-      res.redirect("/")
-    });
-  });
-
+  
   router.post("/boards/delete/:board_id", (req, res) => {
     let query;
     let data = [];
@@ -474,7 +471,6 @@ module.exports = (db) => {
     SET email = $1
     WHERE id = $2
     `
-    console.log(req.body.email);
     db.query(query, [req.body.email, req.session.user_id])
     .then(() => {
       console.log("Updated email")
@@ -489,7 +485,6 @@ module.exports = (db) => {
     WHERE id = $2
     `
 
-    console.log(req.body)
     db.query(query, [req.body.name, req.session.user_id])
     .then(() => {
       console.log("Updated name")
