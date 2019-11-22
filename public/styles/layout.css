@@ -6,6 +6,11 @@ html {
   width: 100%;
 }
 
+.body-profile {
+  background-color: #141414;
+  color: #e5e5e5;
+}
+
 .username {
   position: relative;
   top: 0.5em;
@@ -16,6 +21,10 @@ html {
   margin-right: 5px;
 }
 
+#navbar {
+  background-color: black;
+}
+
 .nav-btn {
   color: #e5e5e5;
   background-color: black;
@@ -24,6 +33,7 @@ html {
 
 .nav-btn:hover {
   cursor: pointer;
+  outline-width: 0px;
 }
 
 .checked {
@@ -32,6 +42,22 @@ html {
 
 .pin {
   text-decoration: none;
-  background-color: #f2e9e9;
+  background-color: black;
+}
+
+.edit-section {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  width: 30%;
+  height: 70%;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-flow: column wrap;
+          flex-flow: column wrap;
+}
+
+.updaters {
+  margin: 20px;
 }
 /*# sourceMappingURL=layout.css.map */

@@ -17,9 +17,6 @@ nav {
   flex-flow: row wrap;
 }
 
-.pin-only{
-}
-
 img.image {
   margin-left: 3%;
   margin-right: 2%;
@@ -33,6 +30,7 @@ img.image {
 .title{
   width: auto;
   margin-bottom: 60px;
+  color: #e5e5e5;
 }
 
 a.url {
@@ -46,13 +44,13 @@ a.url:hover {
 }
 
 .comments{
-  background-color: #c4c4c4;
+  background-color: black;
   border-radius: 1%;
 }
 .comment{
   display: flex;
   margin:10px;
-  border-bottom: 1px solid black;
+  border-bottom: 1px solid #e5e5e5;
 }
 
 .comment-image{
@@ -66,7 +64,6 @@ a.url:hover {
 .comment-input{
   margin:10px;
   width: 97%;
-
   display: relative;
 }
 

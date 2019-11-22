@@ -470,7 +470,7 @@ module.exports = (db) => {
 
   router.post("/update-email", (req, res) => {
     let query = `
-    UPDATE users 
+    UPDATE users
     SET email = $1
     WHERE id = $2
     `
@@ -484,11 +484,11 @@ module.exports = (db) => {
 
   router.post("/update-name", (req, res) => {
     let query = `
-    UPDATE users 
+    UPDATE users
     SET name = $1
     WHERE id = $2
     `
-  
+
     console.log(req.body)
     db.query(query, [req.body.name, req.session.user_id])
     .then(() => {
@@ -515,7 +515,7 @@ module.exports = (db) => {
 
   router.post("/update-picture", (req, res) => {
     let query = `
-    UPDATE users 
+    UPDATE users
     SET profile_picture = $1
     WHERE id = $2
     `

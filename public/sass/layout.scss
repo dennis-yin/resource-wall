@@ -4,19 +4,17 @@ $nav-color: #000000;
 
 html {
   scroll-behavior: smooth;
-
 }
-
-// body {
-  // background-color: $main-color;
-// }
 
 #navbar {
   width: 100%;
 }
 
-.noUser {
+.body-profile{
+  background-color: #141414;
+  color:#e5e5e5;
 }
+
 
 .username {
   position: relative;
@@ -26,9 +24,10 @@ html {
 .loggedIn {
   margin-left: 5px;
   margin-right: 5px;
-
 }
-
+#navbar{
+  background-color: black;
+}
 .nav-btn{
   color: #e5e5e5;
   background-color: black;
@@ -37,6 +36,7 @@ html {
 
 .nav-btn:hover{
   cursor: pointer;
+  outline-width: 0px;
 }
 
 .checked {
@@ -45,5 +45,16 @@ html {
 
 .pin {
   text-decoration: none;
-  background-color: #f2e9e9;
+  background-color: black;
+}
+
+.edit-section{
+  display: flex;
+  width: 30%;
+  height: 70%;
+  flex-flow: column wrap;
+}
+
+.updaters{
+  margin:20px;
 }

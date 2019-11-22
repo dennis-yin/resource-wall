@@ -6,7 +6,7 @@ const loadNav = () => {
   .done((data) => {
     if (data) {
       const markup = `
-      <form class="loggedIn" method="GET" action="/user">
+      <form class="loggedIn" method="GET" action="/user/settings">
       <button  type="home-button" class="home-button ml-auto nav-btn">${data.user.name}</button>
     </form>
       <form class="loggedIn" method="GET" action="/user">
