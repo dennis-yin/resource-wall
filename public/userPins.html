@@ -6,11 +6,9 @@
 
     <!-- External CSS -->
     <link rel="stylesheet" href="/vendor/normalize-4.1.1.css" type="text/css"/>
-    <link rel="stylesheet" href="/styles/stars.css" type="text/css"/>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="/styles/layout.css" type="text/css"/>
-    <link rel="stylesheet" href="/styles/viewBoard.css" type="text/css"/>
     <link rel="stylesheet" href="/styles/feed.css" type="text/css"/>
+    <link rel="stylesheet" href="/styles/userProfile.css" type="text/css"/>
 
 
     <!-- App CSS -->
@@ -25,35 +23,30 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
 
     <!-- App JS -->
-    <script src="/scripts/viewBoard.js"></script>
+    <script src="/scripts/userPins.js"></script>
   </head>
 
-  <body class='body-profile'>
-  <!-- Nav bar -->
-    <!-- Nav bar -->
-    <nav id ='navbar' class="navbar">
-        <a class="navbar-brand" href="/">
-          <img src="/images/logo.png" height="50px">
-        </a>
-        <form class="search-bar form-inline my-2 my-lg-0" method="GET" action="/search">
-          <input class="form-control mr-sm-2" id="searchBar" name="keyword" type="search" placeholder="Search" aria-label="Search">
-        </form>
-        <div id="divNav" style="flex: 1"></div>
-      </nav>
-
-  <div class="board">
-      <img class="image">
-      <div>
-      <h1 class="title"></h1>
-      <p class="description"></p>
-      <form id='delete'method="POST" action="/data/boards/delete">
-      <button id="delete"type="submit" class="btn btn-dark">Delete</button>  </form>
+  <body  class='body-profile'>
+      <!-- Nav bar -->
+  <nav id ='navbar' class="navbar">
+      <a class="navbar-brand" href="/">
+        <img src="/images/logo.png" height="50px">
+      </a>
+      <form class="search-bar form-inline my-2 my-lg-0" method="GET" action="/search">
+        <input class="form-control mr-sm-2" id="searchBar" name="keyword" type="search" placeholder="Search" aria-label="Search">
+      </form>
+      <div id="divNav" style="flex: 1"></div>
+    </nav>
+    <main class='profile-info'>
+      <div class='profile'>
+          <img class="profileImage">
+          <h2 class="profileName"></h2>
       </div>
-
-    </div>
-
-    <main class = "feed">
-
     </main>
+    <div class="boards">
+        <h1 class="boi">My Pins</h1>
+    <main class = "feed">
+      </main>
+    </div>
   </body>
 </html>

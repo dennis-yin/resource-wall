@@ -1,0 +1,27 @@
+.addResource{
+  display: flex;
+  flex-flow: column;
+  width: 50%;
+  padding-left: 5%;
+}
+
+.label{
+  margin-top: 15px;
+}
+
+#addCategory{
+  margin-top: 15px;
+}
+
+.catContainer{
+  display: flex;
+  flex-flow: column;
+}
+
+.cat-btn{
+  width: fit-content;
+  margin-bottom: 10px;
+}
+.category{
+  margin-top: 15px;
+}

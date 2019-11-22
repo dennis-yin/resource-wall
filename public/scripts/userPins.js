@@ -37,6 +37,43 @@ const loadNav = () => {
   });
 }
 
+const loadBoards = () => {
+  $.ajax({
+    method: "GET",
+    url: "/data/user/pins"
+  })
+  .done((data) => {
+    console.log(data)
+    renderBoards(data)
+  })
+  .fail(() => {
+    console.log('Server down')
+  });
+};
+
+const renderBoards = function(data) {
+  // loops through data
+    let boards = data;
+    for(let i in boards){
+      const $board = createBoard(boards[i])
+      $('.feed').append($board);
+
+    }
+  };
+
+
+const createBoard = (data) => {
+  const $board = $("<div>").addClass("board");
+  const markup = `
+  <a style="text-decoration:none;" href="/boards/${data.id}">
+    <img class ="img board-img" src=${data.image}>
+    <p class = "title board-name">${data.title}</p>
+  </a>
+  `;
+  $($board).append(markup);
+  return $board;
+};
+
 const loadProfile = () => {
   $.ajax({
     method: "GET",
@@ -53,6 +90,7 @@ const loadProfile = () => {
 
 
 $(() => {
-  loadProfile()
   loadNav()
+  loadProfile()
+  loadBoards()
 });

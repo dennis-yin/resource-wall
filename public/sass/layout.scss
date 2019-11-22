@@ -21,6 +21,10 @@ html {
   top: 0.5em;
 }
 
+#searchBar{
+  width: 800px;
+}
+
 .loggedIn {
   margin-left: 5px;
   margin-right: 5px;
@@ -32,6 +36,7 @@ html {
   color: #e5e5e5;
   background-color: black;
   border-width: 0px;
+  outline-width: 0px;
 }
 
 .nav-btn:hover{

@@ -6,15 +6,18 @@ const loadNav = () => {
   .done((data) => {
     if (data) {
       const markup = `
-      <form class="loggedIn" method="GET" action="/user/settings">
-      <button  type="home-button" class="home-button ml-auto nav-btn">${data.user.name}</button>
-    </form>
-      <form class="loggedIn" method="GET" action="/user">
-        <button  type="home-button" class="home-button ml-auto nav-btn">My Resources</button>
-      </form>
-      <form class="loggedIn" method="POST" action="/data/logout">
-        <button type="logout-button" class="logout-button nav-btn">Logout</button>
-      </form>
+      <div class="dropdown">
+        <button class="nav-btn dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        ${data.user.name}
+        </button>
+        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+          <a class="dropdown-item" href="/pins/new">Add Resource</a>
+          <a class="dropdown-item" href="/user">My Boards</a>
+          <a class="dropdown-item" href="/user/pins">My Pins</a>
+          <a class="dropdown-item" href="/user/settings">Profile Settings</a>
+          <a class="dropdown-item" href="/data/logout">Logout</a>
+        </div>
+      </div>
       `
       $("#navbar").append(markup)
     } else {

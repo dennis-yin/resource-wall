@@ -31,6 +31,12 @@ module.exports = (db) => {
     });
   });
 
+  router.get("/user/pins", (req, res) => {
+    res.sendFile("userPins.html", {
+      root: path.join(__dirname, "../public")
+    });
+  });
+
   router.get("/user/settings", (req, res) => {
     if (!req.session.user_id) {
       res.redirect("/login")

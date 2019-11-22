@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="/vendor/normalize-4.1.1.css" type="text/css"/>
     <link rel="stylesheet" href="/styles/layout.css" type="text/css"/>
     <link rel="stylesheet" href="/styles/feed.css" type="text/css"/>
-    <link rel="stylesheet" href="/styles/header.css" type="text/css"/>
+    <link rel="stylesheet" href="/styles/newPin.css" type="text/css"/>
 
 
     <!-- App CSS -->
@@ -16,8 +16,11 @@
     <!-- External JS -->
     <script src="/vendor/jquery-3.0.0.js"></script>
 
-    <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+  <script src="https://kit.fontawesome.com/b21a6baabb.js" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
     <!-- App JS -->
     <script src="/scripts/newPin.js"></script>
 
@@ -30,26 +33,32 @@
         <img src="/images/logo.png" height="50px">
       </a>
       <form class="search-bar form-inline my-2 my-lg-0" method="GET" action="/search">
-        <input class="form-control mr-sm-2" name="keyword" type="search" placeholder="Search" aria-label="Search">
+        <input class="form-control mr-sm-2" id="searchBar" name="keyword" type="search" placeholder="Search" aria-label="Search">
       </form>
       <div id="divNav" style="flex: 1"></div>
     </nav>
 
     <h1>Add A Resource</h1>
-    <form method="POST" action="/data/pins/new">
+    <div>
+    <form method="POST" action="/data/pins/new" class="addResource">
+      <label class="label">Title</label>
       <input class="title" name="title" placeholder="Title" required="">
-      <input class="description" name="description" placeholder="Description" required="">
-      <input class="url" name="url" placeholder="Link ot the resource" required="">
-      <input class="image" name="image" placeholder="image url">
-      <div>
-      <label for="sel1">Choose a Category</label>
+      <label class="label">Description</label>
+      <input class="description"name="description" placeholder="Description" required="">
+      <label class="label">Link to the Resource</label>
+      <input class="url" name="url" placeholder="Link to the resource" required="">
+      <label class="label">Add a Image Link (Optional)</label>
+      <input class="image" name="image" placeholder="Add a Image Link">
+      <div class="catContainer">
+      <label for="sel1"class="label">Choose a Category</label>
       <select class="form-control" class="dropCategories" id="dropCategories" name="dropCategories" required="">
       </select>
       <input class = "category" name = "category" placeholder="Category" style="visibility: hidden">
-      <button style="visibility: hidden" type="submit" id="addCategory">Add Category</button>
+      <button style="visibility: hidden" type="submit" class="cat-btn btn btn-dark" id="addCategory">Add Category</button>
+      <button type="submit" class="btn btn-dark" >Add Resource</button>
       </div>
-      <button type="submit">Add</button>
     </form>
+    </div>
 
   </body>
 </html>

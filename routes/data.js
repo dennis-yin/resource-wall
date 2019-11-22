@@ -86,7 +86,7 @@ module.exports = (db) => {
     });
   });
 
-  router.get("/users/pins", (req, res) => {
+  router.get("/user/pins", (req, res) => {
     let query = `
     SELECT u.name, u.profile_picture, p.*
     FROM users u
@@ -338,7 +338,7 @@ module.exports = (db) => {
     })
   });
 
-  router.post("/logout", (req, res) => {
+  router.get("/logout", (req, res) => {
     req.session = null;
     res.redirect("/");
   });
