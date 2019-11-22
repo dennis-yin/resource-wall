@@ -151,6 +151,9 @@ const loadRating = function() {
         $star.addClass('checked')
         $star.prevAll().addClass('checked')
         $star.nextAll().removeClass('checked')
+      } else {
+        $('.starOne').removeClass('checked')
+        $('.starOne').nextAll().removeClass('checked')
       }
     })
   })
