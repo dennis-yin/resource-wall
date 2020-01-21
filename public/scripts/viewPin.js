@@ -51,7 +51,7 @@ const viewPin = () => {
   .done((data) => {
     pinOwner = data[pinId].owner_id;
     if(userId === pinOwner){
-      $('#delete').attr("style","visibility: visible")
+      // $('#delete').attr("style","visibility: visible")
     }
     console.log(data[pinId])
     $(".title").text(data[pinId].title)

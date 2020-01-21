@@ -9,7 +9,6 @@ const express       = require('express');
 const router        = express.Router();
 const path          = require('path');
 const cookieSession = require('cookie-session');
-const bcrypt        = require('bcrypt');
 const SALT_ROUNDS   = 12;
 
 module.exports = (db) => {

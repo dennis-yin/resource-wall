@@ -156,19 +156,6 @@ module.exports = (db) => {
       res.json(obj);
     });
   });
-  router.post("/delete/boi", (req, res) => {
-    let query;
-    let data = [];
-    query = `
-    DELETE FROM pins WHERE id = $1
-    `
-    console.log('hellooooooooooooooooooooooooooooooooooooooooooooooooooooo')
-    data.push(req.body.pin_id)
-    db.query(query, data)
-    .then(() => {
-      res.redirect("/")
-    });
-  });
 
   router.get("/pins/:pin_id/comments", (req, res) => {
     let query = `
@@ -203,8 +190,6 @@ module.exports = (db) => {
     })
   });
 
-  
-
   router.get("/pins/:pin_id/rating/userRating", (req, res) => {
     let query = `
     SELECT value
@@ -220,6 +205,7 @@ module.exports = (db) => {
       } else {
         res.send(false);
       }
+      console.log(obj['rating'])
     })
   });
 
@@ -279,7 +265,6 @@ module.exports = (db) => {
           VALUES ($1, $2, $3)
           RETURNING id
           `
-          console.log(hash)
           db.query(query, [req.body.name, req.body.email, hash])
           .then((data) => {
             req.session.user_id = data.rows[0].id;
@@ -419,11 +404,24 @@ module.exports = (db) => {
     data.push(req.body.board_id,req.body.pin_id)
     db.query(query, data)
     .then(() => {
+      console.log('added')
       res.send()
     });
   });
 
-  
+  router.post("/pins/delete", (req, res) => {
+    let query;
+    let data = [];
+    query = `
+    DELETE FROM pins WHERE id = $1
+    `
+    data.push(req.body.pin_id)
+    db.query(query, data)
+    .then(() => {
+      res.redirect("/")
+    });
+  });
+
   router.post("/boards/delete/:board_id", (req, res) => {
     let query;
     let data = [];
@@ -471,6 +469,7 @@ module.exports = (db) => {
     SET email = $1
     WHERE id = $2
     `
+    console.log(req.body.email);
     db.query(query, [req.body.email, req.session.user_id])
     .then(() => {
       console.log("Updated email")
@@ -485,6 +484,7 @@ module.exports = (db) => {
     WHERE id = $2
     `
 
+    console.log(req.body)
     db.query(query, [req.body.name, req.session.user_id])
     .then(() => {
       console.log("Updated name")
