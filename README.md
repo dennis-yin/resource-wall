@@ -5,9 +5,9 @@ Git Smart is a website where users can link articles based on their category, lo
 
 ## Final Product
 
-!["Screenshot of editing URLs page"](https://github.com/dennis-yin/tweeter/blob/master/screenshots/01.png)
-!["Screenshot of users URLs page"](https://github.com/dennis-yin/tweeter/blob/master/screenshots/03.png)
-!["Screenshot of adding a new URL page"](https://github.com/dennis-yin/tweeter/blob/master/screenshots/02.png)
+!["Screenshot of editing URLs page"](https://github.com/dennis-yin/resource-wall/tree/master/screenshots/01.png)
+!["Screenshot of users URLs page"](https://github.com/dennis-yin/resource-wall/tree/master/screenshots/03.png)
+!["Screenshot of adding a new URL page"](https://github.com/dennis-yin/resource-wall/tree/master/screenshots/02.png)
 
 ## Getting Started
 
