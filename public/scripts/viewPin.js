@@ -4,9 +4,9 @@ let pinOwner;
 let userId;
 const loadNav = () => {
   $.ajax({
-    method: "POST",
-    url: "/data/user/id"
-  })
+      method: "POST",
+      url: "/data/user/id"
+    })
     .done(data => {
       if (data) {
         const markup = `
@@ -45,30 +45,30 @@ const loadNav = () => {
 
 const viewPin = () => {
   $.ajax({
-    method: "GET",
-    url: `/data/pins/${pinId}`
-  })
-    .done(data => {
+      method: "GET",
+      url: `/data/pins/${pinId}`
+    })
+    .done((data) => {
       pinOwner = data[pinId].owner_id;
       if (userId === pinOwner) {
-        $("#delete").attr("style", "visibility: visible");
+        // $('#delete').attr("style","visibility: visible")
       }
-      console.log(data[pinId]);
-      $(".title").text(data[pinId].title);
-      $(".image").attr("src", data[pinId].image);
-      $(".url").attr("href", data[pinId].url);
-      $(".description").text(data[pinId].description);
+      console.log(data[pinId])
+      $(".title").text(data[pinId].title)
+      $(".image").attr("src", data[pinId].image)
+      $(".url").attr("href", data[pinId].url)
+      $(".description").text(data[pinId].description)
     })
     .fail(() => {
-      console.log("Server down");
+      console.log('Server down')
     });
 };
 
 const loadBoards = () => {
   $.ajax({
-    method: "GET",
-    url: "/data/user/boards"
-  })
+      method: "GET",
+      url: "/data/user/boards"
+    })
     .done(data => {
       boards = data;
       renderBoards();
@@ -78,7 +78,7 @@ const loadBoards = () => {
     });
 };
 
-const renderBoards = function() {
+const renderBoards = function () {
   $("#dropBoards").empty();
   $("#create-board").slideUp();
   let keys = Object.keys(boards);
@@ -100,11 +100,11 @@ const getBoardId = selected => {
   }
 };
 
-const loadComments = function() {
+const loadComments = function () {
   $.ajax({
-    method: "GET",
-    url: `/data/pins/${pinId}/comments`
-  })
+      method: "GET",
+      url: `/data/pins/${pinId}/comments`
+    })
     .done(data => {
       console.log(data);
       renderComments(data);
@@ -114,7 +114,7 @@ const loadComments = function() {
     });
 };
 
-const renderComments = function(data) {
+const renderComments = function (data) {
   $(".comment-section").empty();
   for (const comment in data) {
     const $comment = createComment(data[comment]);
@@ -122,7 +122,7 @@ const renderComments = function(data) {
   }
 };
 
-const createComment = function(data) {
+const createComment = function (data) {
   const $comment = $("<div>").addClass("comment");
   const markup = `
   <img class="comment-image"src="${data.image}">
@@ -135,7 +135,7 @@ const createComment = function(data) {
   return $comment;
 };
 
-const loadRating = function() {
+const loadRating = function () {
   $.ajax({
     method: "GET",
     url: `/data/pins/${pinId}/rating`
@@ -179,8 +179,8 @@ const loadRating = function() {
   });
 };
 
-const ratePin = function() {
-  $(".fa-star").hover(function() {
+const ratePin = function () {
+  $(".fa-star").hover(function () {
     $(this).addClass("checked");
     $(this)
       .prevAll()
@@ -190,7 +190,7 @@ const ratePin = function() {
       .removeClass("checked");
   });
 
-  $(".fa-star").click(function() {
+  $(".fa-star").click(function () {
     let rating;
 
     if ($(this).hasClass("starOne")) {
@@ -216,7 +216,9 @@ const ratePin = function() {
     $.ajax({
       method: "POST",
       url: `/data/pins/${pinId}/rating`,
-      data: { rating: rating }
+      data: {
+        rating: rating
+      }
     });
   });
 };
@@ -255,21 +257,28 @@ $(() => {
   });
   $(".post-comment").click(event => {
     event.preventDefault();
-    console.log($(".comment").val());
+    console.log($('.comment-input').val())
     $.ajax({
-      method: "POST",
-      url: `/data/pins/${pinId}/addComment`,
-      data: { pin_id: pinId, comment: $(".comment").val() }
-    }).done(loadComments());
-  });
-  $("#addPin").click(event => {
+        method: "POST",
+        url: `/data/pins/${pinId}/addComment`,
+        data: {
+          pin_id: pinId,
+          comment: $('.comment-input').val()
+        }
+      })
+      .done(loadComments())
+  })
+  $('#addPin').click((event) => {
     event.preventDefault();
     const boardSelected = $("#dropBoards").val();
     const boardId = getBoardId(boardSelected);
     $.ajax({
       method: "POST",
       url: `/data/boards/addPin`,
-      data: { pin_id: pinId, board_id: boardId }
+      data: {
+        pin_id: pinId,
+        board_id: boardId
+      }
     }).done(() => {
       window.location.href = "/";
     });
