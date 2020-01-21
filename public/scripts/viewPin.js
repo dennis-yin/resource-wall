@@ -50,8 +50,9 @@ const viewPin = () => {
   })
   .done((data) => {
     pinOwner = data[pinId].owner_id;
-    if(userId === pinOwner){
-      // $('#delete').attr("style","visibility: visible")
+    if(userId !== pinOwner){
+      console.log("yooo")
+      $('#delete').attr("style","visibility: hidden")
     }
     console.log(data[pinId])
     $(".title").text(data[pinId].title)
@@ -223,7 +224,17 @@ $(() => {
   loadRating()
   ratePin()
   console.log(userId,pinOwner)
-
+  $('#delete').click((event) => {
+    event.preventDefault();
+    $.ajax({
+      method: "POST",
+      url: `/data/pins/delete`,
+      data: { pin_id: pinId}
+    })
+    .done(() => {
+      window.location.href = "/";
+    })
+  })
   $( "#dropBoards" ).change(() => {
     const value = $('#dropBoards').val();
     if(value == 'Create a Board'){

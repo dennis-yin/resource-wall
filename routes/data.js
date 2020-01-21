@@ -412,6 +412,7 @@ module.exports = (db) => {
   router.post("/pins/delete", (req, res) => {
     let query;
     let data = [];
+    console.log(req.body.pin_id+"yooo")
     query = `
     DELETE FROM pins WHERE id = $1
     `
