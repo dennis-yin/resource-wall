@@ -148,18 +148,6 @@ module.exports = db => {
       res.json(obj);
     });
   });
-  router.post("/delete/boi", (req, res) => {
-    let query;
-    let data = [];
-    query = `
-    DELETE FROM pins WHERE id = $1
-    `;
-    data.push(req.body.pin_id);
-    db.query(query, data).then(() => {
-      res.redirect("/");
-    });
-  });
-
   router.get("/pins/:pin_id/comments", (req, res) => {
     let query = `
     SELECT c.*,u.name,u.profile_picture as image
