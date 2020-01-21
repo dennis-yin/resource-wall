@@ -5,12 +5,12 @@
  * See: https://expressjs.com/en/guide/using-middleware.html#middleware.router
  */
 
-const express       = require('express');
-const router        = express.Router();
-const path          = require('path');
+const express = require('express');
+const router = express.Router();
+const path = require('path');
 const cookieSession = require('cookie-session');
-const bcrypt        = require('bcrypt');
-const SALT_ROUNDS   = 12;
+const bcrypt = require('bcrypt');
+const SALT_ROUNDS = 12;
 
 module.exports = (db) => {
   router.get("/", (req, res) => {
@@ -32,21 +32,21 @@ module.exports = (db) => {
   });
 
   router.get("/user", (req, res) => {
-    if(req.session.user_id){
+    if (req.session.user_id) {
       res.sendFile("userProfile.html", {
         root: path.join(__dirname, "../public")
       });
-    }else{
+    } else {
       res.redirect("/login")
     }
   });
 
   router.get("/user/pins", (req, res) => {
-    if(req.session.user_id){
+    if (req.session.user_id) {
       res.sendFile("userPins.html", {
         root: path.join(__dirname, "../public")
       });
-    }else{
+    } else {
       res.redirect("/login")
     }
   });
@@ -61,11 +61,11 @@ module.exports = (db) => {
   });
 
   router.get("/pins/new", (req, res) => {
-    if(req.session.user_id){
+    if (req.session.user_id) {
       res.sendFile("newPin.html", {
         root: path.join(__dirname, "../public")
       });
-    }else{
+    } else {
       res.redirect("/login")
     }
   });
