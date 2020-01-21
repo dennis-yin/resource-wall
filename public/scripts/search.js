@@ -1,11 +1,11 @@
 const loadNav = () => {
   $.ajax({
-    method: "POST",
-    url: "/data/user/id"
-  })
-  .done((data) => {
-    if (data) {
-      const markup = `
+      method: "POST",
+      url: "/data/user/id"
+    })
+    .done((data) => {
+      if (data) {
+        const markup = `
       <div class="dropdown">
         <button class="nav-btn dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
         ${data.user.name}
@@ -19,9 +19,9 @@ const loadNav = () => {
         </div>
       </div>
       `
-      $("#navbar").append(markup)
-    } else {
-      const markup = `
+        $("#navbar").append(markup)
+      } else {
+        const markup = `
       <form class="noUser" method="GET" action="/login">
         <button  type="home-button" class="home-button ml-auto nav-btn">Login</button>
       </form>
@@ -29,32 +29,34 @@ const loadNav = () => {
         <button type="register-button" class="register-button nav-btn">Register</button>
       </form>
       `
-      $("#navbar").append(markup)
-    }
-  })
-  .fail(() => {
-    console.log('Server down')
-  });
+        $("#navbar").append(markup)
+      }
+    })
+    .fail(() => {
+      console.log('Server down')
+    });
 }
 const loadPins = (key) => {
   $.ajax({
-    method: "POST",
-    url: "/data/search",
-    data: {keyword: key}
-  })
-  .done((data) => {
-    console.log(data)
-    renderPins(data)
-  })
-  .fail(() => {
-    console.log('Server down')
-  });
+      method: "POST",
+      url: "/data/search",
+      data: {
+        keyword: key
+      }
+    })
+    .done((data) => {
+      console.log(data)
+      renderPins(data)
+    })
+    .fail(() => {
+      console.log('Server down')
+    });
 };
 
-const renderPins = function(data) {
+const renderPins = function (data) {
   // loops through data
   let pins = data;
-  for(let i in pins){
+  for (let i in pins) {
     const $pin = createPin(pins[i])
     console.log($pin)
     $('.feed').append($pin);

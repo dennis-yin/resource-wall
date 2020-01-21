@@ -3,12 +3,12 @@ let userId;
 
 const loadNav = () => {
   $.ajax({
-    method: "POST",
-    url: "/data/user/id"
-  })
-  .done((data) => {
-    if (data) {
-      const markup = `
+      method: "POST",
+      url: "/data/user/id"
+    })
+    .done((data) => {
+      if (data) {
+        const markup = `
       <div class="dropdown">
         <button class="nav-btn dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
         ${data.user.name}
@@ -22,10 +22,10 @@ const loadNav = () => {
         </div>
       </div>
       `
-      userId=data.user.id
-      $("#navbar").append(markup)
-    } else {
-      const markup = `
+        userId = data.user.id
+        $("#navbar").append(markup)
+      } else {
+        const markup = `
       <form class="noUser" method="GET" action="/login">
         <button  type="home-button" class="home-button ml-auto nav-btn">Login</button>
       </form>
@@ -33,51 +33,51 @@ const loadNav = () => {
         <button type="register-button" class="register-button nav-btn">Register</button>
       </form>
       `
-      $("#navbar").append(markup)
-      userId=0
-    }
-  })
-  .fail(() => {
-    console.log('Server down')
-  });
+        $("#navbar").append(markup)
+        userId = 0
+      }
+    })
+    .fail(() => {
+      console.log('Server down')
+    });
 }
 
 const viewBoard = (id) => {
   $.ajax({
-    method: "GET",
-    url: `/data/boards/${id}`
-  })
-  .done((data) => {
-    pinOwner = data[id].owner_id;
-    if(userId == pinOwner){
-      $('#delete').attr("style","visibility: visible")
-    }
-    $(".title").text(data[id].title)
-    $(".image").attr("src",data[id].image)
-    $(".description").text(data[id].description)
-  })
-  .fail(() => {
-    console.log('Server down')
-  });
+      method: "GET",
+      url: `/data/boards/${id}`
+    })
+    .done((data) => {
+      pinOwner = data[id].owner_id;
+      if (userId == pinOwner) {
+        $('#delete').attr("style", "visibility: visible")
+      }
+      $(".title").text(data[id].title)
+      $(".image").attr("src", data[id].image)
+      $(".description").text(data[id].description)
+    })
+    .fail(() => {
+      console.log('Server down')
+    });
 };
 
 const loadPins = (id) => {
   $.ajax({
-    method: "GET",
-    url: `/data/boards/pins/${id}`
-  })
-  .done((data) => {
-    renderPins(data)
-  })
-  .fail(() => {
-    console.log('Server down')
-  });
+      method: "GET",
+      url: `/data/boards/pins/${id}`
+    })
+    .done((data) => {
+      renderPins(data)
+    })
+    .fail(() => {
+      console.log('Server down')
+    });
 };
 
-const renderPins = function(data) {
+const renderPins = function (data) {
   // loops through data
   let pins = data;
-  for(let i in pins){
+  for (let i in pins) {
     const $pin = createPin(pins[i])
     $('.feed').append($pin);
 
@@ -99,8 +99,8 @@ const createPin = (data) => {
 $(() => {
   const url = window.location.pathname;
   const urlArr = url.split('/');
-  id = urlArr[urlArr.length-1]
-  $('#delete').attr('action',`/data/boards/delete/${id}`)
+  id = urlArr[urlArr.length - 1]
+  $('#delete').attr('action', `/data/boards/delete/${id}`)
   loadNav()
   viewBoard(id)
   loadPins(id)

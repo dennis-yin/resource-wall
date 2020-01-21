@@ -1,11 +1,11 @@
 const loadNav = () => {
   $.ajax({
-    method: "POST",
-    url: "/data/user/id"
-  })
-  .done((data) => {
-    if (data) {
-      const markup = `
+      method: "POST",
+      url: "/data/user/id"
+    })
+    .done((data) => {
+      if (data) {
+        const markup = `
       <div class="dropdown">
         <button class="nav-btn dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
         ${data.user.name}
@@ -19,9 +19,9 @@ const loadNav = () => {
         </div>
       </div>
       `
-      $("#navbar").append(markup)
-    } else {
-      const markup = `
+        $("#navbar").append(markup)
+      } else {
+        const markup = `
       <form class="noUser" method="GET" action="/login">
         <button  type="home-button" class="home-button ml-auto nav-btn">Login</button>
       </form>
@@ -29,26 +29,26 @@ const loadNav = () => {
         <button type="register-button" class="register-button nav-btn">Register</button>
       </form>
       `
-      $("#navbar").append(markup)
-    }
-  })
-  .fail(() => {
-    console.log('Server down')
-  });
+        $("#navbar").append(markup)
+      }
+    })
+    .fail(() => {
+      console.log('Server down')
+    });
 }
 
 const loadProfile = () => {
   $.ajax({
-    method: "GET",
-    url: "/data/user"
-  })
-  .done((data) => {
-    $(".profileImage").attr("src",data['id'].profile_picture)
-    $(".profileName").text(data['id'].name)
-  })
-  .fail(() => {
-    console.log('Server down')
-  });
+      method: "GET",
+      url: "/data/user"
+    })
+    .done((data) => {
+      $(".profileImage").attr("src", data['id'].profile_picture)
+      $(".profileName").text(data['id'].name)
+    })
+    .fail(() => {
+      console.log('Server down')
+    });
 }
 
 

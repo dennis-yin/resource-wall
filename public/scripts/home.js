@@ -1,11 +1,11 @@
 const loadNav = () => {
   $.ajax({
-    method: "POST",
-    url: "/data/user/id"
-  })
-  .done((data) => {
-    if (data) {
-      const markup = `
+      method: "POST",
+      url: "/data/user/id"
+    })
+    .done((data) => {
+      if (data) {
+        const markup = `
       <div class="dropdown">
         <button class="nav-btn dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
         ${data.user.name}
@@ -19,9 +19,9 @@ const loadNav = () => {
         </div>
       </div>
       `
-      $("#navbar").append(markup)
-    } else {
-      const markup = `
+        $("#navbar").append(markup)
+      } else {
+        const markup = `
       <div class="dropdown">
         <button class="nav-btn dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
         Login
@@ -45,29 +45,29 @@ const loadNav = () => {
         <button type="register-button" class="register-button reg-btn">Register</button>
       </form>
       `
-      $("#navbar").append(markup)
-    }
-  })
-  .fail(() => {
-    console.log('Server down')
-  });
+        $("#navbar").append(markup)
+      }
+    })
+    .fail(() => {
+      console.log('Server down')
+    });
 }
 
 const loadPins = () => {
   $.ajax({
-    method: "GET",
-    url: "/data/pins"
-  })
-  .done((data) => {
-    console.log(data)
-    renderPins(data)
-  })
-  .fail(() => {
-    console.log('Server down')
-  });
+      method: "GET",
+      url: "/data/pins"
+    })
+    .done((data) => {
+      console.log(data)
+      renderPins(data)
+    })
+    .fail(() => {
+      console.log('Server down')
+    });
 };
 
-const renderPins = function(data) {
+const renderPins = function (data) {
   // loops through data
   let categories = data;
   console.log(data)
@@ -75,7 +75,7 @@ const renderPins = function(data) {
     const $catLabel = $(`<p class="catLabel">${catName}</p>`)
     const $leftButton = $(`<button class="scroll scrollLeft ${catName}"><i class="fas fa-chevron-left"></i></button>`)
     const $rightButton = $(`<button class="scroll scrollRight ${catName}"><i class="fas fa-chevron-right"></i></button>`)
-    const $pinContainer= $(`<div class="no-scroll categories ${catName}Scroll"></div> `)
+    const $pinContainer = $(`<div class="no-scroll categories ${catName}Scroll"></div> `)
     $('.feed').append(`<div class="catContainer ${catName}Container"></div>`)
     $(`.${catName}Container`).append($catLabel);
     $(`.${catName}Container`).append($leftButton)
@@ -86,7 +86,7 @@ const renderPins = function(data) {
       $pinContainer.append($pin)
     }
 
-    $(`.${catName}`).click(function() {
+    $(`.${catName}`).click(function () {
       let scrollPos = $(`.${catName}Scroll`).scrollLeft();
       if ($(this).hasClass('scrollLeft')) {
         $(`.${catName}Scroll`).scrollLeft(scrollPos - 600);
